@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "CT1eAoHUMPn9TJiUudyVirVNVwzH6DSWLOgrh5cexzZ9iDmxS2dtscUlUzQNF4E6qCKszali/YtphugGMKOmqA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Floof\\source\\repos\\EstiponaClinic\\EstiponaClinic\\EstiponaClinic.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Floof\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
