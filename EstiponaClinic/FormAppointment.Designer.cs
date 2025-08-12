@@ -64,10 +64,12 @@
             // 
             // dataGridViewAppointments
             // 
+            dataGridViewAppointments.AllowUserToResizeRows = false;
             dataGridViewAppointments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewAppointments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewAppointments.Location = new Point(30, 320);
             dataGridViewAppointments.Name = "dataGridViewAppointments";
+            dataGridViewAppointments.ReadOnly = true;
             dataGridViewAppointments.RowTemplate.Height = 25;
             dataGridViewAppointments.Size = new Size(740, 428);
             dataGridViewAppointments.TabIndex = 34;

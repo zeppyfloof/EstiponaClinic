@@ -2,15 +2,8 @@
 {
     partial class FormPrescription
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,234 +15,242 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            label7 = new Label();
+            labelTreatment = new Label();
+            labelPatient = new Label();
+            labelCost = new Label();
+            labelMedicines = new Label();
+            labelQuantity = new Label();
+            labelSearch = new Label();
+            labelTitle = new Label();
+            comboBoxPrescriptionTreatment = new ComboBox();
+            comboBoxPrescriptionPatient = new ComboBox();
+            textBoxPrescriptionCost = new TextBox();
+            textBoxPrescriptionMedicines = new TextBox();
+            textBoxPrescriptionQuantity = new TextBox();
             textBoxPrescriptionSearch = new TextBox();
-            dataGridViewPprescription = new DataGridView();
+            dataGridViewPrescription = new DataGridView();
+            buttonPrescriptionSave = new Button();
+            buttonPrescriptionEdit = new Button();
             buttonPrescriptionDelete = new Button();
             buttonPrescriptionPrint = new Button();
-            buttonPrescriptionsSave = new Button();
-            textBoxPrescriptionQuantity = new TextBox();
-            label6 = new Label();
-            label5 = new Label();
-            label3 = new Label();
-            label2 = new Label();
-            label1 = new Label();
-            comboBoxPrescriptionTreatment = new ComboBox();
-            textBoxPatientsAddress = new TextBox();
-            comboBoxPrescriptionPatient = new ComboBox();
-            textBoxPrescriptionMedicines = new TextBox();
-            label8 = new Label();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewPprescription).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewPrescription).BeginInit();
             SuspendLayout();
             // 
-            // label7
+            // labelTreatment
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(12, 212);
-            label7.Name = "label7";
-            label7.Size = new Size(42, 15);
-            label7.TabIndex = 36;
-            label7.Text = "Search";
+            labelTreatment.AutoSize = true;
+            labelTreatment.Location = new Point(30, 70);
+            labelTreatment.Name = "labelTreatment";
+            labelTreatment.Size = new Size(60, 15);
+            labelTreatment.TabIndex = 1;
+            labelTreatment.Text = "Treatment";
+            // 
+            // labelPatient
+            // 
+            labelPatient.AutoSize = true;
+            labelPatient.Location = new Point(30, 110);
+            labelPatient.Name = "labelPatient";
+            labelPatient.Size = new Size(44, 15);
+            labelPatient.TabIndex = 3;
+            labelPatient.Text = "Patient";
+            // 
+            // labelCost
+            // 
+            labelCost.AutoSize = true;
+            labelCost.Location = new Point(30, 150);
+            labelCost.Name = "labelCost";
+            labelCost.Size = new Size(31, 15);
+            labelCost.TabIndex = 5;
+            labelCost.Text = "Cost";
+            // 
+            // labelMedicines
+            // 
+            labelMedicines.AutoSize = true;
+            labelMedicines.Location = new Point(320, 70);
+            labelMedicines.Name = "labelMedicines";
+            labelMedicines.Size = new Size(61, 15);
+            labelMedicines.TabIndex = 7;
+            labelMedicines.Text = "Medicines";
+            // 
+            // labelQuantity
+            // 
+            labelQuantity.AutoSize = true;
+            labelQuantity.Location = new Point(320, 110);
+            labelQuantity.Name = "labelQuantity";
+            labelQuantity.Size = new Size(53, 15);
+            labelQuantity.TabIndex = 9;
+            labelQuantity.Text = "Quantity";
+            // 
+            // labelSearch
+            // 
+            labelSearch.AutoSize = true;
+            labelSearch.Location = new Point(30, 200);
+            labelSearch.Name = "labelSearch";
+            labelSearch.Size = new Size(42, 15);
+            labelSearch.TabIndex = 11;
+            labelSearch.Text = "Search";
+            // 
+            // labelTitle
+            // 
+            labelTitle.AutoSize = true;
+            labelTitle.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            labelTitle.Location = new Point(30, 20);
+            labelTitle.Name = "labelTitle";
+            labelTitle.Size = new Size(173, 37);
+            labelTitle.TabIndex = 0;
+            labelTitle.Text = "Prescription";
+            // 
+            // comboBoxPrescriptionTreatment
+            // 
+            comboBoxPrescriptionTreatment.Location = new Point(100, 67);
+            comboBoxPrescriptionTreatment.Name = "comboBoxPrescriptionTreatment";
+            comboBoxPrescriptionTreatment.Size = new Size(200, 23);
+            comboBoxPrescriptionTreatment.TabIndex = 2;
+            // 
+            // comboBoxPrescriptionPatient
+            // 
+            comboBoxPrescriptionPatient.Location = new Point(100, 107);
+            comboBoxPrescriptionPatient.Name = "comboBoxPrescriptionPatient";
+            comboBoxPrescriptionPatient.Size = new Size(200, 23);
+            comboBoxPrescriptionPatient.TabIndex = 4;
+            // 
+            // textBoxPrescriptionCost
+            // 
+            textBoxPrescriptionCost.Location = new Point(100, 147);
+            textBoxPrescriptionCost.Name = "textBoxPrescriptionCost";
+            textBoxPrescriptionCost.Size = new Size(200, 23);
+            textBoxPrescriptionCost.TabIndex = 6;
+            // 
+            // textBoxPrescriptionMedicines
+            // 
+            textBoxPrescriptionMedicines.Location = new Point(400, 67);
+            textBoxPrescriptionMedicines.Name = "textBoxPrescriptionMedicines";
+            textBoxPrescriptionMedicines.Size = new Size(200, 23);
+            textBoxPrescriptionMedicines.TabIndex = 8;
+            // 
+            // textBoxPrescriptionQuantity
+            // 
+            textBoxPrescriptionQuantity.Location = new Point(400, 107);
+            textBoxPrescriptionQuantity.Name = "textBoxPrescriptionQuantity";
+            textBoxPrescriptionQuantity.Size = new Size(200, 23);
+            textBoxPrescriptionQuantity.TabIndex = 10;
             // 
             // textBoxPrescriptionSearch
             // 
-            textBoxPrescriptionSearch.Location = new Point(59, 209);
+            textBoxPrescriptionSearch.Location = new Point(80, 197);
             textBoxPrescriptionSearch.Name = "textBoxPrescriptionSearch";
             textBoxPrescriptionSearch.Size = new Size(200, 23);
-            textBoxPrescriptionSearch.TabIndex = 35;
+            textBoxPrescriptionSearch.TabIndex = 12;
             // 
-            // dataGridViewPprescription
+            // dataGridViewPrescription
             // 
-            dataGridViewPprescription.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewPprescription.Location = new Point(12, 515);
-            dataGridViewPprescription.Name = "dataGridViewPprescription";
-            dataGridViewPprescription.RowTemplate.Height = 25;
-            dataGridViewPprescription.Size = new Size(776, 233);
-            dataGridViewPprescription.TabIndex = 34;
+            dataGridViewPrescription.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewPrescription.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewPrescription.Location = new Point(30, 270);
+            dataGridViewPrescription.Name = "dataGridViewPrescription";
+            dataGridViewPrescription.ReadOnly = true;
+            dataGridViewPrescription.Size = new Size(740, 478);
+            dataGridViewPrescription.TabIndex = 13;
+            // 
+            // buttonPrescriptionSave
+            // 
+            buttonPrescriptionSave.BackColor = Color.Green;
+            buttonPrescriptionSave.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonPrescriptionSave.ForeColor = Color.White;
+            buttonPrescriptionSave.Location = new Point(30, 230);
+            buttonPrescriptionSave.Name = "buttonPrescriptionSave";
+            buttonPrescriptionSave.Size = new Size(80, 35);
+            buttonPrescriptionSave.TabIndex = 14;
+            buttonPrescriptionSave.Text = "Save";
+            buttonPrescriptionSave.UseVisualStyleBackColor = false;
+            // 
+            // buttonPrescriptionEdit
+            // 
+            buttonPrescriptionEdit.BackColor = Color.Green;
+            buttonPrescriptionEdit.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonPrescriptionEdit.ForeColor = Color.White;
+            buttonPrescriptionEdit.Location = new Point(120, 230);
+            buttonPrescriptionEdit.Name = "buttonPrescriptionEdit";
+            buttonPrescriptionEdit.Size = new Size(80, 35);
+            buttonPrescriptionEdit.TabIndex = 15;
+            buttonPrescriptionEdit.Text = "Edit";
+            buttonPrescriptionEdit.UseVisualStyleBackColor = false;
             // 
             // buttonPrescriptionDelete
             // 
             buttonPrescriptionDelete.BackColor = Color.Green;
-            buttonPrescriptionDelete.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonPrescriptionDelete.ForeColor = SystemColors.ButtonHighlight;
-            buttonPrescriptionDelete.Location = new Point(431, 166);
+            buttonPrescriptionDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonPrescriptionDelete.ForeColor = Color.White;
+            buttonPrescriptionDelete.Location = new Point(210, 230);
             buttonPrescriptionDelete.Name = "buttonPrescriptionDelete";
-            buttonPrescriptionDelete.Size = new Size(97, 33);
-            buttonPrescriptionDelete.TabIndex = 33;
+            buttonPrescriptionDelete.Size = new Size(80, 35);
+            buttonPrescriptionDelete.TabIndex = 16;
             buttonPrescriptionDelete.Text = "Delete";
             buttonPrescriptionDelete.UseVisualStyleBackColor = false;
             // 
             // buttonPrescriptionPrint
             // 
             buttonPrescriptionPrint.BackColor = Color.Green;
-            buttonPrescriptionPrint.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonPrescriptionPrint.ForeColor = SystemColors.ButtonHighlight;
-            buttonPrescriptionPrint.Location = new Point(328, 166);
+            buttonPrescriptionPrint.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonPrescriptionPrint.ForeColor = Color.White;
+            buttonPrescriptionPrint.Location = new Point(300, 230);
             buttonPrescriptionPrint.Name = "buttonPrescriptionPrint";
-            buttonPrescriptionPrint.Size = new Size(97, 33);
-            buttonPrescriptionPrint.TabIndex = 32;
+            buttonPrescriptionPrint.Size = new Size(80, 35);
+            buttonPrescriptionPrint.TabIndex = 17;
             buttonPrescriptionPrint.Text = "Print";
             buttonPrescriptionPrint.UseVisualStyleBackColor = false;
-            // 
-            // buttonPrescriptionsSave
-            // 
-            buttonPrescriptionsSave.BackColor = Color.Green;
-            buttonPrescriptionsSave.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonPrescriptionsSave.ForeColor = SystemColors.ButtonHighlight;
-            buttonPrescriptionsSave.Location = new Point(225, 166);
-            buttonPrescriptionsSave.Name = "buttonPrescriptionsSave";
-            buttonPrescriptionsSave.Size = new Size(97, 33);
-            buttonPrescriptionsSave.TabIndex = 31;
-            buttonPrescriptionsSave.Text = "Save";
-            buttonPrescriptionsSave.UseVisualStyleBackColor = false;
-            // 
-            // textBoxPrescriptionQuantity
-            // 
-            textBoxPrescriptionQuantity.Location = new Point(462, 97);
-            textBoxPrescriptionQuantity.Name = "textBoxPrescriptionQuantity";
-            textBoxPrescriptionQuantity.Size = new Size(200, 23);
-            textBoxPrescriptionQuantity.TabIndex = 30;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(404, 100);
-            label6.Name = "label6";
-            label6.Size = new Size(53, 15);
-            label6.TabIndex = 29;
-            label6.Text = "Quantity";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(396, 71);
-            label5.Name = "label5";
-            label5.Size = new Size(61, 15);
-            label5.TabIndex = 28;
-            label5.Text = "Medicines";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(85, 129);
-            label3.Name = "label3";
-            label3.Size = new Size(31, 15);
-            label3.TabIndex = 26;
-            label3.Text = "Cost";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(72, 100);
-            label2.Name = "label2";
-            label2.Size = new Size(44, 15);
-            label2.TabIndex = 25;
-            label2.Text = "Patient";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(55, 71);
-            label1.Name = "label1";
-            label1.Size = new Size(60, 15);
-            label1.TabIndex = 24;
-            label1.Text = "Treatment";
-            // 
-            // comboBoxPrescriptionTreatment
-            // 
-            comboBoxPrescriptionTreatment.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxPrescriptionTreatment.FormattingEnabled = true;
-            comboBoxPrescriptionTreatment.Location = new Point(122, 68);
-            comboBoxPrescriptionTreatment.Name = "comboBoxPrescriptionTreatment";
-            comboBoxPrescriptionTreatment.Size = new Size(200, 23);
-            comboBoxPrescriptionTreatment.TabIndex = 22;
-            // 
-            // textBoxPatientsAddress
-            // 
-            textBoxPatientsAddress.Location = new Point(122, 126);
-            textBoxPatientsAddress.Name = "textBoxPatientsAddress";
-            textBoxPatientsAddress.Size = new Size(200, 23);
-            textBoxPatientsAddress.TabIndex = 21;
-            // 
-            // comboBoxPrescriptionPatient
-            // 
-            comboBoxPrescriptionPatient.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxPrescriptionPatient.FormattingEnabled = true;
-            comboBoxPrescriptionPatient.Location = new Point(122, 97);
-            comboBoxPrescriptionPatient.Name = "comboBoxPrescriptionPatient";
-            comboBoxPrescriptionPatient.Size = new Size(200, 23);
-            comboBoxPrescriptionPatient.TabIndex = 37;
-            // 
-            // textBoxPrescriptionMedicines
-            // 
-            textBoxPrescriptionMedicines.Location = new Point(463, 68);
-            textBoxPrescriptionMedicines.Name = "textBoxPrescriptionMedicines";
-            textBoxPrescriptionMedicines.Size = new Size(200, 23);
-            textBoxPrescriptionMedicines.TabIndex = 38;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(293, 18);
-            label8.Name = "label8";
-            label8.Size = new Size(173, 37);
-            label8.TabIndex = 39;
-            label8.Text = "Prescription";
             // 
             // FormPrescription
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 760);
-            Controls.Add(label8);
-            Controls.Add(textBoxPrescriptionMedicines);
+            Controls.Add(labelTitle);
+            Controls.Add(labelTreatment);
+            Controls.Add(comboBoxPrescriptionTreatment);
+            Controls.Add(labelPatient);
             Controls.Add(comboBoxPrescriptionPatient);
-            Controls.Add(label7);
+            Controls.Add(labelCost);
+            Controls.Add(textBoxPrescriptionCost);
+            Controls.Add(labelMedicines);
+            Controls.Add(textBoxPrescriptionMedicines);
+            Controls.Add(labelQuantity);
+            Controls.Add(textBoxPrescriptionQuantity);
+            Controls.Add(labelSearch);
             Controls.Add(textBoxPrescriptionSearch);
-            Controls.Add(dataGridViewPprescription);
+            Controls.Add(dataGridViewPrescription);
+            Controls.Add(buttonPrescriptionSave);
+            Controls.Add(buttonPrescriptionEdit);
             Controls.Add(buttonPrescriptionDelete);
             Controls.Add(buttonPrescriptionPrint);
-            Controls.Add(buttonPrescriptionsSave);
-            Controls.Add(textBoxPrescriptionQuantity);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(comboBoxPrescriptionTreatment);
-            Controls.Add(textBoxPatientsAddress);
             Name = "FormPrescription";
-            Text = "FormPrescription";
-            ((System.ComponentModel.ISupportInitialize)dataGridViewPprescription).EndInit();
+            Text = "Prescription Management";
+            ((System.ComponentModel.ISupportInitialize)dataGridViewPrescription).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label label7;
+        private Label labelTreatment;
+        private Label labelPatient;
+        private Label labelCost;
+        private Label labelMedicines;
+        private Label labelQuantity;
+        private Label labelSearch;
+        private Label labelTitle;
+        private ComboBox comboBoxPrescriptionTreatment;
+        private ComboBox comboBoxPrescriptionPatient;
+        private TextBox textBoxPrescriptionCost;
+        private TextBox textBoxPrescriptionMedicines;
+        private TextBox textBoxPrescriptionQuantity;
         private TextBox textBoxPrescriptionSearch;
-        private DataGridView dataGridViewPprescription;
+        private DataGridView dataGridViewPrescription;
+        private Button buttonPrescriptionSave;
+        private Button buttonPrescriptionEdit;
         private Button buttonPrescriptionDelete;
         private Button buttonPrescriptionPrint;
-        private Button buttonPrescriptionsSave;
-        private TextBox textBoxPrescriptionQuantity;
-        private Label label6;
-        private Label label5;
-        private Label label3;
-        private Label label2;
-        private Label label1;
-        private ComboBox comboBoxPrescriptionTreatment;
-        private TextBox textBoxPatientsAddress;
-        private ComboBox comboBoxPrescriptionPatient;
-        private TextBox textBoxPrescriptionMedicines;
-        private Label label8;
     }
 }

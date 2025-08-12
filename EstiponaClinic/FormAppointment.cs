@@ -8,62 +8,32 @@ namespace EstiponaClinic
 {
     public partial class FormAppointment : Form
     {
-        private List<Appointment> appointments = new List<Appointment>();
-        private readonly string jsonFilePath = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            "EstiponaClinic",
-            "appointments.json"
-        );
+        private readonly string appDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EstiponaClinic");
+        private readonly string appointmentsFile;
+        private readonly string patientsFile;
+        private readonly string treatmentsFile;
 
-        private readonly string patientsFilePath = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            "EstiponaClinic",
-            "patients.json"
-        );
-
-        private readonly string treatmentsFilePath = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            "EstiponaClinic",
-            "treatments.json"
-        );
-
-        private List<FormTreatment.Treatment> treatments = new List<FormTreatment.Treatment>();
+        private List<Appointment> appointments = new();
+        private List<FormPatients.Patient> patients = new();
+        private List<FormTreatment.Treatment> treatments = new();
 
         public FormAppointment()
         {
             InitializeComponent();
 
-            this.buttonAppointmentSave.Click += new System.EventHandler(this.buttonAppointmentSave_Click);
-            this.buttonAppointmentDelete.Click += new System.EventHandler(this.buttonAppointmentDelete_Click);
+            appointmentsFile = Path.Combine(appDataFolder, "appointments.json");
+            patientsFile = Path.Combine(appDataFolder, "patients.json");
+            treatmentsFile = Path.Combine(appDataFolder, "treatments.json");
 
-            LoadPatientsAndTreatments();
+            Directory.CreateDirectory(appDataFolder);
+
             ConfigureDataGridView();
+            LoadPatients();
+            LoadTreatments();
             LoadAppointments();
-        }
 
-        private void LoadPatientsAndTreatments()
-        {
-            comboBox1.Items.Clear();
-            comboBox2.Items.Clear();
-
-            // Load patients
-            if (File.Exists(patientsFilePath))
-            {
-                var patients = JsonConvert.DeserializeObject<List<FormPatients.Patient>>(File.ReadAllText(patientsFilePath));
-                if (patients != null)
-                {
-                    foreach (var p in patients)
-                        comboBox1.Items.Add(p.PatientName);
-                }
-            }
-
-            // Load treatments and store for cost lookup
-            if (File.Exists(treatmentsFilePath))
-            {
-                treatments = JsonConvert.DeserializeObject<List<FormTreatment.Treatment>>(File.ReadAllText(treatmentsFilePath)) ?? new List<FormTreatment.Treatment>();
-                foreach (var t in treatments)
-                    comboBox2.Items.Add(t.TreatmentName);
-            }
+            buttonAppointmentSave.Click += buttonAppointmentSave_Click;
+            buttonAppointmentDelete.Click += buttonAppointmentDelete_Click;
         }
 
         private void ConfigureDataGridView()
@@ -74,39 +44,42 @@ namespace EstiponaClinic
             dataGridViewAppointments.Columns.Add("TreatmentCost", "Cost");
             dataGridViewAppointments.Columns.Add("AppointmentDate", "Date");
             dataGridViewAppointments.Columns.Add("AppointmentTime", "Time");
+
             dataGridViewAppointments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewAppointments.MultiSelect = false;
         }
 
+        private void LoadPatients()
+        {
+            if (File.Exists(patientsFile))
+                patients = JsonConvert.DeserializeObject<List<FormPatients.Patient>>(File.ReadAllText(patientsFile)) ?? new();
+
+            comboBox1.Items.Clear();
+            foreach (var p in patients)
+                comboBox1.Items.Add(p.PatientName);
+        }
+
+        private void LoadTreatments()
+        {
+            if (File.Exists(treatmentsFile))
+                treatments = JsonConvert.DeserializeObject<List<FormTreatment.Treatment>>(File.ReadAllText(treatmentsFile)) ?? new();
+
+            comboBox2.Items.Clear();
+            foreach (var t in treatments)
+                comboBox2.Items.Add(t.TreatmentName);
+        }
+
         private void LoadAppointments()
         {
-            try
-            {
-                if (File.Exists(jsonFilePath))
-                {
-                    string json = File.ReadAllText(jsonFilePath);
-                    appointments = JsonConvert.DeserializeObject<List<Appointment>>(json) ?? new List<Appointment>();
-                }
-                RefreshDataGridView();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading appointments: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            if (File.Exists(appointmentsFile))
+                appointments = JsonConvert.DeserializeObject<List<Appointment>>(File.ReadAllText(appointmentsFile)) ?? new();
+
+            RefreshDataGridView();
         }
 
         private void SaveAppointments()
         {
-            try
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(jsonFilePath) ?? "");
-                string json = JsonConvert.SerializeObject(appointments, Formatting.Indented);
-                File.WriteAllText(jsonFilePath, json);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error saving appointments: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            File.WriteAllText(appointmentsFile, JsonConvert.SerializeObject(appointments, Formatting.Indented));
         }
 
         private void RefreshDataGridView()
@@ -142,19 +115,12 @@ namespace EstiponaClinic
                 return;
             }
 
-            // Lookup treatment cost
-            string selectedTreatmentName = comboBox2.SelectedItem!.ToString()!;
-            decimal cost = 0;
-            var treatment = treatments.Find(t => t.TreatmentName == selectedTreatmentName);
-            if (treatment != null)
-            {
-                cost = treatment.TreatmentCost;
-            }
+            decimal cost = treatments.Find(t => t.TreatmentName == comboBox2.SelectedItem!.ToString())?.TreatmentCost ?? 0;
 
             var appointment = new Appointment
             {
                 PatientName = comboBox1.SelectedItem!.ToString()!,
-                TreatmentName = selectedTreatmentName,
+                TreatmentName = comboBox2.SelectedItem!.ToString()!,
                 TreatmentCost = cost,
                 AppointmentDate = selectedDate,
                 AppointmentTime = selectedTime
@@ -180,25 +146,14 @@ namespace EstiponaClinic
                 return;
             }
 
-            var selectedRow = dataGridViewAppointments.SelectedRows[0];
-            int index = selectedRow.Index;
-
+            int index = dataGridViewAppointments.SelectedRows[0].Index;
             if (index >= 0 && index < appointments.Count)
             {
-                var result = MessageBox.Show(
-                    $"Are you sure you want to delete this appointment?\nThis action cannot be undone.",
-                    "Confirm Deletion",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning,
-                    MessageBoxDefaultButton.Button2
-                );
-
-                if (result == DialogResult.Yes)
+                if (MessageBox.Show("Delete this appointment?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     appointments.RemoveAt(index);
                     SaveAppointments();
                     RefreshDataGridView();
-                    MessageBox.Show("Appointment deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }

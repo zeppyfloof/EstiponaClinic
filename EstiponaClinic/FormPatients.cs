@@ -18,8 +18,19 @@ namespace EstiponaClinic
         public FormPatients()
         {
             InitializeComponent();
+
+            // Event hookups
+            this.Load += FormPatients_Load;
+            buttonPatientsSave.Click += buttonPatientsSave_Click;
+            buttonPatientsDelete.Click += buttonPatientsDelete_Click;
+
             comboBoxPatientsGender.Items.AddRange(new object[] { "Male", "Female", "Other" });
             InitializeDataGridView();
+        }
+
+        private void FormPatients_Load(object sender, EventArgs e)
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(jsonFilePath) ?? "");
             LoadPatients();
         }
 

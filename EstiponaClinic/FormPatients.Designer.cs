@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             textBoxPatientsFullName = new TextBox();
             textBoxPatientsPhoneNumber = new TextBox();
             textBoxPatientsAddress = new TextBox();
@@ -51,40 +51,12 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewPatients).BeginInit();
             SuspendLayout();
             // 
-            // label8 (Title)
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(30, 20);
-            label8.Name = "label8";
-            label8.Size = new Size(121, 37);
-            label8.TabIndex = 19;
-            label8.Text = "Patients";
-            // 
-            // label1 (Full Name)
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(30, 70);
-            label1.Name = "label1";
-            label1.Size = new Size(61, 15);
-            label1.TabIndex = 5;
-            label1.Text = "Full Name";
-            // 
             // textBoxPatientsFullName
             // 
             textBoxPatientsFullName.Location = new Point(30, 90);
             textBoxPatientsFullName.Name = "textBoxPatientsFullName";
             textBoxPatientsFullName.Size = new Size(250, 23);
             textBoxPatientsFullName.TabIndex = 0;
-            // 
-            // label2 (Phone)
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(30, 120);
-            label2.Name = "label2";
-            label2.Size = new Size(41, 15);
-            label2.TabIndex = 6;
-            label2.Text = "Phone";
             // 
             // textBoxPatientsPhoneNumber
             // 
@@ -93,46 +65,12 @@
             textBoxPatientsPhoneNumber.Size = new Size(250, 23);
             textBoxPatientsPhoneNumber.TabIndex = 1;
             // 
-            // label3 (Address)
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(30, 170);
-            label3.Name = "label3";
-            label3.Size = new Size(49, 15);
-            label3.TabIndex = 7;
-            label3.Text = "Address";
-            // 
             // textBoxPatientsAddress
             // 
             textBoxPatientsAddress.Location = new Point(30, 190);
             textBoxPatientsAddress.Name = "textBoxPatientsAddress";
             textBoxPatientsAddress.Size = new Size(250, 23);
             textBoxPatientsAddress.TabIndex = 2;
-            // 
-            // label4 (Date of Birth)
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(30, 220);
-            label4.Name = "label4";
-            label4.Size = new Size(73, 15);
-            label4.TabIndex = 8;
-            label4.Text = "Date of Birth";
-            // 
-            // dateTimePickerBirthDate
-            // 
-            dateTimePickerBirthDate.Location = new Point(30, 240);
-            dateTimePickerBirthDate.Name = "dateTimePickerBirthDate";
-            dateTimePickerBirthDate.Size = new Size(250, 23);
-            dateTimePickerBirthDate.TabIndex = 4;
-            // 
-            // label5 (Gender)
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(30, 270);
-            label5.Name = "label5";
-            label5.Size = new Size(45, 15);
-            label5.TabIndex = 9;
-            label5.Text = "Gender";
             // 
             // comboBoxPatientsGender
             // 
@@ -143,7 +81,59 @@
             comboBoxPatientsGender.Size = new Size(250, 23);
             comboBoxPatientsGender.TabIndex = 3;
             // 
-            // label6 (Allergies)
+            // dateTimePickerBirthDate
+            // 
+            dateTimePickerBirthDate.Location = new Point(30, 240);
+            dateTimePickerBirthDate.Name = "dateTimePickerBirthDate";
+            dateTimePickerBirthDate.Size = new Size(250, 23);
+            dateTimePickerBirthDate.TabIndex = 4;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(30, 70);
+            label1.Name = "label1";
+            label1.Size = new Size(61, 15);
+            label1.TabIndex = 5;
+            label1.Text = "Full Name";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(30, 120);
+            label2.Name = "label2";
+            label2.Size = new Size(41, 15);
+            label2.TabIndex = 6;
+            label2.Text = "Phone";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(30, 170);
+            label3.Name = "label3";
+            label3.Size = new Size(49, 15);
+            label3.TabIndex = 7;
+            label3.Text = "Address";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(30, 220);
+            label4.Name = "label4";
+            label4.Size = new Size(73, 15);
+            label4.TabIndex = 8;
+            label4.Text = "Date of Birth";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(30, 270);
+            label5.Name = "label5";
+            label5.Size = new Size(45, 15);
+            label5.TabIndex = 9;
+            label5.Text = "Gender";
+            // 
+            // label6
             // 
             label6.AutoSize = true;
             label6.Location = new Point(30, 320);
@@ -155,8 +145,8 @@
             // textBoxPatientsAllergies
             // 
             textBoxPatientsAllergies.Location = new Point(30, 340);
-            textBoxPatientsAllergies.Name = "textBoxPatientsAllergies";
             textBoxPatientsAllergies.Multiline = true;
+            textBoxPatientsAllergies.Name = "textBoxPatientsAllergies";
             textBoxPatientsAllergies.Size = new Size(250, 60);
             textBoxPatientsAllergies.TabIndex = 12;
             // 
@@ -196,14 +186,24 @@
             buttonPatientsDelete.Text = "Delete";
             buttonPatientsDelete.UseVisualStyleBackColor = false;
             // 
-            // label7 (Search)
+            // dataGridViewPatients
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(330, 70);
-            label7.Name = "label7";
-            label7.Size = new Size(42, 15);
-            label7.TabIndex = 18;
-            label7.Text = "Search";
+            dataGridViewPatients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewPatients.Cursor = Cursors.Hand;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataGridViewPatients.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewPatients.Location = new Point(30, 460);
+            dataGridViewPatients.Name = "dataGridViewPatients";
+            dataGridViewPatients.ReadOnly = true;
+            dataGridViewPatients.RowTemplate.Height = 25;
+            dataGridViewPatients.Size = new Size(740, 280);
+            dataGridViewPatients.TabIndex = 16;
             // 
             // textBoxPatientsSearch
             // 
@@ -212,23 +212,24 @@
             textBoxPatientsSearch.Size = new Size(250, 23);
             textBoxPatientsSearch.TabIndex = 17;
             // 
-            // dataGridViewPatients
+            // label7
             // 
-            dataGridViewPatients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewPatients.Cursor = Cursors.Hand;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridViewPatients.DefaultCellStyle = dataGridViewCellStyle2;
-            dataGridViewPatients.Location = new Point(30, 460);
-            dataGridViewPatients.Name = "dataGridViewPatients";
-            dataGridViewPatients.RowTemplate.Height = 25;
-            dataGridViewPatients.Size = new Size(740, 280);
-            dataGridViewPatients.TabIndex = 16;
+            label7.AutoSize = true;
+            label7.Location = new Point(330, 70);
+            label7.Name = "label7";
+            label7.Size = new Size(42, 15);
+            label7.TabIndex = 18;
+            label7.Text = "Search";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.Location = new Point(30, 20);
+            label8.Name = "label8";
+            label8.Size = new Size(121, 37);
+            label8.TabIndex = 19;
+            label8.Text = "Patients";
             // 
             // FormPatients
             // 
@@ -255,7 +256,6 @@
             Controls.Add(textBoxPatientsPhoneNumber);
             Controls.Add(textBoxPatientsFullName);
             Name = "FormPatients";
-            // Updated the title to reflect the form's purpose
             Text = "Patient Management";
             ((System.ComponentModel.ISupportInitialize)dataGridViewPatients).EndInit();
             ResumeLayout(false);
