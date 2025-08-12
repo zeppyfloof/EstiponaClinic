@@ -104,6 +104,7 @@
             // 
             // comboBoxPrescriptionTreatment
             // 
+            comboBoxPrescriptionTreatment.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxPrescriptionTreatment.Location = new Point(100, 67);
             comboBoxPrescriptionTreatment.Name = "comboBoxPrescriptionTreatment";
             comboBoxPrescriptionTreatment.Size = new Size(200, 23);
@@ -111,6 +112,7 @@
             // 
             // comboBoxPrescriptionPatient
             // 
+            comboBoxPrescriptionPatient.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxPrescriptionPatient.Location = new Point(100, 107);
             comboBoxPrescriptionPatient.Name = "comboBoxPrescriptionPatient";
             comboBoxPrescriptionPatient.Size = new Size(200, 23);
