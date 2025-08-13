@@ -15,12 +15,16 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
             buttonFormAppointment = new Button();
             buttonFormTreatment = new Button();
             buttonFormDashboard = new Button();
             buttonFormPrescription = new Button();
             buttonFormPatients = new Button();
+            pictureBox1 = new PictureBox();
+            label1 = new Label();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -95,12 +99,35 @@
             buttonFormPatients.UseVisualStyleBackColor = false;
             buttonFormPatients.Click += buttonFormPatients_Click;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(12, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(129, 135);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 6;
+            pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.Green;
+            label1.Location = new Point(12, 150);
+            label1.Name = "label1";
+            label1.Size = new Size(134, 20);
+            label1.TabIndex = 0;
+            label1.Text = "ESTIPONA CLINIC";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             ClientSize = new Size(993, 761);
+            Controls.Add(label1);
+            Controls.Add(pictureBox1);
             Controls.Add(buttonFormTreatment);
             Controls.Add(buttonFormPatients);
             Controls.Add(buttonFormDashboard);
@@ -111,7 +138,9 @@
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Estipona Clinic";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         private Panel panel1;
@@ -120,5 +149,7 @@
         private Button buttonFormDashboard;
         private Button buttonFormPrescription;
         private Button buttonFormPatients;
+        private PictureBox pictureBox1;
+        private Label label1;
     }
 }
