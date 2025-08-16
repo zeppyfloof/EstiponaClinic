@@ -33,123 +33,185 @@
         #region Windows Form Designer generated code
         private void InitializeComponent()
         {
-            this.lblName = new System.Windows.Forms.Label();
-            this.textBoxName = new System.Windows.Forms.TextBox();
-            this.lblNumber = new System.Windows.Forms.Label();
-            this.textBoxNumber = new System.Windows.Forms.TextBox();
-            this.lblAddress = new System.Windows.Forms.Label();
-            this.textBoxAddress = new System.Windows.Forms.TextBox();
-            this.lblDOB = new System.Windows.Forms.Label();
-            this.dateTimePickerDOB = new System.Windows.Forms.DateTimePicker();
-            this.lblGender = new System.Windows.Forms.Label();
-            this.comboBoxGender = new System.Windows.Forms.ComboBox();
-            this.lblAllergies = new System.Windows.Forms.Label();
-            this.textBoxAllergies = new System.Windows.Forms.TextBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-
-            this.SuspendLayout();
+            lblName = new Label();
+            textBoxName = new TextBox();
+            lblNumber = new Label();
+            textBoxNumber = new TextBox();
+            lblAddress = new Label();
+            textBoxAddress = new TextBox();
+            lblDOB = new Label();
+            dateTimePickerDOB = new DateTimePicker();
+            lblGender = new Label();
+            comboBoxGender = new ComboBox();
+            lblAllergies = new Label();
+            textBoxAllergies = new TextBox();
+            btnSave = new Button();
+            btnCancel = new Button();
+            SuspendLayout();
             // 
             // lblName
             // 
-            this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(30, 30);
-            this.lblName.Text = "Full Name:";
+            lblName.AutoSize = true;
+            lblName.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblName.ForeColor = Color.Green;
+            lblName.Location = new Point(66, 61);
+            lblName.Name = "lblName";
+            lblName.Size = new Size(136, 32);
+            lblName.TabIndex = 0;
+            lblName.Text = "Full Name:";
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(150, 27);
-            this.textBoxName.Width = 250;
+            textBoxName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxName.Location = new Point(241, 61);
+            textBoxName.Name = "textBoxName";
+            textBoxName.Size = new Size(297, 34);
+            textBoxName.TabIndex = 1;
             // 
             // lblNumber
             // 
-            this.lblNumber.AutoSize = true;
-            this.lblNumber.Location = new System.Drawing.Point(30, 70);
-            this.lblNumber.Text = "Contact No.:";
+            lblNumber.AutoSize = true;
+            lblNumber.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblNumber.ForeColor = Color.Green;
+            lblNumber.Location = new Point(66, 120);
+            lblNumber.Name = "lblNumber";
+            lblNumber.Size = new Size(157, 32);
+            lblNumber.TabIndex = 2;
+            lblNumber.Text = "Contact No.:";
             // 
             // textBoxNumber
             // 
-            this.textBoxNumber.Location = new System.Drawing.Point(150, 67);
-            this.textBoxNumber.Width = 250;
+            textBoxNumber.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxNumber.Location = new Point(241, 120);
+            textBoxNumber.Name = "textBoxNumber";
+            textBoxNumber.Size = new Size(297, 34);
+            textBoxNumber.TabIndex = 3;
             // 
             // lblAddress
             // 
-            this.lblAddress.AutoSize = true;
-            this.lblAddress.Location = new System.Drawing.Point(30, 110);
-            this.lblAddress.Text = "Address:";
+            lblAddress.AutoSize = true;
+            lblAddress.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblAddress.ForeColor = Color.Green;
+            lblAddress.Location = new Point(66, 175);
+            lblAddress.Name = "lblAddress";
+            lblAddress.Size = new Size(113, 32);
+            lblAddress.TabIndex = 4;
+            lblAddress.Text = "Address:";
             // 
             // textBoxAddress
             // 
-            this.textBoxAddress.Location = new System.Drawing.Point(150, 107);
-            this.textBoxAddress.Width = 250;
+            textBoxAddress.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAddress.Location = new Point(241, 175);
+            textBoxAddress.Name = "textBoxAddress";
+            textBoxAddress.Size = new Size(297, 34);
+            textBoxAddress.TabIndex = 5;
             // 
             // lblDOB
             // 
-            this.lblDOB.AutoSize = true;
-            this.lblDOB.Location = new System.Drawing.Point(30, 150);
-            this.lblDOB.Text = "Date of Birth:";
+            lblDOB.AutoSize = true;
+            lblDOB.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblDOB.ForeColor = Color.Green;
+            lblDOB.Location = new Point(66, 231);
+            lblDOB.Name = "lblDOB";
+            lblDOB.Size = new Size(168, 32);
+            lblDOB.TabIndex = 6;
+            lblDOB.Text = "Date of Birth:";
             // 
             // dateTimePickerDOB
             // 
-            this.dateTimePickerDOB.Location = new System.Drawing.Point(150, 147);
-            this.dateTimePickerDOB.Width = 250;
+            dateTimePickerDOB.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dateTimePickerDOB.Location = new Point(241, 231);
+            dateTimePickerDOB.Name = "dateTimePickerDOB";
+            dateTimePickerDOB.Size = new Size(297, 34);
+            dateTimePickerDOB.TabIndex = 7;
             // 
             // lblGender
             // 
-            this.lblGender.AutoSize = true;
-            this.lblGender.Location = new System.Drawing.Point(30, 190);
-            this.lblGender.Text = "Gender:";
+            lblGender.AutoSize = true;
+            lblGender.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblGender.ForeColor = Color.Green;
+            lblGender.Location = new Point(66, 290);
+            lblGender.Name = "lblGender";
+            lblGender.Size = new Size(105, 32);
+            lblGender.TabIndex = 8;
+            lblGender.Text = "Gender:";
             // 
             // comboBoxGender
             // 
-            this.comboBoxGender.Location = new System.Drawing.Point(150, 187);
-            this.comboBoxGender.Width = 250;
+            comboBoxGender.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxGender.Location = new Point(241, 290);
+            comboBoxGender.Name = "comboBoxGender";
+            comboBoxGender.Size = new Size(297, 36);
+            comboBoxGender.TabIndex = 9;
             // 
             // lblAllergies
             // 
-            this.lblAllergies.AutoSize = true;
-            this.lblAllergies.Location = new System.Drawing.Point(30, 230);
-            this.lblAllergies.Text = "Allergies:";
+            lblAllergies.AutoSize = true;
+            lblAllergies.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblAllergies.ForeColor = Color.Green;
+            lblAllergies.Location = new Point(66, 347);
+            lblAllergies.Name = "lblAllergies";
+            lblAllergies.Size = new Size(121, 32);
+            lblAllergies.TabIndex = 10;
+            lblAllergies.Text = "Allergies:";
             // 
             // textBoxAllergies
             // 
-            this.textBoxAllergies.Location = new System.Drawing.Point(150, 227);
-            this.textBoxAllergies.Width = 250;
+            textBoxAllergies.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAllergies.Location = new Point(241, 347);
+            textBoxAllergies.Name = "textBoxAllergies";
+            textBoxAllergies.Size = new Size(297, 34);
+            textBoxAllergies.TabIndex = 11;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(150, 280);
-            this.btnSave.Text = "Save";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            btnSave.BackColor = Color.Green;
+            btnSave.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSave.ForeColor = SystemColors.Control;
+            btnSave.Location = new Point(391, 427);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(147, 57);
+            btnSave.TabIndex = 12;
+            btnSave.Text = "Save";
+            btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(250, 280);
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            btnCancel.BackColor = Color.Crimson;
+            btnCancel.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCancel.ForeColor = SystemColors.Control;
+            btnCancel.Location = new Point(87, 427);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(147, 57);
+            btnCancel.TabIndex = 13;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = false;
+            btnCancel.Click += btnCancel_Click;
             // 
             // FormPatientManage
             // 
-            this.ClientSize = new System.Drawing.Size(450, 350);
-            this.Controls.Add(this.lblName);
-            this.Controls.Add(this.textBoxName);
-            this.Controls.Add(this.lblNumber);
-            this.Controls.Add(this.textBoxNumber);
-            this.Controls.Add(this.lblAddress);
-            this.Controls.Add(this.textBoxAddress);
-            this.Controls.Add(this.lblDOB);
-            this.Controls.Add(this.dateTimePickerDOB);
-            this.Controls.Add(this.lblGender);
-            this.Controls.Add(this.comboBoxGender);
-            this.Controls.Add(this.lblAllergies);
-            this.Controls.Add(this.textBoxAllergies);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnCancel);
-            this.Name = "FormPatientManage";
-            this.StartPosition = FormStartPosition.CenterParent;
-            this.Text = "Manage Patient";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            BackColor = Color.PaleTurquoise;
+            ClientSize = new Size(622, 520);
+            Controls.Add(lblName);
+            Controls.Add(textBoxName);
+            Controls.Add(lblNumber);
+            Controls.Add(textBoxNumber);
+            Controls.Add(lblAddress);
+            Controls.Add(textBoxAddress);
+            Controls.Add(lblDOB);
+            Controls.Add(dateTimePickerDOB);
+            Controls.Add(lblGender);
+            Controls.Add(comboBoxGender);
+            Controls.Add(lblAllergies);
+            Controls.Add(textBoxAllergies);
+            Controls.Add(btnSave);
+            Controls.Add(btnCancel);
+            Name = "FormPatientManage";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Manage Patient";
+            ResumeLayout(false);
+            PerformLayout();
         }
         #endregion
     }

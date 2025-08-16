@@ -199,33 +199,54 @@ namespace EstiponaClinic
                 }
             }
 
+            // Ask user: Edit selected or create new?
+            DialogResult choice = MessageBox.Show(
+                "Do you want to update the selected patient?\n\n" +
+                "Yes = Update Selected\nNo = Create New\nCancel = Do Nothing",
+                "Manage Patient",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question);
+
+            if (choice == DialogResult.Cancel) return;
+            if (choice == DialogResult.No) selectedPatient = null; // create new
+
             using (var manageForm = new FormPatientManage(selectedPatient))
             {
-                this.Opacity = 0.5; // Dim background
+                this.Opacity = 0.5;
                 var result = manageForm.ShowDialog();
-                this.Opacity = 1;   // Restore background
+                this.Opacity = 1;
 
                 if (result == DialogResult.OK)
                 {
                     if (selectedPatient != null)
                     {
-                        // Update existing patient
+                        // Update existing
                         int index = patients.IndexOf(selectedPatient);
                         patients[index] = manageForm.PatientData;
+                        SavePatients();
+                        RefreshDataGridView();
                         MessageBox.Show("Patient updated successfully.");
                     }
                     else
                     {
-                        // Add new patient
+                        // Add new
                         patients.Add(manageForm.PatientData);
+                        SavePatients();
+                        RefreshDataGridView();
                         MessageBox.Show("Patient saved successfully.");
                     }
-
+                }
+                else if (result == DialogResult.Abort && selectedPatient != null)
+                {
+                    // Delete
+                    patients.Remove(selectedPatient);
                     SavePatients();
                     RefreshDataGridView();
+                    MessageBox.Show("Patient deleted successfully.");
                 }
             }
         }
+
 
         private void textBoxPatientsSearch_TextChanged(object sender, EventArgs e)
         {
