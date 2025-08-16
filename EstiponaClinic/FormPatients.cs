@@ -21,10 +21,24 @@ namespace EstiponaClinic
 
             // Event hookups
             this.Load += FormPatients_Load;
-            buttonPatientsSave.Click += buttonPatientsSave_Click;
-            buttonPatientsDelete.Click += buttonPatientsDelete_Click;
+            textBoxPatientsSearch.TextChanged += textBoxPatientsSearch_TextChanged;
+            textBoxPatientsSearch.GotFocus += (s, e) =>
+            {
+                if (textBoxPatientsSearch.Text == "Search")
+                    textBoxPatientsSearch.Text = "";
+            };
 
-            comboBoxPatientsGender.Items.AddRange(new object[] { "Male", "Female", "Other" });
+            textBoxPatientsSearch.LostFocus += (s, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(textBoxPatientsSearch.Text))
+                    textBoxPatientsSearch.Text = "Search";
+            };
+
+
+            //buttonPatientsSave.Click += buttonPatientsSave_Click;
+            //buttonPatientsDelete.Click += buttonPatientsDelete_Click;
+
+            //comboBoxPatientsGender.Items.AddRange(new object[] { "Male", "Female", "Other" });
             InitializeDataGridView();
         }
 
@@ -45,7 +59,9 @@ namespace EstiponaClinic
             dataGridViewPatients.Columns.Add("PatientAllergies", "Allergies");
             dataGridViewPatients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewPatients.MultiSelect = false;
+
         }
+
 
         private void LoadPatients()
         {
@@ -94,7 +110,7 @@ namespace EstiponaClinic
             }
         }
 
-        private void buttonPatientsSave_Click(object sender, EventArgs e)
+        /*private void buttonPatientsSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBoxPatientsFullName.Text) ||
                 string.IsNullOrWhiteSpace(textBoxPatientsPhoneNumber.Text) ||
@@ -127,9 +143,9 @@ namespace EstiponaClinic
             textBoxPatientsAllergies.Clear();
 
             MessageBox.Show("Patient saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+        }*/
 
-        private void buttonPatientsDelete_Click(object sender, EventArgs e)
+        /*private void buttonPatientsDelete_Click(object sender, EventArgs e)
         {
             if (dataGridViewPatients.SelectedRows.Count == 0)
             {
@@ -158,7 +174,7 @@ namespace EstiponaClinic
                     MessageBox.Show("Patient deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-        }
+        }*/
 
         public class Patient
         {
@@ -169,5 +185,84 @@ namespace EstiponaClinic
             public string PatientGender { get; set; } = string.Empty;
             public string? PatientAllergies { get; set; }
         }
+
+        private void btnManage_Click(object sender, EventArgs e)
+        {
+            FormPatients.Patient selectedPatient = null;
+
+            if (dataGridViewPatients.SelectedRows.Count > 0)
+            {
+                int index = dataGridViewPatients.SelectedRows[0].Index;
+                if (index >= 0 && index < patients.Count)
+                {
+                    selectedPatient = patients[index];
+                }
+            }
+
+            using (var manageForm = new FormPatientManage(selectedPatient))
+            {
+                this.Opacity = 0.5; // Dim background
+                var result = manageForm.ShowDialog();
+                this.Opacity = 1;   // Restore background
+
+                if (result == DialogResult.OK)
+                {
+                    if (selectedPatient != null)
+                    {
+                        // Update existing patient
+                        int index = patients.IndexOf(selectedPatient);
+                        patients[index] = manageForm.PatientData;
+                        MessageBox.Show("Patient updated successfully.");
+                    }
+                    else
+                    {
+                        // Add new patient
+                        patients.Add(manageForm.PatientData);
+                        MessageBox.Show("Patient saved successfully.");
+                    }
+
+                    SavePatients();
+                    RefreshDataGridView();
+                }
+            }
+        }
+
+        private void textBoxPatientsSearch_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = textBoxPatientsSearch.Text.Trim().ToLower();
+            dataGridViewPatients.Rows.Clear();
+
+            // If empty or placeholder, show all patients
+            if (string.IsNullOrEmpty(searchText) || searchText == "search")
+            {
+                RefreshDataGridView();
+                return;
+            }
+
+            foreach (var patient in patients)
+            {
+                bool isMatch =
+                    patient.PatientName.ToLower().Equals(searchText) ||
+                    patient.PatientNumber.ToLower().Equals(searchText) ||
+                    patient.PatientAddress.ToLower().Equals(searchText) ||
+                    patient.PatientBirthDay.ToShortDateString().ToLower().Equals(searchText) ||
+                    patient.PatientGender.ToLower().Equals(searchText) ||
+                    (!string.IsNullOrEmpty(patient.PatientAllergies) &&
+                     patient.PatientAllergies.ToLower().Equals(searchText));
+
+                if (isMatch)
+                {
+                    dataGridViewPatients.Rows.Add(
+                        patient.PatientName,
+                        patient.PatientNumber,
+                        patient.PatientAddress,
+                        patient.PatientBirthDay.ToShortDateString(),
+                        patient.PatientGender,
+                        patient.PatientAllergies
+                    );
+                }
+            }
+        }
+
     }
 }
