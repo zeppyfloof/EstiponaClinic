@@ -18,7 +18,18 @@ namespace EstiponaClinic
         public FormTreatment()
         {
             InitializeComponent();
+
+            this.Load += FormTreatment_Load;
+            buttonTreatmentAdd.Click += buttonTreatmentAdd_Click;
+            buttonTreatmentEdit.Click += buttonTreatmentEdit_Click;
+            buttonTreatmentDelete.Click += buttonTreatmentDelete_Click;
+
             ConfigureDataGridView();
+        }
+
+        private void FormTreatment_Load(object sender, EventArgs e)
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(jsonFilePath) ?? "");
             LoadTreatments();
         }
 
@@ -28,6 +39,7 @@ namespace EstiponaClinic
             dataGridViewTreatment.Columns.Add("TreatmentName", "Treatment Name");
             dataGridViewTreatment.Columns.Add("TreatmentDescription", "Description");
             dataGridViewTreatment.Columns.Add("TreatmentCost", "Cost");
+
             dataGridViewTreatment.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewTreatment.MultiSelect = false;
         }
@@ -39,13 +51,14 @@ namespace EstiponaClinic
                 if (File.Exists(jsonFilePath))
                 {
                     string json = File.ReadAllText(jsonFilePath);
-                    treatments = JsonConvert.DeserializeObject<List<Treatment>>(json) ?? new List<Treatment>();
+                    treatments = JsonConvert.DeserializeObject<List<Treatment>>(json) ?? new();
                 }
                 RefreshDataGridView();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading treatments: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error loading treatments: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -59,7 +72,8 @@ namespace EstiponaClinic
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error saving treatments: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error saving treatments: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -71,55 +85,66 @@ namespace EstiponaClinic
                 dataGridViewTreatment.Rows.Add(
                     treatment.TreatmentName,
                     treatment.TreatmentDescription,
-                    treatment.TreatmentCost
+                    treatment.TreatmentCost.ToString("F2")
                 );
             }
         }
 
-        private void buttonTreatmentSave_Click(object sender, EventArgs e)
+        // ADD
+        private void buttonTreatmentAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBoxTreatmentName.Text) ||
-                string.IsNullOrWhiteSpace(textBoxTreatmentDescription.Text) ||
-                string.IsNullOrWhiteSpace(textBoxTreatmentCost.Text))
+            using (var addForm = new FormAddTreatment())
             {
-                MessageBox.Show("Please fill in all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                if (addForm.ShowDialog() == DialogResult.OK && addForm.NewTreatment != null)
+                {
+                    treatments.Add(addForm.NewTreatment);
+                    SaveTreatments();
+                    RefreshDataGridView();
+                    MessageBox.Show("Treatment added successfully.", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-
-            if (!decimal.TryParse(textBoxTreatmentCost.Text, out decimal cost))
-            {
-                MessageBox.Show("Cost must be a valid number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            var treatment = new Treatment
-            {
-                TreatmentName = textBoxTreatmentName.Text.Trim(),
-                TreatmentDescription = textBoxTreatmentDescription.Text.Trim(),
-                TreatmentCost = cost
-            };
-
-            treatments.Add(treatment);
-            SaveTreatments();
-            RefreshDataGridView();
-
-            textBoxTreatmentName.Clear();
-            textBoxTreatmentDescription.Clear();
-            textBoxTreatmentCost.Clear();
-
-            MessageBox.Show("Treatment saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        // EDIT
+        private void buttonTreatmentEdit_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewTreatment.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a treatment to edit.", "Selection Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int index = dataGridViewTreatment.SelectedRows[0].Index;
+            if (index < 0 || index >= treatments.Count) return;
+
+            var treatmentToEdit = treatments[index];
+
+            using (var editForm = new FormEditTreatment(treatmentToEdit))
+            {
+                if (editForm.ShowDialog() == DialogResult.OK && editForm.EditedTreatment != null)
+                {
+                    treatments[index] = editForm.EditedTreatment;
+                    SaveTreatments();
+                    RefreshDataGridView();
+                    MessageBox.Show("Treatment updated successfully.", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        // DELETE
         private void buttonTreatmentDelete_Click(object sender, EventArgs e)
         {
             if (dataGridViewTreatment.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Please select a treatment to delete.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a treatment to delete.", "Selection Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            var selectedRow = dataGridViewTreatment.SelectedRows[0];
-            int index = selectedRow.Index;
+            int index = dataGridViewTreatment.SelectedRows[0].Index;
 
             if (index >= 0 && index < treatments.Count)
             {
@@ -136,7 +161,8 @@ namespace EstiponaClinic
                     treatments.RemoveAt(index);
                     SaveTreatments();
                     RefreshDataGridView();
-                    MessageBox.Show("Treatment deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Treatment deleted successfully.", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }

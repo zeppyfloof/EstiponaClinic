@@ -4,10 +4,34 @@
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FormAddAppointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormAddPatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormAddPrescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormAddTreatment.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FormAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FormDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormEditAppointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormEditPatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormEditPrescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormEditTreatment.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FormPatients.cs">

@@ -32,7 +32,8 @@ namespace EstiponaClinic
             LoadTreatments();
             LoadPrescriptions();
 
-            buttonPrescriptionSave.Click += buttonPrescriptionSave_Click;
+            buttonPrescriptionAdd.Click += buttonPrescriptionAdd_Click;
+            buttonPrescriptionEdit.Click += buttonPrescriptionEdit_Click;
             buttonPrescriptionDelete.Click += buttonPrescriptionDelete_Click;
         }
 
@@ -53,30 +54,12 @@ namespace EstiponaClinic
         {
             if (File.Exists(patientsFile))
                 patients = JsonConvert.DeserializeObject<List<Patient>>(File.ReadAllText(patientsFile)) ?? new();
-
-            comboBoxPrescriptionPatient.DataSource = null;
-            comboBoxPrescriptionPatient.DataSource = patients;
-            comboBoxPrescriptionPatient.DisplayMember = "PatientName";
-            comboBoxPrescriptionPatient.ValueMember = "PatientName";
         }
 
         private void LoadTreatments()
         {
             if (File.Exists(treatmentsFile))
                 treatments = JsonConvert.DeserializeObject<List<Treatment>>(File.ReadAllText(treatmentsFile)) ?? new();
-
-            comboBoxPrescriptionTreatment.DataSource = null;
-            comboBoxPrescriptionTreatment.DataSource = treatments;
-            comboBoxPrescriptionTreatment.DisplayMember = "TreatmentName";
-            comboBoxPrescriptionTreatment.ValueMember = "TreatmentName";
-
-            comboBoxPrescriptionTreatment.SelectedIndexChanged += (s, e) =>
-            {
-                if (comboBoxPrescriptionTreatment.SelectedItem is Treatment t)
-                {
-                    textBoxPrescriptionCost.Text = t.TreatmentCost;
-                }
-            };
         }
 
         private void LoadPrescriptions()
@@ -85,6 +68,11 @@ namespace EstiponaClinic
                 prescriptions = JsonConvert.DeserializeObject<List<Prescription>>(File.ReadAllText(prescriptionsFile)) ?? new();
 
             RefreshDataGridView();
+        }
+
+        private void SavePrescriptions()
+        {
+            File.WriteAllText(prescriptionsFile, JsonConvert.SerializeObject(prescriptions, Formatting.Indented));
         }
 
         private void RefreshDataGridView()
@@ -96,50 +84,61 @@ namespace EstiponaClinic
             }
         }
 
-        private void buttonPrescriptionSave_Click(object sender, EventArgs e)
+        // 🔹 ADD
+        private void buttonPrescriptionAdd_Click(object sender, EventArgs e)
         {
-            if (comboBoxPrescriptionTreatment.SelectedIndex < 0 ||
-                comboBoxPrescriptionPatient.SelectedIndex < 0 ||
-                string.IsNullOrWhiteSpace(textBoxPrescriptionMedicines.Text) ||
-                string.IsNullOrWhiteSpace(textBoxPrescriptionQuantity.Text))
+            using (var addForm = new FormAddPrescription(patients, treatments))
             {
-                MessageBox.Show("Please fill in all fields before saving.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                if (addForm.ShowDialog() == DialogResult.OK && addForm.NewPrescription != null)
+                {
+                    prescriptions.Add(addForm.NewPrescription);
+                    SavePrescriptions();
+                    RefreshDataGridView();
+                    MessageBox.Show("Prescription added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-
-            var selectedTreatment = comboBoxPrescriptionTreatment.SelectedItem as Treatment;
-            var selectedPatient = comboBoxPrescriptionPatient.SelectedItem as Patient;
-
-            var newPrescription = new Prescription
-            {
-                TreatmentName = selectedTreatment!.TreatmentName,
-                PatientName = selectedPatient!.PatientName,
-                Cost = selectedTreatment.TreatmentCost,
-                Medicines = textBoxPrescriptionMedicines.Text,
-                Quantity = textBoxPrescriptionQuantity.Text
-            };
-
-            prescriptions.Add(newPrescription);
-            File.WriteAllText(prescriptionsFile, JsonConvert.SerializeObject(prescriptions, Formatting.Indented));
-
-            LoadPrescriptions();
-            ClearInputs();
-
-            MessageBox.Show("Prescription saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void buttonPrescriptionDelete_Click(object sender, EventArgs e)
+        // 🔹 EDIT
+        private void buttonPrescriptionEdit_Click(object sender, EventArgs e)
         {
             if (dataGridViewPrescription.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Please select a prescription to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a prescription to edit.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             int index = dataGridViewPrescription.SelectedRows[0].Index;
+            if (index < 0 || index >= prescriptions.Count) return;
+
+            var prescriptionToEdit = prescriptions[index];
+
+            using (var editForm = new FormEditPrescription(patients, treatments, prescriptionToEdit))
+            {
+                if (editForm.ShowDialog() == DialogResult.OK && editForm.EditedPrescription != null)
+                {
+                    prescriptions[index] = editForm.EditedPrescription;
+                    SavePrescriptions();
+                    RefreshDataGridView();
+                    MessageBox.Show("Prescription updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        // 🔹 DELETE
+        private void buttonPrescriptionDelete_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewPrescription.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a prescription to delete.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int index = dataGridViewPrescription.SelectedRows[0].Index;
+
             if (index >= 0 && index < prescriptions.Count)
             {
-                var confirmResult = MessageBox.Show(
+                var result = MessageBox.Show(
                     "Are you sure you want to delete this prescription?\nThis action cannot be undone.",
                     "Confirm Deletion",
                     MessageBoxButtons.YesNo,
@@ -147,28 +146,18 @@ namespace EstiponaClinic
                     MessageBoxDefaultButton.Button2
                 );
 
-                if (confirmResult == DialogResult.Yes)
+                if (result == DialogResult.Yes)
                 {
                     prescriptions.RemoveAt(index);
-                    File.WriteAllText(prescriptionsFile, JsonConvert.SerializeObject(prescriptions, Formatting.Indented));
-                    LoadPrescriptions();
-
-                    MessageBox.Show("Prescription deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SavePrescriptions();
+                    RefreshDataGridView();
+                    MessageBox.Show("Prescription deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
-
-
-        private void ClearInputs()
-        {
-            comboBoxPrescriptionTreatment.SelectedIndex = -1;
-            comboBoxPrescriptionPatient.SelectedIndex = -1;
-            textBoxPrescriptionCost.Clear();
-            textBoxPrescriptionMedicines.Clear();
-            textBoxPrescriptionQuantity.Clear();
-        }
     }
 
+    // 🔹 Classes remain same
     public class Prescription
     {
         public string TreatmentName { get; set; } = string.Empty;

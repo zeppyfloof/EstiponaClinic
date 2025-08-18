@@ -23,3 +23,11 @@ C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\bin\Debug\net7.0-windo
 C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.csproj.AssemblyReference.cache
 C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.csproj.CopyComplete
 C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.Properties.Resources.resources
+C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormAddPatient.resources
+C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormEditPatient.resources
+C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormAddAppointment.resources
+C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormEditAppointment.resources
+C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormAddTreatment.resources
+C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormEditTreatment.resources
+C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormAddPrescription.resources
+C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormEditPrescription.resources

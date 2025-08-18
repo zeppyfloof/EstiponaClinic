@@ -8,35 +8,32 @@ namespace EstiponaClinic
 {
     public partial class FormAppointment : Form
     {
-        private readonly string appDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "EstiponaClinic");
-        private readonly string appointmentsFile;
-        private readonly string patientsFile;
-        private readonly string treatmentsFile;
-
         private List<Appointment> appointments = new();
-        private List<FormPatients.Patient> patients = new();
-        private List<FormTreatment.Treatment> treatments = new();
+        private readonly string jsonFilePath = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            "EstiponaClinic",
+            "appointments.json"
+        );
 
         public FormAppointment()
         {
             InitializeComponent();
 
-            appointmentsFile = Path.Combine(appDataFolder, "appointments.json");
-            patientsFile = Path.Combine(appDataFolder, "patients.json");
-            treatmentsFile = Path.Combine(appDataFolder, "treatments.json");
+            this.Load += FormAppointment_Load;
+            buttonAppointmentsAdd.Click += buttonAppointmentsAdd_Click;
+            buttonAppointmentsEdit.Click += buttonAppointmentsEdit_Click;
+            buttonAppointmentsDelete.Click += buttonAppointmentsDelete_Click;
 
-            Directory.CreateDirectory(appDataFolder);
-
-            ConfigureDataGridView();
-            LoadPatients();
-            LoadTreatments();
-            LoadAppointments();
-
-            buttonAppointmentSave.Click += buttonAppointmentSave_Click;
-            buttonAppointmentDelete.Click += buttonAppointmentDelete_Click;
+            InitializeDataGridView();
         }
 
-        private void ConfigureDataGridView()
+        private void FormAppointment_Load(object sender, EventArgs e)
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(jsonFilePath)!);
+            LoadAppointments();
+        }
+
+        private void InitializeDataGridView()
         {
             dataGridViewAppointments.Columns.Clear();
             dataGridViewAppointments.Columns.Add("PatientName", "Patient");
@@ -49,37 +46,37 @@ namespace EstiponaClinic
             dataGridViewAppointments.MultiSelect = false;
         }
 
-        private void LoadPatients()
-        {
-            if (File.Exists(patientsFile))
-                patients = JsonConvert.DeserializeObject<List<FormPatients.Patient>>(File.ReadAllText(patientsFile)) ?? new();
-
-            comboBox1.Items.Clear();
-            foreach (var p in patients)
-                comboBox1.Items.Add(p.PatientName);
-        }
-
-        private void LoadTreatments()
-        {
-            if (File.Exists(treatmentsFile))
-                treatments = JsonConvert.DeserializeObject<List<FormTreatment.Treatment>>(File.ReadAllText(treatmentsFile)) ?? new();
-
-            comboBox2.Items.Clear();
-            foreach (var t in treatments)
-                comboBox2.Items.Add(t.TreatmentName);
-        }
-
         private void LoadAppointments()
         {
-            if (File.Exists(appointmentsFile))
-                appointments = JsonConvert.DeserializeObject<List<Appointment>>(File.ReadAllText(appointmentsFile)) ?? new();
-
-            RefreshDataGridView();
+            try
+            {
+                if (File.Exists(jsonFilePath))
+                {
+                    string json = File.ReadAllText(jsonFilePath);
+                    appointments = JsonConvert.DeserializeObject<List<Appointment>>(json) ?? new();
+                }
+                RefreshDataGridView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading appointments: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void SaveAppointments()
         {
-            File.WriteAllText(appointmentsFile, JsonConvert.SerializeObject(appointments, Formatting.Indented));
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(jsonFilePath)!);
+                string json = JsonConvert.SerializeObject(appointments, Formatting.Indented);
+                File.WriteAllText(jsonFilePath, json);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving appointments: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void RefreshDataGridView()
@@ -90,74 +87,91 @@ namespace EstiponaClinic
                 dataGridViewAppointments.Rows.Add(
                     appt.PatientName,
                     appt.TreatmentName,
-                    appt.TreatmentCost.ToString("F2"),
-                    appt.AppointmentDate.ToString("yyyy-MM-dd"),
-                    appt.AppointmentTime.ToString("hh:mm tt")
+                    appt.TreatmentCost,
+                    appt.AppointmentDate.ToShortDateString(),
+                    appt.AppointmentTime.ToShortTimeString()
                 );
             }
         }
 
-        private void buttonAppointmentSave_Click(object sender, EventArgs e)
+        // ADD
+        private void buttonAppointmentsAdd_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex == -1 || comboBox2.SelectedIndex == -1)
+            using (var addForm = new FormAddAppointment())
             {
-                MessageBox.Show("Please select both a patient and a treatment.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            DateTime selectedDate = dateTimePickerAppointmentDate.Value.Date;
-            DateTime selectedTime = dateTimePickerAppointmentTime.Value;
-            DateTime combinedDateTime = selectedDate.Add(selectedTime.TimeOfDay);
-
-            if (combinedDateTime < DateTime.Now)
-            {
-                MessageBox.Show("Appointment date and time cannot be in the past.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            decimal cost = treatments.Find(t => t.TreatmentName == comboBox2.SelectedItem!.ToString())?.TreatmentCost ?? 0;
-
-            var appointment = new Appointment
-            {
-                PatientName = comboBox1.SelectedItem!.ToString()!,
-                TreatmentName = comboBox2.SelectedItem!.ToString()!,
-                TreatmentCost = cost,
-                AppointmentDate = selectedDate,
-                AppointmentTime = selectedTime
-            };
-
-            appointments.Add(appointment);
-            SaveAppointments();
-            RefreshDataGridView();
-
-            comboBox1.SelectedIndex = -1;
-            comboBox2.SelectedIndex = -1;
-            dateTimePickerAppointmentDate.Value = DateTime.Now;
-            dateTimePickerAppointmentTime.Value = DateTime.Now;
-
-            MessageBox.Show("Appointment saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void buttonAppointmentDelete_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewAppointments.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Please select an appointment to delete.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            int index = dataGridViewAppointments.SelectedRows[0].Index;
-            if (index >= 0 && index < appointments.Count)
-            {
-                if (MessageBox.Show("Delete this appointment?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                if (addForm.ShowDialog() == DialogResult.OK && addForm.NewAppointment != null)
                 {
-                    appointments.RemoveAt(index);
+                    appointments.Add(addForm.NewAppointment);
                     SaveAppointments();
                     RefreshDataGridView();
+                    MessageBox.Show("Appointment added successfully.", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
 
+        // EDIT
+        private void buttonAppointmentsEdit_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewAppointments.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select an appointment to edit.", "Selection Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int index = dataGridViewAppointments.SelectedRows[0].Index;
+            if (index < 0 || index >= appointments.Count) return;
+
+            var apptToEdit = appointments[index];
+
+            using (var editForm = new FormEditAppointment(apptToEdit))
+            {
+                if (editForm.ShowDialog() == DialogResult.OK && editForm.EditedAppointment != null)
+                {
+                    appointments[index] = editForm.EditedAppointment;
+                    SaveAppointments();
+                    RefreshDataGridView();
+                    MessageBox.Show("Appointment updated successfully.", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        // DELETE
+        private void buttonAppointmentsDelete_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewAppointments.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select an appointment to delete.", "Selection Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int index = dataGridViewAppointments.SelectedRows[0].Index;
+
+            if (index >= 0 && index < appointments.Count)
+            {
+                var result = MessageBox.Show(
+                    $"Are you sure you want to delete this appointment?\nThis action cannot be undone.",
+                    "Confirm Deletion",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button2
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    appointments.RemoveAt(index);
+                    SaveAppointments();
+                    RefreshDataGridView();
+                    MessageBox.Show("Appointment deleted successfully.", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        // Appointment model
         public class Appointment
         {
             public string PatientName { get; set; } = string.Empty;
