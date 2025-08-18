@@ -19,6 +19,8 @@
             buttonPrescriptionEdit = new Button();
             buttonPrescriptionDelete = new Button();
             labelTitle = new Label();
+            label7 = new Label();
+            textBoxPrescriptionSearch = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPrescription).BeginInit();
             SuspendLayout();
             // 
@@ -76,13 +78,31 @@
             labelTitle.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             labelTitle.Location = new Point(30, 20);
             labelTitle.Name = "labelTitle";
-            labelTitle.Size = new Size(172, 37);
+            labelTitle.Size = new Size(173, 37);
             labelTitle.TabIndex = 20;
             labelTitle.Text = "Prescription";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(330, 70);
+            label7.Name = "label7";
+            label7.Size = new Size(42, 15);
+            label7.TabIndex = 22;
+            label7.Text = "Search";
+            // 
+            // textBoxPrescriptionSearch
+            // 
+            textBoxPrescriptionSearch.Location = new Point(330, 90);
+            textBoxPrescriptionSearch.Name = "textBoxPrescriptionSearch";
+            textBoxPrescriptionSearch.Size = new Size(250, 23);
+            textBoxPrescriptionSearch.TabIndex = 21;
             // 
             // FormPrescription
             // 
             ClientSize = new Size(800, 760);
+            Controls.Add(label7);
+            Controls.Add(textBoxPrescriptionSearch);
             Controls.Add(labelTitle);
             Controls.Add(dataGridViewPrescription);
             Controls.Add(buttonPrescriptionAdd);
@@ -102,5 +122,7 @@
         private Button buttonPrescriptionEdit;
         private Button buttonPrescriptionDelete;
         private Label labelTitle;
+        private Label label7;
+        private TextBox textBoxPrescriptionSearch;
     }
 }

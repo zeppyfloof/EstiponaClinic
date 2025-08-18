@@ -19,6 +19,8 @@
             buttonTreatmentEdit = new Button();
             buttonTreatmentDelete = new Button();
             label8 = new Label();
+            label7 = new Label();
+            textBoxTreatmentSearch = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridViewTreatment).BeginInit();
             SuspendLayout();
             // 
@@ -80,9 +82,27 @@
             label8.TabIndex = 20;
             label8.Text = "Treatment";
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(339, 70);
+            label7.Name = "label7";
+            label7.Size = new Size(42, 15);
+            label7.TabIndex = 22;
+            label7.Text = "Search";
+            // 
+            // textBoxTreatmentSearch
+            // 
+            textBoxTreatmentSearch.Location = new Point(339, 90);
+            textBoxTreatmentSearch.Name = "textBoxTreatmentSearch";
+            textBoxTreatmentSearch.Size = new Size(250, 23);
+            textBoxTreatmentSearch.TabIndex = 21;
+            // 
             // FormTreatment
             // 
             ClientSize = new Size(800, 760);
+            Controls.Add(label7);
+            Controls.Add(textBoxTreatmentSearch);
             Controls.Add(label8);
             Controls.Add(dataGridViewTreatment);
             Controls.Add(buttonTreatmentAdd);
@@ -102,5 +122,7 @@
         private Button buttonTreatmentEdit;
         private Button buttonTreatmentDelete;
         private Label label8;
+        private Label label7;
+        private TextBox textBoxTreatmentSearch;
     }
 }

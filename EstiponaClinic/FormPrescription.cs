@@ -35,6 +35,7 @@ namespace EstiponaClinic
             buttonPrescriptionAdd.Click += buttonPrescriptionAdd_Click;
             buttonPrescriptionEdit.Click += buttonPrescriptionEdit_Click;
             buttonPrescriptionDelete.Click += buttonPrescriptionDelete_Click;
+            textBoxPrescriptionSearch.TextChanged += textBoxPrescriptionSearch_TextChanged; // ✅ Hook up search
         }
 
         private void ConfigureDataGridView()
@@ -81,6 +82,31 @@ namespace EstiponaClinic
             foreach (var p in prescriptions)
             {
                 dataGridViewPrescription.Rows.Add(p.TreatmentName, p.PatientName, p.Cost, p.Medicines, p.Quantity);
+            }
+        }
+
+        // 🔎 SEARCH (by PatientName or TreatmentName)
+        private void textBoxPrescriptionSearch_TextChanged(object sender, EventArgs e)
+        {
+            string query = textBoxPrescriptionSearch.Text.Trim().ToLower();
+
+            dataGridViewPrescription.Rows.Clear();
+
+            var filteredPrescriptions = string.IsNullOrEmpty(query)
+                ? prescriptions
+                : prescriptions.FindAll(p =>
+                    p.PatientName.ToLower().Contains(query) ||
+                    p.TreatmentName.ToLower().Contains(query));
+
+            foreach (var p in filteredPrescriptions)
+            {
+                dataGridViewPrescription.Rows.Add(
+                    p.TreatmentName,
+                    p.PatientName,
+                    p.Cost,
+                    p.Medicines,
+                    p.Quantity
+                );
             }
         }
 

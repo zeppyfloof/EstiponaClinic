@@ -13,30 +13,7 @@ namespace EstiponaClinic
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
             "EstiponaClinic",
             "patients.json"
-
         );
-        private void textBoxPatientsSearch_TextChanged(object sender, EventArgs e)
-        {
-            string query = textBoxPatientsSearch.Text.Trim().ToLower();
-
-            dataGridViewPatients.Rows.Clear();
-
-            var filteredPatients = string.IsNullOrEmpty(query)
-                ? patients
-                : patients.FindAll(p => p.PatientName.ToLower().Contains(query));
-
-            foreach (var patient in filteredPatients)
-            {
-                dataGridViewPatients.Rows.Add(
-                    patient.PatientName,
-                    patient.PatientNumber,
-                    patient.PatientAddress,
-                    patient.PatientBirthDay.ToShortDateString(),
-                    patient.PatientGender,
-                    patient.PatientAllergies
-                );
-            }
-        }
 
         public FormPatients()
         {
@@ -47,6 +24,7 @@ namespace EstiponaClinic
             buttonPatientsSave.Click += buttonPatientsSave_Click;
             buttonPatientsDelete.Click += buttonPatientsDelete_Click;
             buttonPatientsEdit.Click += buttonPatientsEdit_Click;
+            textBoxPatientsSearch.TextChanged += textBoxPatientsSearch_TextChanged; // ✅ Hook up search event
 
             InitializeDataGridView();
         }
@@ -105,6 +83,30 @@ namespace EstiponaClinic
         {
             dataGridViewPatients.Rows.Clear();
             foreach (var patient in patients)
+            {
+                dataGridViewPatients.Rows.Add(
+                    patient.PatientName,
+                    patient.PatientNumber,
+                    patient.PatientAddress,
+                    patient.PatientBirthDay.ToShortDateString(),
+                    patient.PatientGender,
+                    patient.PatientAllergies
+                );
+            }
+        }
+
+        // 🔹 Search filter (only PatientName)
+        private void textBoxPatientsSearch_TextChanged(object sender, EventArgs e)
+        {
+            string query = textBoxPatientsSearch.Text.Trim().ToLower();
+
+            dataGridViewPatients.Rows.Clear();
+
+            var filteredPatients = string.IsNullOrEmpty(query)
+                ? patients
+                : patients.FindAll(p => p.PatientName.ToLower().Contains(query));
+
+            foreach (var patient in filteredPatients)
             {
                 dataGridViewPatients.Rows.Add(
                     patient.PatientName,

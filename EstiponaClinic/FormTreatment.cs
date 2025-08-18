@@ -23,6 +23,7 @@ namespace EstiponaClinic
             buttonTreatmentAdd.Click += buttonTreatmentAdd_Click;
             buttonTreatmentEdit.Click += buttonTreatmentEdit_Click;
             buttonTreatmentDelete.Click += buttonTreatmentDelete_Click;
+            textBoxTreatmentSearch.TextChanged += textBoxTreatmentSearch_TextChanged; // ✅ Hook up search
 
             ConfigureDataGridView();
         }
@@ -81,6 +82,27 @@ namespace EstiponaClinic
         {
             dataGridViewTreatment.Rows.Clear();
             foreach (var treatment in treatments)
+            {
+                dataGridViewTreatment.Rows.Add(
+                    treatment.TreatmentName,
+                    treatment.TreatmentDescription,
+                    treatment.TreatmentCost.ToString("F2")
+                );
+            }
+        }
+
+        // 🔎 Search filter (only TreatmentName)
+        private void textBoxTreatmentSearch_TextChanged(object sender, EventArgs e)
+        {
+            string query = textBoxTreatmentSearch.Text.Trim().ToLower();
+
+            dataGridViewTreatment.Rows.Clear();
+
+            var filteredTreatments = string.IsNullOrEmpty(query)
+                ? treatments
+                : treatments.FindAll(t => t.TreatmentName.ToLower().Contains(query));
+
+            foreach (var treatment in filteredTreatments)
             {
                 dataGridViewTreatment.Rows.Add(
                     treatment.TreatmentName,

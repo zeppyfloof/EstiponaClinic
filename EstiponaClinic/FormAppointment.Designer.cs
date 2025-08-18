@@ -22,6 +22,8 @@
             buttonAppointmentsDelete = new Button();
             dataGridViewAppointments = new DataGridView();
             labelTitle = new Label();
+            label7 = new Label();
+            textBoxAppointmentsSearch = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAppointments).BeginInit();
             SuspendLayout();
             // 
@@ -81,9 +83,27 @@
             labelTitle.TabIndex = 4;
             labelTitle.Text = "Appointments";
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(366, 69);
+            label7.Name = "label7";
+            label7.Size = new Size(42, 15);
+            label7.TabIndex = 20;
+            label7.Text = "Search";
+            // 
+            // textBoxAppointmentsSearch
+            // 
+            textBoxAppointmentsSearch.Location = new Point(366, 89);
+            textBoxAppointmentsSearch.Name = "textBoxAppointmentsSearch";
+            textBoxAppointmentsSearch.Size = new Size(250, 23);
+            textBoxAppointmentsSearch.TabIndex = 19;
+            // 
             // FormAppointment
             // 
             ClientSize = new Size(800, 760);
+            Controls.Add(label7);
+            Controls.Add(textBoxAppointmentsSearch);
             Controls.Add(labelTitle);
             Controls.Add(dataGridViewAppointments);
             Controls.Add(buttonAppointmentsDelete);
@@ -103,5 +123,7 @@
         private Button buttonAppointmentsDelete;
         private DataGridView dataGridViewAppointments;
         private Label labelTitle;
+        private Label label7;
+        private TextBox textBoxAppointmentsSearch;
     }
 }

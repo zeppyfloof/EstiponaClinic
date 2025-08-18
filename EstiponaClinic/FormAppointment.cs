@@ -23,6 +23,7 @@ namespace EstiponaClinic
             buttonAppointmentsAdd.Click += buttonAppointmentsAdd_Click;
             buttonAppointmentsEdit.Click += buttonAppointmentsEdit_Click;
             buttonAppointmentsDelete.Click += buttonAppointmentsDelete_Click;
+            textBoxAppointmentsSearch.TextChanged += textBoxAppointmentsSearch_TextChanged; // ✅ search hook
 
             InitializeDataGridView();
         }
@@ -87,7 +88,32 @@ namespace EstiponaClinic
                 dataGridViewAppointments.Rows.Add(
                     appt.PatientName,
                     appt.TreatmentName,
-                    appt.TreatmentCost,
+                    appt.TreatmentCost.ToString("F2"),
+                    appt.AppointmentDate.ToShortDateString(),
+                    appt.AppointmentTime.ToShortTimeString()
+                );
+            }
+        }
+
+        // 🔎 SEARCH (by Patient or Treatment name)
+        private void textBoxAppointmentsSearch_TextChanged(object sender, EventArgs e)
+        {
+            string query = textBoxAppointmentsSearch.Text.Trim().ToLower();
+
+            dataGridViewAppointments.Rows.Clear();
+
+            var filteredAppointments = string.IsNullOrEmpty(query)
+                ? appointments
+                : appointments.FindAll(a =>
+                    a.PatientName.ToLower().Contains(query) ||
+                    a.TreatmentName.ToLower().Contains(query));
+
+            foreach (var appt in filteredAppointments)
+            {
+                dataGridViewAppointments.Rows.Add(
+                    appt.PatientName,
+                    appt.TreatmentName,
+                    appt.TreatmentCost.ToString("F2"),
                     appt.AppointmentDate.ToShortDateString(),
                     appt.AppointmentTime.ToShortTimeString()
                 );
