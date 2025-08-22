@@ -19,7 +19,7 @@
             panel1 = new Panel();
             buttonFormAppointment = new Button();
             buttonFormTreatment = new Button();
-            buttonFormDashboard = new Button();
+            buttonFormDentalRecord = new Button();
             buttonFormPrescription = new Button();
             buttonFormPatients = new Button();
             pictureBox1 = new PictureBox();
@@ -60,18 +60,18 @@
             buttonFormTreatment.UseVisualStyleBackColor = false;
             buttonFormTreatment.Click += buttonFormTreatment_Click;
             // 
-            // buttonFormDashboard
+            // buttonFormDentalRecord
             // 
-            buttonFormDashboard.BackColor = Color.Green;
-            buttonFormDashboard.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonFormDashboard.ForeColor = SystemColors.ButtonHighlight;
-            buttonFormDashboard.Location = new Point(12, 451);
-            buttonFormDashboard.Name = "buttonFormDashboard";
-            buttonFormDashboard.Size = new Size(129, 53);
-            buttonFormDashboard.TabIndex = 4;
-            buttonFormDashboard.Text = "Dashboard";
-            buttonFormDashboard.UseVisualStyleBackColor = false;
-            buttonFormDashboard.Click += buttonFormDashboard_Click;
+            buttonFormDentalRecord.BackColor = Color.Green;
+            buttonFormDentalRecord.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonFormDentalRecord.ForeColor = SystemColors.ButtonHighlight;
+            buttonFormDentalRecord.Location = new Point(12, 451);
+            buttonFormDentalRecord.Name = "buttonFormDentalRecord";
+            buttonFormDentalRecord.Size = new Size(129, 53);
+            buttonFormDentalRecord.TabIndex = 4;
+            buttonFormDentalRecord.Text = "Dental Records";
+            buttonFormDentalRecord.UseVisualStyleBackColor = false;
+            buttonFormDentalRecord.Click += buttonFormDentalRecord_Click;
             // 
             // buttonFormPrescription
             // 
@@ -130,7 +130,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(buttonFormTreatment);
             Controls.Add(buttonFormPatients);
-            Controls.Add(buttonFormDashboard);
+            Controls.Add(buttonFormDentalRecord);
             Controls.Add(buttonFormPrescription);
             Controls.Add(buttonFormAppointment);
             Controls.Add(panel1);
@@ -146,7 +146,7 @@
         private Panel panel1;
         private Button buttonFormAppointment;
         private Button buttonFormTreatment;
-        private Button buttonFormDashboard;
+        private Button buttonFormDentalRecord;
         private Button buttonFormPrescription;
         private Button buttonFormPatients;
         private PictureBox pictureBox1;

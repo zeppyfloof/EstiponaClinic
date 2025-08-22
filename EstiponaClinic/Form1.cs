@@ -63,9 +63,9 @@ namespace EstiponaClinic
             formPrescription.Show();
         }
 
-        private void buttonFormDashboard_Click(object sender, EventArgs e)
+        private void buttonFormDentalRecord_Click(object sender, EventArgs e)
         {
-            FormDashboard formDashboard = new FormDashboard();
+            FormDentalRecord formDashboard = new FormDentalRecord();
             formDashboard.TopLevel = false;
             formDashboard.FormBorderStyle = FormBorderStyle.None;
             formDashboard.Dock = DockStyle.Fill;

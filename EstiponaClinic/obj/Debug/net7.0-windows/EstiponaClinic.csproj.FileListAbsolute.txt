@@ -5,7 +5,6 @@ C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\bin\Debug\net7.0-windo
 C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\bin\Debug\net7.0-windows\EstiponaClinic.pdb
 C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.Form1.resources
 C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormAppointment.resources
-C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormDashboard.resources
 C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormPatients.resources
 C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormPrescription.resources
 C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormTreatment.resources
@@ -31,3 +30,4 @@ C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windo
 C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormEditTreatment.resources
 C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormAddPrescription.resources
 C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormEditPrescription.resources
+C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormDentalRecord.resources
