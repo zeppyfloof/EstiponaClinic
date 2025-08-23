@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             buttonPatientsSave = new Button();
             buttonPatientsEdit = new Button();
             buttonPatientsDelete = new Button();
@@ -44,7 +44,7 @@
             buttonPatientsSave.BackColor = Color.Green;
             buttonPatientsSave.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonPatientsSave.ForeColor = SystemColors.ButtonHighlight;
-            buttonPatientsSave.Location = new Point(29, 81);
+            buttonPatientsSave.Location = new Point(518, 78);
             buttonPatientsSave.Name = "buttonPatientsSave";
             buttonPatientsSave.Size = new Size(80, 35);
             buttonPatientsSave.TabIndex = 13;
@@ -56,7 +56,7 @@
             buttonPatientsEdit.BackColor = Color.Green;
             buttonPatientsEdit.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonPatientsEdit.ForeColor = SystemColors.ButtonHighlight;
-            buttonPatientsEdit.Location = new Point(115, 81);
+            buttonPatientsEdit.Location = new Point(604, 78);
             buttonPatientsEdit.Name = "buttonPatientsEdit";
             buttonPatientsEdit.Size = new Size(80, 35);
             buttonPatientsEdit.TabIndex = 14;
@@ -68,7 +68,7 @@
             buttonPatientsDelete.BackColor = Color.FromArgb(192, 0, 0);
             buttonPatientsDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonPatientsDelete.ForeColor = SystemColors.ButtonHighlight;
-            buttonPatientsDelete.Location = new Point(201, 81);
+            buttonPatientsDelete.Location = new Point(690, 78);
             buttonPatientsDelete.Name = "buttonPatientsDelete";
             buttonPatientsDelete.Size = new Size(80, 35);
             buttonPatientsDelete.TabIndex = 15;
@@ -79,14 +79,14 @@
             // 
             dataGridViewPatients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewPatients.Cursor = Cursors.Hand;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dataGridViewPatients.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataGridViewPatients.DefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewPatients.Location = new Point(30, 142);
             dataGridViewPatients.Name = "dataGridViewPatients";
             dataGridViewPatients.ReadOnly = true;
@@ -107,7 +107,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(330, 70);
+            label7.Location = new Point(30, 70);
             label7.Name = "label7";
             label7.Size = new Size(42, 15);
             label7.TabIndex = 18;
@@ -115,7 +115,7 @@
             // 
             // textBoxPatientsSearch
             // 
-            textBoxPatientsSearch.Location = new Point(330, 90);
+            textBoxPatientsSearch.Location = new Point(30, 90);
             textBoxPatientsSearch.Name = "textBoxPatientsSearch";
             textBoxPatientsSearch.Size = new Size(250, 23);
             textBoxPatientsSearch.TabIndex = 17;

@@ -8,61 +8,72 @@ namespace EstiponaClinic
     {
         // Tooth states
         private enum ToothStatus { Healthy, Extracted, Filling, Crown }
-
-        // Declare buttons array here so it's available in all methods
         private Button[] toothButtons;
 
         public FormDentalRecord()
         {
             InitializeComponent();
-            CreateTeethChartButtons();   // runtime creation -> designer stays happy
+            CreateTeethChartButtons();
+            panelTeethChart.Resize += PanelTeethChart_Resize; // auto-adjust on resize
+        }
+
+        private void PanelTeethChart_Resize(object? sender, EventArgs e)
+        {
+            LayoutTeethButtons();
         }
 
         private void CreateTeethChartButtons()
         {
-            // Prepare array
             toothButtons = new Button[32];
 
-            // Layout
-            int buttonSize = 40;
-            int spacing = 5;
-            int countPerRow = 16;
-
-            // Center the row inside the panel
-            int rowWidth = countPerRow * buttonSize + (countPerRow - 1) * spacing;
-            int startX = Math.Max(12, (panelTeethChart.Width - rowWidth) / 2);
-            int upperY = 45;   // below "Upper Teeth" label
-            int lowerY = 120;  // adjusted so it fits in taller panel
-
-            // Create upper teeth (1–16)
-            for (int i = 0; i < 16; i++)
+            for (int i = 0; i < 32; i++)
             {
-                var b = MakeToothButton(i + 1, startX + i * (buttonSize + spacing), upperY, buttonSize);
+                var b = new Button();
+                b.Text = (i + 1).ToString();
+                b.Name = $"tooth{i + 1}";
+                b.Size = new Size(35, 35); // slightly smaller to fit
+                b.BackColor = Color.LightGreen; // Healthy default
+                b.Tag = ToothStatus.Healthy;
+                b.Click += Tooth_Click;
+                b.FlatStyle = FlatStyle.Standard;
+
                 toothButtons[i] = b;
                 panelTeethChart.Controls.Add(b);
             }
 
-            // Create lower teeth (17–32)
-            for (int i = 0; i < 16; i++)
-            {
-                var b = MakeToothButton(i + 17, startX + i * (buttonSize + spacing), lowerY, buttonSize);
-                toothButtons[i + 16] = b;
-                panelTeethChart.Controls.Add(b);
-            }
+            LayoutTeethButtons();
         }
 
-        private Button MakeToothButton(int toothNumber, int x, int y, int size)
+        private void LayoutTeethButtons()
         {
-            var b = new Button();
-            b.Text = toothNumber.ToString();
-            b.Name = $"tooth{toothNumber}";
-            b.Size = new Size(size, size);
-            b.Location = new Point(x, y);
-            b.BackColor = Color.LightGreen; // Healthy default
-            b.Tag = ToothStatus.Healthy;
-            b.Click += Tooth_Click;
-            b.FlatStyle = FlatStyle.Standard;
-            return b;
+            if (toothButtons == null || toothButtons.Length == 0) return;
+
+            int buttonSize = 35;
+            int spacing = 5;
+            int countPerRow = 16;
+
+            int rowWidth = countPerRow * buttonSize + (countPerRow - 1) * spacing;
+            int startX = Math.Max(12, (panelTeethChart.Width - rowWidth) / 2);
+
+            // Since height is 130, keep rows compact
+            int upperY = 25;
+            int lowerY = 70;
+
+            // Upper teeth
+            for (int i = 0; i < 16; i++)
+            {
+                var b = toothButtons[i];
+                b.Size = new Size(buttonSize, buttonSize);
+                b.Location = new Point(startX + i * (buttonSize + spacing), upperY);
+            }
+
+            // Lower teeth
+            for (int i = 0; i < 16; i++)
+            {
+                var b = toothButtons[i + 16];
+                b.Size = new Size(buttonSize, buttonSize);
+                b.Location = new Point(startX + i * (buttonSize + spacing), lowerY);
+            }
         }
 
         private void Tooth_Click(object? sender, EventArgs e)
@@ -71,7 +82,7 @@ namespace EstiponaClinic
 
             var status = (ToothStatus)b.Tag;
 
-            // Cycle statuses
+            // Cycle through statuses
             status = status switch
             {
                 ToothStatus.Healthy => ToothStatus.Extracted,

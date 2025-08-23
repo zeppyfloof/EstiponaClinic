@@ -24,103 +24,254 @@
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dataGridViewDental = new System.Windows.Forms.DataGridView();
-            this.labelTitle = new System.Windows.Forms.Label();
-            this.labelSearch = new System.Windows.Forms.Label();
-            this.textBoxDentalSearch = new System.Windows.Forms.TextBox();
-            this.panelTeethChart = new System.Windows.Forms.Panel();
-            this.labelLegend = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDental)).BeginInit();
-            this.SuspendLayout();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            dataGridViewDental = new DataGridView();
+            labelTitle = new Label();
+            labelSearch = new Label();
+            textBoxDentalSearch = new TextBox();
+            panelTeethChart = new Panel();
+            labelLegend = new Label();
+            panelPatientInfo = new Panel();
+            labelName = new Label();
+            textBoxName = new TextBox();
+            labelAge = new Label();
+            textBoxAge = new TextBox();
+            labelGender = new Label();
+            textBoxGender = new TextBox();
+            labelContact = new Label();
+            textBoxContact = new TextBox();
+            labelAddress = new Label();
+            textBoxAddress = new TextBox();
+            labelNotes = new Label();
+            textBoxNotes = new TextBox();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewDental).BeginInit();
+            panelPatientInfo.SuspendLayout();
+            SuspendLayout();
             // 
             // dataGridViewDental
             // 
-            this.dataGridViewDental.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewDental.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewDental.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewDental.Location = new System.Drawing.Point(30, 552);
-            this.dataGridViewDental.Name = "dataGridViewDental";
-            this.dataGridViewDental.ReadOnly = true;
-            this.dataGridViewDental.RowTemplate.Height = 25;
-            this.dataGridViewDental.Size = new System.Drawing.Size(740, 188);
-            this.dataGridViewDental.TabIndex = 3;
+            dataGridViewDental.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewDental.Cursor = Cursors.Hand;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataGridViewDental.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewDental.Location = new Point(30, 552);
+            dataGridViewDental.Name = "dataGridViewDental";
+            dataGridViewDental.ReadOnly = true;
+            dataGridViewDental.RowTemplate.Height = 25;
+            dataGridViewDental.Size = new Size(740, 188);
+            dataGridViewDental.TabIndex = 3;
             // 
             // labelTitle
             // 
-            this.labelTitle.AutoSize = true;
-            this.labelTitle.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelTitle.Location = new System.Drawing.Point(30, 20);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(211, 37);
-            this.labelTitle.TabIndex = 4;
-            this.labelTitle.Text = "Dental Records";
+            labelTitle.AutoSize = true;
+            labelTitle.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            labelTitle.Location = new Point(30, 20);
+            labelTitle.Name = "labelTitle";
+            labelTitle.Size = new Size(211, 37);
+            labelTitle.TabIndex = 4;
+            labelTitle.Text = "Dental Records";
             // 
             // labelSearch
             // 
-            this.labelSearch.AutoSize = true;
-            this.labelSearch.Location = new System.Drawing.Point(30, 493);
-            this.labelSearch.Name = "labelSearch";
-            this.labelSearch.Size = new System.Drawing.Size(42, 15);
-            this.labelSearch.TabIndex = 5;
-            this.labelSearch.Text = "Search";
+            labelSearch.AutoSize = true;
+            labelSearch.Location = new Point(30, 493);
+            labelSearch.Name = "labelSearch";
+            labelSearch.Size = new Size(42, 15);
+            labelSearch.TabIndex = 5;
+            labelSearch.Text = "Search";
             // 
             // textBoxDentalSearch
             // 
-            this.textBoxDentalSearch.Location = new System.Drawing.Point(30, 513);
-            this.textBoxDentalSearch.Name = "textBoxDentalSearch";
-            this.textBoxDentalSearch.Size = new System.Drawing.Size(250, 23);
-            this.textBoxDentalSearch.TabIndex = 6;
+            textBoxDentalSearch.Location = new Point(30, 513);
+            textBoxDentalSearch.Name = "textBoxDentalSearch";
+            textBoxDentalSearch.Size = new Size(250, 23);
+            textBoxDentalSearch.TabIndex = 6;
             // 
             // panelTeethChart
             // 
-            this.panelTeethChart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTeethChart.Location = new System.Drawing.Point(30, 80);
-            this.panelTeethChart.Name = "panelTeethChart";
-            this.panelTeethChart.Size = new System.Drawing.Size(740, 260); // increased height
-            this.panelTeethChart.TabIndex = 7;
+            panelTeethChart.BorderStyle = BorderStyle.FixedSingle;
+            panelTeethChart.Location = new Point(30, 310);
+            panelTeethChart.Name = "panelTeethChart";
+            panelTeethChart.Size = new Size(740, 130);
+            panelTeethChart.TabIndex = 7;
             // 
             // labelLegend
             // 
-            this.labelLegend.AutoSize = true;
-            this.labelLegend.Location = new System.Drawing.Point(30, 360); // moved below the panel
-            this.labelLegend.Name = "labelLegend";
-            this.labelLegend.Size = new System.Drawing.Size(280, 60);
-            this.labelLegend.TabIndex = 8;
-            this.labelLegend.Text = "Legend:\n🟩 Healthy   🟥 Extracted   🟨 Needs Filling   🟦 Crown";
+            labelLegend.AutoSize = true;
+            labelLegend.Location = new Point(30, 450);
+            labelLegend.Name = "labelLegend";
+            labelLegend.Size = new Size(271, 30);
+            labelLegend.TabIndex = 8;
+            labelLegend.Text = "Legend:\n\U0001f7e9 Healthy   \U0001f7e5 Extracted   \U0001f7e8 Needs Filling   \U0001f7e6 Crown";
+            // 
+            // panelPatientInfo
+            // 
+            panelPatientInfo.BorderStyle = BorderStyle.FixedSingle;
+            panelPatientInfo.Controls.Add(labelName);
+            panelPatientInfo.Controls.Add(textBoxName);
+            panelPatientInfo.Controls.Add(labelAge);
+            panelPatientInfo.Controls.Add(textBoxAge);
+            panelPatientInfo.Controls.Add(labelGender);
+            panelPatientInfo.Controls.Add(textBoxGender);
+            panelPatientInfo.Controls.Add(labelContact);
+            panelPatientInfo.Controls.Add(textBoxContact);
+            panelPatientInfo.Controls.Add(labelAddress);
+            panelPatientInfo.Controls.Add(textBoxAddress);
+            panelPatientInfo.Controls.Add(labelNotes);
+            panelPatientInfo.Controls.Add(textBoxNotes);
+            panelPatientInfo.Location = new Point(30, 60);
+            panelPatientInfo.Name = "panelPatientInfo";
+            panelPatientInfo.Size = new Size(740, 235);
+            panelPatientInfo.TabIndex = 9;
+            // 
+            // labelName
+            // 
+            labelName.AutoSize = true;
+            labelName.Location = new Point(20, 20);
+            labelName.Name = "labelName";
+            labelName.Size = new Size(64, 15);
+            labelName.TabIndex = 0;
+            labelName.Text = "Full Name:";
+            // 
+            // textBoxName
+            // 
+            textBoxName.Location = new Point(100, 17);
+            textBoxName.Name = "textBoxName";
+            textBoxName.ReadOnly = true;
+            textBoxName.Size = new Size(200, 23);
+            textBoxName.TabIndex = 1;
+            // 
+            // labelAge
+            // 
+            labelAge.AutoSize = true;
+            labelAge.Location = new Point(320, 20);
+            labelAge.Name = "labelAge";
+            labelAge.Size = new Size(31, 15);
+            labelAge.TabIndex = 2;
+            labelAge.Text = "Age:";
+            // 
+            // textBoxAge
+            // 
+            textBoxAge.Location = new Point(360, 17);
+            textBoxAge.Name = "textBoxAge";
+            textBoxAge.ReadOnly = true;
+            textBoxAge.Size = new Size(50, 23);
+            textBoxAge.TabIndex = 3;
+            // 
+            // labelGender
+            // 
+            labelGender.AutoSize = true;
+            labelGender.Location = new Point(430, 20);
+            labelGender.Name = "labelGender";
+            labelGender.Size = new Size(48, 15);
+            labelGender.TabIndex = 4;
+            labelGender.Text = "Gender:";
+            // 
+            // textBoxGender
+            // 
+            textBoxGender.Location = new Point(485, 17);
+            textBoxGender.Name = "textBoxGender";
+            textBoxGender.ReadOnly = true;
+            textBoxGender.Size = new Size(100, 23);
+            textBoxGender.TabIndex = 5;
+            // 
+            // labelContact
+            // 
+            labelContact.AutoSize = true;
+            labelContact.Location = new Point(600, 20);
+            labelContact.Name = "labelContact";
+            labelContact.Size = new Size(52, 15);
+            labelContact.TabIndex = 6;
+            labelContact.Text = "Contact:";
+            // 
+            // textBoxContact
+            // 
+            textBoxContact.Location = new Point(660, 17);
+            textBoxContact.Name = "textBoxContact";
+            textBoxContact.ReadOnly = true;
+            textBoxContact.Size = new Size(70, 23);
+            textBoxContact.TabIndex = 7;
+            // 
+            // labelAddress
+            // 
+            labelAddress.AutoSize = true;
+            labelAddress.Location = new Point(20, 60);
+            labelAddress.Name = "labelAddress";
+            labelAddress.Size = new Size(52, 15);
+            labelAddress.TabIndex = 8;
+            labelAddress.Text = "Address:";
+            // 
+            // textBoxAddress
+            // 
+            textBoxAddress.Location = new Point(100, 57);
+            textBoxAddress.Name = "textBoxAddress";
+            textBoxAddress.ReadOnly = true;
+            textBoxAddress.Size = new Size(300, 23);
+            textBoxAddress.TabIndex = 9;
+            // 
+            // labelNotes
+            // 
+            labelNotes.AutoSize = true;
+            labelNotes.Location = new Point(420, 60);
+            labelNotes.Name = "labelNotes";
+            labelNotes.Size = new Size(41, 15);
+            labelNotes.TabIndex = 10;
+            labelNotes.Text = "Notes:";
+            // 
+            // textBoxNotes
+            // 
+            textBoxNotes.Location = new Point(470, 57);
+            textBoxNotes.Name = "textBoxNotes";
+            textBoxNotes.ReadOnly = true;
+            textBoxNotes.Size = new Size(260, 23);
+            textBoxNotes.TabIndex = 11;
             // 
             // FormDentalRecord
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 760);
-            this.Controls.Add(this.labelLegend);
-            this.Controls.Add(this.panelTeethChart);
-            this.Controls.Add(this.textBoxDentalSearch);
-            this.Controls.Add(this.labelSearch);
-            this.Controls.Add(this.labelTitle);
-            this.Controls.Add(this.dataGridViewDental);
-            this.Name = "FormDentalRecord";
-            this.Text = "Dental Record Management";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDental)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 760);
+            Controls.Add(panelPatientInfo);
+            Controls.Add(labelLegend);
+            Controls.Add(panelTeethChart);
+            Controls.Add(textBoxDentalSearch);
+            Controls.Add(labelSearch);
+            Controls.Add(labelTitle);
+            Controls.Add(dataGridViewDental);
+            Name = "FormDentalRecord";
+            Text = "Dental Record Management";
+            ((System.ComponentModel.ISupportInitialize)dataGridViewDental).EndInit();
+            panelPatientInfo.ResumeLayout(false);
+            panelPatientInfo.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dataGridViewDental;
-        private System.Windows.Forms.Label labelTitle;
-        private System.Windows.Forms.Label labelSearch;
-        private System.Windows.Forms.TextBox textBoxDentalSearch;
-        private System.Windows.Forms.Panel panelTeethChart;
-        private System.Windows.Forms.Label labelLegend;
+        private DataGridView dataGridViewDental;
+        private Label labelTitle;
+        private Label labelSearch;
+        private TextBox textBoxDentalSearch;
+        private Panel panelTeethChart;
+        private Label labelLegend;
+        private Panel panelPatientInfo;
+        private Label labelName;
+        private TextBox textBoxName;
+        private Label labelAge;
+        private TextBox textBoxAge;
+        private Label labelGender;
+        private TextBox textBoxGender;
+        private Label labelContact;
+        private TextBox textBoxContact;
+        private Label labelAddress;
+        private TextBox textBoxAddress;
+        private Label labelNotes;
+        private TextBox textBoxNotes;
     }
 }

@@ -32,7 +32,7 @@
             buttonAppointmentsAdd.BackColor = Color.Green;
             buttonAppointmentsAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonAppointmentsAdd.ForeColor = Color.White;
-            buttonAppointmentsAdd.Location = new Point(30, 80);
+            buttonAppointmentsAdd.Location = new Point(510, 77);
             buttonAppointmentsAdd.Name = "buttonAppointmentsAdd";
             buttonAppointmentsAdd.Size = new Size(80, 35);
             buttonAppointmentsAdd.TabIndex = 0;
@@ -44,7 +44,7 @@
             buttonAppointmentsEdit.BackColor = Color.Green;
             buttonAppointmentsEdit.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonAppointmentsEdit.ForeColor = Color.White;
-            buttonAppointmentsEdit.Location = new Point(120, 80);
+            buttonAppointmentsEdit.Location = new Point(600, 77);
             buttonAppointmentsEdit.Name = "buttonAppointmentsEdit";
             buttonAppointmentsEdit.Size = new Size(80, 35);
             buttonAppointmentsEdit.TabIndex = 1;
@@ -56,7 +56,7 @@
             buttonAppointmentsDelete.BackColor = Color.FromArgb(192, 0, 0);
             buttonAppointmentsDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonAppointmentsDelete.ForeColor = Color.White;
-            buttonAppointmentsDelete.Location = new Point(210, 80);
+            buttonAppointmentsDelete.Location = new Point(690, 77);
             buttonAppointmentsDelete.Name = "buttonAppointmentsDelete";
             buttonAppointmentsDelete.Size = new Size(80, 35);
             buttonAppointmentsDelete.TabIndex = 2;
@@ -86,7 +86,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(366, 69);
+            label7.Location = new Point(30, 69);
             label7.Name = "label7";
             label7.Size = new Size(42, 15);
             label7.TabIndex = 20;
@@ -94,7 +94,7 @@
             // 
             // textBoxAppointmentsSearch
             // 
-            textBoxAppointmentsSearch.Location = new Point(366, 89);
+            textBoxAppointmentsSearch.Location = new Point(30, 89);
             textBoxAppointmentsSearch.Name = "textBoxAppointmentsSearch";
             textBoxAppointmentsSearch.Size = new Size(250, 23);
             textBoxAppointmentsSearch.TabIndex = 19;

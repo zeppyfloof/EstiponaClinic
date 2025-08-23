@@ -20,7 +20,7 @@
             buttonFormAppointment = new Button();
             buttonFormTreatment = new Button();
             buttonFormDentalRecord = new Button();
-            buttonFormPrescription = new Button();
+            buttonFormMedicalHistory = new Button();
             buttonFormPatients = new Button();
             pictureBox1 = new PictureBox();
             label1 = new Label();
@@ -73,18 +73,18 @@
             buttonFormDentalRecord.UseVisualStyleBackColor = false;
             buttonFormDentalRecord.Click += buttonFormDentalRecord_Click;
             // 
-            // buttonFormPrescription
+            // buttonFormMedicalHistory
             // 
-            buttonFormPrescription.BackColor = Color.Green;
-            buttonFormPrescription.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonFormPrescription.ForeColor = SystemColors.ButtonHighlight;
-            buttonFormPrescription.Location = new Point(12, 333);
-            buttonFormPrescription.Name = "buttonFormPrescription";
-            buttonFormPrescription.Size = new Size(129, 53);
-            buttonFormPrescription.TabIndex = 3;
-            buttonFormPrescription.Text = "Prescription";
-            buttonFormPrescription.UseVisualStyleBackColor = false;
-            buttonFormPrescription.Click += buttonFormPrescription_Click;
+            buttonFormMedicalHistory.BackColor = Color.Green;
+            buttonFormMedicalHistory.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonFormMedicalHistory.ForeColor = SystemColors.ButtonHighlight;
+            buttonFormMedicalHistory.Location = new Point(12, 333);
+            buttonFormMedicalHistory.Name = "buttonFormMedicalHistory";
+            buttonFormMedicalHistory.Size = new Size(129, 53);
+            buttonFormMedicalHistory.TabIndex = 3;
+            buttonFormMedicalHistory.Text = "Medical History";
+            buttonFormMedicalHistory.UseVisualStyleBackColor = false;
+            buttonFormMedicalHistory.Click += buttonFormMedicalHistory_Click;
             // 
             // buttonFormPatients
             // 
@@ -131,7 +131,7 @@
             Controls.Add(buttonFormTreatment);
             Controls.Add(buttonFormPatients);
             Controls.Add(buttonFormDentalRecord);
-            Controls.Add(buttonFormPrescription);
+            Controls.Add(buttonFormMedicalHistory);
             Controls.Add(buttonFormAppointment);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -147,7 +147,7 @@
         private Button buttonFormAppointment;
         private Button buttonFormTreatment;
         private Button buttonFormDentalRecord;
-        private Button buttonFormPrescription;
+        private Button buttonFormMedicalHistory;
         private Button buttonFormPatients;
         private PictureBox pictureBox1;
         private Label label1;

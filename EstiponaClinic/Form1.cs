@@ -52,15 +52,15 @@ namespace EstiponaClinic
             formTreatment.Show();
         }
 
-        private void buttonFormPrescription_Click(object sender, EventArgs e)
+        private void buttonFormMedicalHistory_Click(object sender, EventArgs e)
         {
-            FormPrescription formPrescription = new FormPrescription();
-            formPrescription.TopLevel = false;
-            formPrescription.FormBorderStyle = FormBorderStyle.None;
-            formPrescription.Dock = DockStyle.Fill;
+            FormMedicalHistory formMedicalHistory = new FormMedicalHistory();
+            formMedicalHistory.TopLevel = false;
+            formMedicalHistory.FormBorderStyle = FormBorderStyle.None;
+            formMedicalHistory.Dock = DockStyle.Fill;
             panel1.Controls.Clear();
-            panel1.Controls.Add(formPrescription);
-            formPrescription.Show();
+            panel1.Controls.Add(formMedicalHistory);
+            formMedicalHistory.Show();
         }
 
         private void buttonFormDentalRecord_Click(object sender, EventArgs e)

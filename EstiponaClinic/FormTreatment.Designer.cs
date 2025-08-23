@@ -41,7 +41,7 @@
             buttonTreatmentAdd.BackColor = Color.Green;
             buttonTreatmentAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonTreatmentAdd.ForeColor = Color.White;
-            buttonTreatmentAdd.Location = new Point(29, 81);
+            buttonTreatmentAdd.Location = new Point(518, 81);
             buttonTreatmentAdd.Name = "buttonTreatmentAdd";
             buttonTreatmentAdd.Size = new Size(80, 35);
             buttonTreatmentAdd.TabIndex = 1;
@@ -53,7 +53,7 @@
             buttonTreatmentEdit.BackColor = Color.Green;
             buttonTreatmentEdit.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonTreatmentEdit.ForeColor = Color.White;
-            buttonTreatmentEdit.Location = new Point(115, 81);
+            buttonTreatmentEdit.Location = new Point(604, 81);
             buttonTreatmentEdit.Name = "buttonTreatmentEdit";
             buttonTreatmentEdit.Size = new Size(80, 35);
             buttonTreatmentEdit.TabIndex = 2;
@@ -65,7 +65,7 @@
             buttonTreatmentDelete.BackColor = Color.FromArgb(192, 0, 0);
             buttonTreatmentDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonTreatmentDelete.ForeColor = Color.White;
-            buttonTreatmentDelete.Location = new Point(201, 81);
+            buttonTreatmentDelete.Location = new Point(690, 81);
             buttonTreatmentDelete.Name = "buttonTreatmentDelete";
             buttonTreatmentDelete.Size = new Size(80, 35);
             buttonTreatmentDelete.TabIndex = 3;
@@ -85,7 +85,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(339, 70);
+            label7.Location = new Point(30, 70);
             label7.Name = "label7";
             label7.Size = new Size(42, 15);
             label7.TabIndex = 22;
@@ -93,7 +93,7 @@
             // 
             // textBoxTreatmentSearch
             // 
-            textBoxTreatmentSearch.Location = new Point(339, 90);
+            textBoxTreatmentSearch.Location = new Point(30, 90);
             textBoxTreatmentSearch.Name = "textBoxTreatmentSearch";
             textBoxTreatmentSearch.Size = new Size(250, 23);
             textBoxTreatmentSearch.TabIndex = 21;
