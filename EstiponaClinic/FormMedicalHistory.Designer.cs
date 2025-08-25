@@ -14,10 +14,8 @@
         }
 
         #region Windows Form Designer generated code
-
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             dataGridViewMedicalHistory = new DataGridView();
             labelTitle = new Label();
             labelSearch = new Label();
@@ -28,29 +26,23 @@
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridViewMedicalHistory).BeginInit();
             SuspendLayout();
             // 
             // dataGridViewMedicalHistory
             // 
             dataGridViewMedicalHistory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewMedicalHistory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewMedicalHistory.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3 });
-            dataGridViewMedicalHistory.Cursor = Cursors.Hand;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dataGridViewMedicalHistory.DefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewMedicalHistory.Location = new Point(30, 120);
+            dataGridViewMedicalHistory.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7 });
+            dataGridViewMedicalHistory.Location = new Point(30, 150);
             dataGridViewMedicalHistory.Name = "dataGridViewMedicalHistory";
             dataGridViewMedicalHistory.ReadOnly = true;
             dataGridViewMedicalHistory.RowTemplate.Height = 25;
-            dataGridViewMedicalHistory.Size = new Size(740, 628);
-            dataGridViewMedicalHistory.TabIndex = 3;
+            dataGridViewMedicalHistory.Size = new Size(740, 550);
+            dataGridViewMedicalHistory.TabIndex = 0;
             // 
             // labelTitle
             // 
@@ -59,52 +51,60 @@
             labelTitle.Location = new Point(30, 20);
             labelTitle.Name = "labelTitle";
             labelTitle.Size = new Size(222, 37);
-            labelTitle.TabIndex = 4;
+            labelTitle.TabIndex = 5;
             labelTitle.Text = "Medical History";
             // 
             // labelSearch
             // 
             labelSearch.AutoSize = true;
-            labelSearch.Location = new Point(30, 80);
+            labelSearch.Location = new Point(30, 71);
             labelSearch.Name = "labelSearch";
             labelSearch.Size = new Size(42, 15);
-            labelSearch.TabIndex = 5;
+            labelSearch.TabIndex = 4;
             labelSearch.Text = "Search";
             // 
             // textBoxSearch
             // 
-            textBoxSearch.Location = new Point(80, 77);
+            textBoxSearch.Location = new Point(30, 104);
             textBoxSearch.Name = "textBoxSearch";
             textBoxSearch.Size = new Size(250, 23);
-            textBoxSearch.TabIndex = 6;
-            textBoxSearch.TextChanged += textBoxSearch_TextChanged;
+            textBoxSearch.TabIndex = 3;
             // 
             // buttonAdd
             // 
-            buttonAdd.Location = new Point(500, 75);
+            buttonAdd.BackColor = Color.Green;
+            buttonAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonAdd.ForeColor = Color.White;
+            buttonAdd.Location = new Point(518, 78);
             buttonAdd.Name = "buttonAdd";
-            buttonAdd.Size = new Size(80, 25);
-            buttonAdd.TabIndex = 7;
+            buttonAdd.Size = new Size(80, 35);
+            buttonAdd.TabIndex = 2;
             buttonAdd.Text = "Add";
-            buttonAdd.Click += buttonAdd_Click;
+            buttonAdd.UseVisualStyleBackColor = false;
             // 
             // buttonEdit
             // 
-            buttonEdit.Location = new Point(590, 75);
+            buttonEdit.BackColor = Color.Green;
+            buttonEdit.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonEdit.ForeColor = Color.White;
+            buttonEdit.Location = new Point(604, 78);
             buttonEdit.Name = "buttonEdit";
-            buttonEdit.Size = new Size(80, 25);
-            buttonEdit.TabIndex = 8;
+            buttonEdit.Size = new Size(80, 35);
+            buttonEdit.TabIndex = 1;
             buttonEdit.Text = "Edit";
-            buttonEdit.Click += buttonEdit_Click;
+            buttonEdit.UseVisualStyleBackColor = false;
             // 
             // buttonDelete
             // 
-            buttonDelete.Location = new Point(680, 75);
+            buttonDelete.BackColor = Color.FromArgb(192, 0, 0);
+            buttonDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonDelete.ForeColor = Color.White;
+            buttonDelete.Location = new Point(690, 78);
             buttonDelete.Name = "buttonDelete";
-            buttonDelete.Size = new Size(80, 25);
-            buttonDelete.TabIndex = 9;
+            buttonDelete.Size = new Size(80, 35);
+            buttonDelete.TabIndex = 0;
             buttonDelete.Text = "Delete";
-            buttonDelete.Click += buttonDelete_Click;
+            buttonDelete.UseVisualStyleBackColor = false;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -124,6 +124,30 @@
             dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.HeaderText = "Allergies";
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewTextBoxColumn5.HeaderText = "Abnormalities";
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewTextBoxColumn6.HeaderText = "Blood Pressure";
+            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            dataGridViewTextBoxColumn7.HeaderText = "Drugs Taken";
+            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
             // FormMedicalHistory
             // 
             ClientSize = new Size(800, 760);
@@ -140,8 +164,8 @@
             ResumeLayout(false);
             PerformLayout();
         }
-
         #endregion
+
         private DataGridView dataGridViewMedicalHistory;
         private Label labelTitle;
         private Label labelSearch;
@@ -152,5 +176,9 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
     }
 }
