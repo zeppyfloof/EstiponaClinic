@@ -104,16 +104,59 @@ namespace EstiponaClinic
         }
 
         // ADD
-        private void buttonAdd_Click(object? sender, EventArgs e)
+        // ADD
+        private void buttonAdd_Click(object sender, EventArgs e)
         {
-            using var addForm = new FormAddMedicalHistory();
-            if (addForm.ShowDialog() == DialogResult.OK && addForm.NewHistory != null)
+            // collect existing patients in medical history
+            var existingPatients = histories.Select(h => h.PatientName).ToList();
+
+            // load all patients
+            string patientFile = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "EstiponaClinic",
+                "patients.json"
+            );
+
+            List<string> allPatients = new();
+            if (File.Exists(patientFile))
             {
-                histories.Add(addForm.NewHistory);
+                var patients = JsonConvert.DeserializeObject<List<dynamic>>(File.ReadAllText(patientFile));
+                if (patients != null)
+                {
+                    allPatients = patients
+                        .Select(p => (string?)p.name)
+                        .Where(name => !string.IsNullOrWhiteSpace(name))
+                        .ToList()!;
+                }
+            }
+
+            // filter available patients
+            var availablePatients = allPatients
+                .Where(p => !existingPatients.Contains(p))
+                .ToList();
+
+            if (availablePatients.Count == 0)
+            {
+                MessageBox.Show(
+                    "All patients already have medical history.\n" +
+                    "You can edit the patient's medical history instead.",
+                    "No Patients Available",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+                return;
+            }
+
+            // if there are still patients left, open the Add form
+            using var form = new FormAddMedicalHistory(existingPatients);
+            if (form.ShowDialog() == DialogResult.OK && form.NewHistory != null)
+            {
+                histories.Add(form.NewHistory);
                 SaveHistories();
                 RefreshDataGridView();
             }
         }
+
 
         // EDIT
         private void buttonEdit_Click(object? sender, EventArgs e)
@@ -124,10 +167,10 @@ namespace EstiponaClinic
             if (index < 0 || index >= histories.Count) return;
 
             var toEdit = histories[index];
-            using var editForm = new FormAddMedicalHistory(toEdit);
-            if (editForm.ShowDialog() == DialogResult.OK && editForm.NewHistory != null)
+            using var editForm = new FormEditMedicalHistory(toEdit);
+            if (editForm.ShowDialog() == DialogResult.OK && editForm.UpdatedHistory != null)
             {
-                histories[index] = editForm.NewHistory;
+                histories[index] = editForm.UpdatedHistory;
                 SaveHistories();
                 RefreshDataGridView();
             }

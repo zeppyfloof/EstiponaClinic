@@ -44,6 +44,18 @@
             textBoxAddress = new TextBox();
             labelNotes = new Label();
             textBoxNotes = new TextBox();
+            labelCondition = new Label();
+            textBoxCondition = new TextBox();
+            labelDateRecorded = new Label();
+            textBoxDateRecorded = new TextBox();
+            labelAllergies = new Label();
+            textBoxAllergies = new TextBox();
+            labelAbnormalities = new Label();
+            textBoxAbnormalities = new TextBox();
+            labelBloodPressure = new Label();
+            textBoxBloodPressure = new TextBox();
+            labelDrugsTaken = new Label();
+            textBoxDrugsTaken = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridViewDental).BeginInit();
             panelPatientInfo.SuspendLayout();
             SuspendLayout();
@@ -108,11 +120,23 @@
             labelLegend.Name = "labelLegend";
             labelLegend.Size = new Size(271, 30);
             labelLegend.TabIndex = 8;
-            labelLegend.Text = "Legend:\n\U0001f7e9 Healthy   \U0001f7e5 Extracted   \U0001f7e8 Needs Filling   \U0001f7e6 Crown";
+            labelLegend.Text = "Legend:\n🟩 Healthy   🟥 Extracted   🟨 Needs Filling   🟦 Crown";
             // 
             // panelPatientInfo
             // 
             panelPatientInfo.BorderStyle = BorderStyle.FixedSingle;
+            panelPatientInfo.Controls.Add(labelCondition);
+            panelPatientInfo.Controls.Add(textBoxCondition);
+            panelPatientInfo.Controls.Add(labelDateRecorded);
+            panelPatientInfo.Controls.Add(textBoxDateRecorded);
+            panelPatientInfo.Controls.Add(labelAllergies);
+            panelPatientInfo.Controls.Add(textBoxAllergies);
+            panelPatientInfo.Controls.Add(labelAbnormalities);
+            panelPatientInfo.Controls.Add(textBoxAbnormalities);
+            panelPatientInfo.Controls.Add(labelBloodPressure);
+            panelPatientInfo.Controls.Add(textBoxBloodPressure);
+            panelPatientInfo.Controls.Add(labelDrugsTaken);
+            panelPatientInfo.Controls.Add(textBoxDrugsTaken);
             panelPatientInfo.Controls.Add(labelName);
             panelPatientInfo.Controls.Add(textBoxName);
             panelPatientInfo.Controls.Add(labelAge);
@@ -232,6 +256,108 @@
             textBoxNotes.Size = new Size(260, 23);
             textBoxNotes.TabIndex = 11;
             // 
+            // labelCondition
+            // 
+            labelCondition.AutoSize = true;
+            labelCondition.Location = new Point(20, 100);
+            labelCondition.Name = "labelCondition";
+            labelCondition.Size = new Size(61, 15);
+            labelCondition.TabIndex = 12;
+            labelCondition.Text = "Condition:";
+            // 
+            // textBoxCondition
+            // 
+            textBoxCondition.Location = new Point(100, 97);
+            textBoxCondition.Name = "textBoxCondition";
+            textBoxCondition.ReadOnly = true;
+            textBoxCondition.Size = new Size(180, 23);
+            textBoxCondition.TabIndex = 13;
+            // 
+            // labelDateRecorded
+            // 
+            labelDateRecorded.AutoSize = true;
+            labelDateRecorded.Location = new Point(300, 100);
+            labelDateRecorded.Name = "labelDateRecorded";
+            labelDateRecorded.Size = new Size(88, 15);
+            labelDateRecorded.TabIndex = 14;
+            labelDateRecorded.Text = "Date Recorded:";
+            // 
+            // textBoxDateRecorded
+            // 
+            textBoxDateRecorded.Location = new Point(390, 97);
+            textBoxDateRecorded.Name = "textBoxDateRecorded";
+            textBoxDateRecorded.ReadOnly = true;
+            textBoxDateRecorded.Size = new Size(120, 23);
+            textBoxDateRecorded.TabIndex = 15;
+            // 
+            // labelAllergies
+            // 
+            labelAllergies.AutoSize = true;
+            labelAllergies.Location = new Point(520, 100);
+            labelAllergies.Name = "labelAllergies";
+            labelAllergies.Size = new Size(56, 15);
+            labelAllergies.TabIndex = 16;
+            labelAllergies.Text = "Allergies:";
+            // 
+            // textBoxAllergies
+            // 
+            textBoxAllergies.Location = new Point(600, 97);
+            textBoxAllergies.Name = "textBoxAllergies";
+            textBoxAllergies.ReadOnly = true;
+            textBoxAllergies.Size = new Size(120, 23);
+            textBoxAllergies.TabIndex = 17;
+            // 
+            // labelAbnormalities
+            // 
+            labelAbnormalities.AutoSize = true;
+            labelAbnormalities.Location = new Point(20, 135);
+            labelAbnormalities.Name = "labelAbnormalities";
+            labelAbnormalities.Size = new Size(82, 15);
+            labelAbnormalities.TabIndex = 18;
+            labelAbnormalities.Text = "Abnormalities:";
+            // 
+            // textBoxAbnormalities
+            // 
+            textBoxAbnormalities.Location = new Point(100, 132);
+            textBoxAbnormalities.Name = "textBoxAbnormalities";
+            textBoxAbnormalities.ReadOnly = true;
+            textBoxAbnormalities.Size = new Size(180, 23);
+            textBoxAbnormalities.TabIndex = 19;
+            // 
+            // labelBloodPressure
+            // 
+            labelBloodPressure.AutoSize = true;
+            labelBloodPressure.Location = new Point(300, 135);
+            labelBloodPressure.Name = "labelBloodPressure";
+            labelBloodPressure.Size = new Size(87, 15);
+            labelBloodPressure.TabIndex = 20;
+            labelBloodPressure.Text = "Blood Pressure:";
+            // 
+            // textBoxBloodPressure
+            // 
+            textBoxBloodPressure.Location = new Point(390, 132);
+            textBoxBloodPressure.Name = "textBoxBloodPressure";
+            textBoxBloodPressure.ReadOnly = true;
+            textBoxBloodPressure.Size = new Size(120, 23);
+            textBoxBloodPressure.TabIndex = 21;
+            // 
+            // labelDrugsTaken
+            // 
+            labelDrugsTaken.AutoSize = true;
+            labelDrugsTaken.Location = new Point(520, 135);
+            labelDrugsTaken.Name = "labelDrugsTaken";
+            labelDrugsTaken.Size = new Size(73, 15);
+            labelDrugsTaken.TabIndex = 22;
+            labelDrugsTaken.Text = "Drugs Taken:";
+            // 
+            // textBoxDrugsTaken
+            // 
+            textBoxDrugsTaken.Location = new Point(600, 132);
+            textBoxDrugsTaken.Name = "textBoxDrugsTaken";
+            textBoxDrugsTaken.ReadOnly = true;
+            textBoxDrugsTaken.Size = new Size(120, 23);
+            textBoxDrugsTaken.TabIndex = 23;
+            // 
             // FormDentalRecord
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -273,5 +399,17 @@
         private TextBox textBoxAddress;
         private Label labelNotes;
         private TextBox textBoxNotes;
+        private Label labelCondition;
+        private TextBox textBoxCondition;
+        private Label labelDateRecorded;
+        private TextBox textBoxDateRecorded;
+        private Label labelAllergies;
+        private TextBox textBoxAllergies;
+        private Label labelAbnormalities;
+        private TextBox textBoxAbnormalities;
+        private Label labelBloodPressure;
+        private TextBox textBoxBloodPressure;
+        private Label labelDrugsTaken;
+        private TextBox textBoxDrugsTaken;
     }
 }

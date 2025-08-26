@@ -1,33 +1,58 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace EstiponaClinic
 {
     public partial class FormAddMedicalHistory : Form
     {
         public FormMedicalHistory.MedicalHistory? NewHistory { get; private set; }
+        private List<string> availablePatients = new();
 
-        public FormAddMedicalHistory()
+        public FormAddMedicalHistory(List<string> existingPatients)
         {
             InitializeComponent();
+            LoadPatients(existingPatients);
         }
 
-        public FormAddMedicalHistory(FormMedicalHistory.MedicalHistory existing) : this()
+        private void LoadPatients(List<string> existingPatients)
         {
-            textBoxPatientName.Text = existing.PatientName;
-            textBoxCondition.Text = existing.Condition;
-            dateTimePickerDate.Value = existing.DateRecorded;
-            textBoxAllergies.Text = existing.Allergies;
-            textBoxAbnormalities.Text = existing.Abnormalities;
-            textBoxBloodPressure.Text = existing.BloodPressure;
-            textBoxDrugsTaken.Text = existing.DrugsTaken;
+            string patientFile = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "EstiponaClinic",
+                "patients.json"
+            );
+
+            if (File.Exists(patientFile))
+            {
+                var patients = JsonConvert.DeserializeObject<List<dynamic>>(File.ReadAllText(patientFile));
+                if (patients != null)
+                {
+                    availablePatients = patients
+                        .Select(p => (string)p.name)
+                        .Where(name => !existingPatients.Contains(name))
+                        .ToList();
+
+                    comboBoxPatientName.Items.Clear();
+                    comboBoxPatientName.Items.AddRange(availablePatients.ToArray());
+                }
+            }
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            if (comboBoxPatientName.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a patient.");
+                return;
+            }
+
             NewHistory = new FormMedicalHistory.MedicalHistory
             {
-                PatientName = textBoxPatientName.Text.Trim(),
+                PatientName = comboBoxPatientName.SelectedItem.ToString()!,
                 Condition = textBoxCondition.Text.Trim(),
                 DateRecorded = dateTimePickerDate.Value,
                 Allergies = textBoxAllergies.Text.Trim(),

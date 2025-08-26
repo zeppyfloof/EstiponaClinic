@@ -28,10 +28,10 @@
     <Compile Update="FormEditAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FormEditPatient.cs">
+    <Compile Update="FormEditMedicalHistory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FormEditPrescription.cs">
+    <Compile Update="FormEditPatient.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FormEditTreatment.cs">
