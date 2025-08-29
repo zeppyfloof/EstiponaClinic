@@ -388,6 +388,7 @@
             Controls.Add(dataGridViewDental);
             Name = "FormDentalRecord";
             Text = "Dental Record Management";
+            WindowState = FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)dataGridViewDental).EndInit();
             panelPatientInfo.ResumeLayout(false);
             panelPatientInfo.PerformLayout();

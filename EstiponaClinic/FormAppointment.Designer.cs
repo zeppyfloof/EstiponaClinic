@@ -111,6 +111,7 @@
             Controls.Add(buttonAppointmentsAdd);
             Name = "FormAppointment";
             Text = "Appointments";
+            WindowState = FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)dataGridViewAppointments).EndInit();
             ResumeLayout(false);
             PerformLayout();

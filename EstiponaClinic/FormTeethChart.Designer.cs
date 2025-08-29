@@ -19,11 +19,12 @@
             textBoxPatientNameTeethChart = new TextBox();
             panelTeethChartEdit = new Panel();
             buttonSave = new Button();
+            label7 = new Label();
             SuspendLayout();
             // 
             // textBoxPatientNameTeethChart
             // 
-            textBoxPatientNameTeethChart.Location = new Point(83, 20);
+            textBoxPatientNameTeethChart.Location = new Point(59, 31);
             textBoxPatientNameTeethChart.Name = "textBoxPatientNameTeethChart";
             textBoxPatientNameTeethChart.ReadOnly = true;
             textBoxPatientNameTeethChart.Size = new Size(200, 23);
@@ -47,11 +48,21 @@
             buttonSave.UseVisualStyleBackColor = true;
             buttonSave.Click += buttonSave_Click;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(11, 34);
+            label7.Name = "label7";
+            label7.Size = new Size(44, 15);
+            label7.TabIndex = 19;
+            label7.Text = "Patient";
+            // 
             // FormTeethChart
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(765, 260);
+            Controls.Add(label7);
             Controls.Add(textBoxPatientNameTeethChart);
             Controls.Add(panelTeethChartEdit);
             Controls.Add(buttonSave);
@@ -62,5 +73,7 @@
             ResumeLayout(false);
             PerformLayout();
         }
+
+        private Label label7;
     }
 }

@@ -28,9 +28,11 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            panel1.AutoSize = true;
             panel1.Location = new Point(168, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(813, 695);
+            panel1.Size = new Size(813, 737);
             panel1.TabIndex = 0;
             // 
             // buttonFormAppointment
@@ -41,7 +43,7 @@
             buttonFormAppointment.Location = new Point(12, 274);
             buttonFormAppointment.Name = "buttonFormAppointment";
             buttonFormAppointment.Size = new Size(129, 53);
-            buttonFormAppointment.TabIndex = 1;
+            buttonFormAppointment.TabIndex = 2;
             buttonFormAppointment.Text = "Appointment";
             buttonFormAppointment.UseVisualStyleBackColor = false;
             buttonFormAppointment.Click += buttonFormAppointment_Click;
@@ -54,7 +56,7 @@
             buttonFormTreatment.Location = new Point(12, 392);
             buttonFormTreatment.Name = "buttonFormTreatment";
             buttonFormTreatment.Size = new Size(129, 53);
-            buttonFormTreatment.TabIndex = 2;
+            buttonFormTreatment.TabIndex = 4;
             buttonFormTreatment.Text = "Treatment";
             buttonFormTreatment.UseVisualStyleBackColor = false;
             buttonFormTreatment.Click += buttonFormTreatment_Click;
@@ -67,7 +69,7 @@
             buttonFormDentalRecord.Location = new Point(12, 451);
             buttonFormDentalRecord.Name = "buttonFormDentalRecord";
             buttonFormDentalRecord.Size = new Size(129, 53);
-            buttonFormDentalRecord.TabIndex = 4;
+            buttonFormDentalRecord.TabIndex = 5;
             buttonFormDentalRecord.Text = "Dental Records";
             buttonFormDentalRecord.UseVisualStyleBackColor = false;
             buttonFormDentalRecord.Click += buttonFormDentalRecord_Click;
@@ -93,7 +95,7 @@
             buttonFormPatients.Location = new Point(12, 215);
             buttonFormPatients.Name = "buttonFormPatients";
             buttonFormPatients.Size = new Size(129, 53);
-            buttonFormPatients.TabIndex = 5;
+            buttonFormPatients.TabIndex = 1;
             buttonFormPatients.Text = "Patients";
             buttonFormPatients.UseVisualStyleBackColor = false;
             buttonFormPatients.Click += buttonFormPatients_Click;
@@ -134,6 +136,7 @@
             Controls.Add(buttonFormAppointment);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MinimumSize = new Size(1009, 800);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Estipona Clinic";
