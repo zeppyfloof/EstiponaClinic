@@ -107,6 +107,7 @@
             Controls.Add(buttonSave);
             Controls.Add(buttonCancel);
             Name = "FormEditTreatment";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Edit Treatment";
             ResumeLayout(false);
             PerformLayout();

@@ -59,5 +59,15 @@ namespace EstiponaClinic.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _297_16d7cc85a07e078393b2485e7bbb93cca38de8f361a951c6c379736611960e60 {
+            get {
+                object obj = ResourceManager.GetObject("297-16d7cc85a07e078393b2485e7bbb93cca38de8f361a951c6c379736611960e60", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
