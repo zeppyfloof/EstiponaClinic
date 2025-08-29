@@ -15,197 +15,180 @@ namespace EstiponaClinic
             "EstiponaClinic",
             "medicalhistory.json"
         );
+        private readonly Random rng = new();
 
         public FormMedicalHistory()
         {
             InitializeComponent();
+            LoadHistories();
 
-            this.Load += FormMedicalHistory_Load;
             buttonAdd.Click += buttonAdd_Click;
             buttonEdit.Click += buttonEdit_Click;
             buttonDelete.Click += buttonDelete_Click;
             textBoxSearch.TextChanged += textBoxSearch_TextChanged;
+
+            RefreshGrid();
         }
 
-        private void FormMedicalHistory_Load(object sender, EventArgs e)
+        // ------------------ MODEL ------------------
+        public class MedicalHistory
         {
-            Directory.CreateDirectory(Path.GetDirectoryName(jsonFilePath)!);
-            LoadHistories();
+            public int MedicalHistoryID { get; set; }   // int ID
+            public int PatientID { get; set; }          // int ID
+            public string PatientName { get; set; } = string.Empty; // display only
+            public string Condition { get; set; } = string.Empty;
+            public DateTime DateRecorded { get; set; } = DateTime.Now;
+            public string Allergies { get; set; } = string.Empty;
+            public string Abnormalities { get; set; } = string.Empty;
+            public string BloodPressure { get; set; } = string.Empty;
+            public string DrugsTaken { get; set; } = string.Empty;
         }
 
+        // ------------------ LOAD/SAVE ------------------
         private void LoadHistories()
         {
-            try
+            if (File.Exists(jsonFilePath))
             {
-                if (File.Exists(jsonFilePath))
+                try
                 {
-                    string json = File.ReadAllText(jsonFilePath);
-                    histories = JsonConvert.DeserializeObject<List<MedicalHistory>>(json) ?? new();
+                    var json = File.ReadAllText(jsonFilePath);
+                    var loaded = JsonConvert.DeserializeObject<List<MedicalHistory>>(json);
+                    if (loaded != null) histories = loaded;
                 }
-                RefreshDataGridView();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading medical histories: {ex.Message}");
+                catch { histories = new(); }
             }
         }
 
         private void SaveHistories()
         {
-            try
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(jsonFilePath)!);
-                string json = JsonConvert.SerializeObject(histories, Formatting.Indented);
-                File.WriteAllText(jsonFilePath, json);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error saving medical histories: {ex.Message}");
-            }
+            Directory.CreateDirectory(Path.GetDirectoryName(jsonFilePath)!);
+            File.WriteAllText(jsonFilePath, JsonConvert.SerializeObject(histories, Formatting.Indented));
         }
 
-        private void RefreshDataGridView()
+        // ------------------ GRID ------------------
+        private void RefreshGrid()
         {
-            dataGridViewMedicalHistory.Rows.Clear();
-            foreach (var h in histories)
+            dataGridViewMedicalHistory.DataSource = null;
+            dataGridViewMedicalHistory.DataSource = histories.Select(h => new
             {
-                dataGridViewMedicalHistory.Rows.Add(
-                    h.PatientName,
-                    h.Condition,
-                    h.DateRecorded.ToString("yyyy-MM-dd"),
-                    h.Allergies,
-                    h.Abnormalities,
-                    h.BloodPressure,
-                    h.DrugsTaken
-                );
-            }
+                h.MedicalHistoryID,
+                h.PatientID,
+                h.PatientName,
+                h.Condition,
+                h.DateRecorded,
+                h.Allergies,
+                h.Abnormalities,
+                h.BloodPressure,
+                h.DrugsTaken
+            }).ToList();
+
+            if (dataGridViewMedicalHistory.Columns["MedicalHistoryID"] != null)
+                dataGridViewMedicalHistory.Columns["MedicalHistoryID"].Visible = false;
+            if (dataGridViewMedicalHistory.Columns["PatientID"] != null)
+                dataGridViewMedicalHistory.Columns["PatientID"].Visible = false;
         }
 
-        private void textBoxSearch_TextChanged(object? sender, EventArgs e)
+        // ------------------ HELPERS ------------------
+        private int GenerateUniqueHistoryID()
         {
-            string search = textBoxSearch.Text.Trim().ToLower();
-            var filtered = histories
-                .Where(h => h.PatientName.ToLower().Contains(search))
-                .ToList();
-
-            dataGridViewMedicalHistory.Rows.Clear();
-            foreach (var h in filtered)
-            {
-                dataGridViewMedicalHistory.Rows.Add(
-                    h.PatientName,
-                    h.Condition,
-                    h.DateRecorded.ToString("yyyy-MM-dd"),
-                    h.Allergies,
-                    h.Abnormalities,
-                    h.BloodPressure,
-                    h.DrugsTaken
-                );
-            }
+            int id;
+            do { id = rng.Next(100000, 999999); }
+            while (histories.Any(h => h.MedicalHistoryID == id));
+            return id;
         }
 
-        // ADD
-        // ADD
-        private void buttonAdd_Click(object sender, EventArgs e)
+        // ------------------ BUTTONS ------------------
+        private void buttonAdd_Click(object? sender, EventArgs e)
         {
-            // collect existing patients in medical history
-            var existingPatients = histories.Select(h => h.PatientName).ToList();
-
-            // load all patients
-            string patientFile = Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                "EstiponaClinic",
-                "patients.json"
-            );
-
-            List<string> allPatients = new();
-            if (File.Exists(patientFile))
-            {
-                var patients = JsonConvert.DeserializeObject<List<dynamic>>(File.ReadAllText(patientFile));
-                if (patients != null)
-                {
-                    allPatients = patients
-                        .Select(p => (string?)p.name)
-                        .Where(name => !string.IsNullOrWhiteSpace(name))
-                        .ToList()!;
-                }
-            }
-
-            // filter available patients
-            var availablePatients = allPatients
-                .Where(p => !existingPatients.Contains(p))
-                .ToList();
-
-            if (availablePatients.Count == 0)
-            {
-                MessageBox.Show(
-                    "All patients already have medical history.\n" +
-                    "You can edit the patient's medical history instead.",
-                    "No Patients Available",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-                return;
-            }
-
-            // if there are still patients left, open the Add form
-            using var form = new FormAddMedicalHistory(existingPatients);
+            var existing = histories.Select(h => h.PatientID).ToList(); // prevent duplicate patient link
+            using var form = new FormAddMedicalHistory(existing);
             if (form.ShowDialog() == DialogResult.OK && form.NewHistory != null)
             {
+                // assign unique int ID here
+                form.NewHistory.MedicalHistoryID = GenerateUniqueHistoryID();
                 histories.Add(form.NewHistory);
                 SaveHistories();
-                RefreshDataGridView();
+                RefreshGrid();
             }
         }
 
-
-        // EDIT
         private void buttonEdit_Click(object? sender, EventArgs e)
         {
-            if (dataGridViewMedicalHistory.SelectedRows.Count == 0) return;
+            if (dataGridViewMedicalHistory.CurrentRow == null) return;
 
-            int index = dataGridViewMedicalHistory.SelectedRows[0].Index;
-            if (index < 0 || index >= histories.Count) return;
+            int historyId = Convert.ToInt32(dataGridViewMedicalHistory.CurrentRow
+                .Cells["MedicalHistoryID"].Value);
+            var history = histories.FirstOrDefault(h => h.MedicalHistoryID == historyId);
+            if (history == null) return;
 
-            var toEdit = histories[index];
-            using var editForm = new FormEditMedicalHistory(toEdit);
-            if (editForm.ShowDialog() == DialogResult.OK && editForm.UpdatedHistory != null)
+            using var form = new FormEditMedicalHistory(history);
+            if (form.ShowDialog() == DialogResult.OK && form.UpdatedHistory != null)
             {
-                histories[index] = editForm.UpdatedHistory;
+                history.Condition = form.UpdatedHistory.Condition;
+                history.DateRecorded = form.UpdatedHistory.DateRecorded;
+                history.Allergies = form.UpdatedHistory.Allergies;
+                history.Abnormalities = form.UpdatedHistory.Abnormalities;
+                history.BloodPressure = form.UpdatedHistory.BloodPressure;
+                history.DrugsTaken = form.UpdatedHistory.DrugsTaken;
+
                 SaveHistories();
-                RefreshDataGridView();
+                RefreshGrid();
             }
         }
 
-        // DELETE
         private void buttonDelete_Click(object? sender, EventArgs e)
         {
             if (dataGridViewMedicalHistory.SelectedRows.Count == 0) return;
 
-            int index = dataGridViewMedicalHistory.SelectedRows[0].Index;
-            if (index >= 0 && index < histories.Count)
-            {
-                var result = MessageBox.Show("Are you sure you want to delete this record?",
-                    "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            int selectedID = Convert.ToInt32(
+                dataGridViewMedicalHistory.SelectedRows[0].Cells["MedicalHistoryID"].Value);
 
-                if (result == DialogResult.Yes)
-                {
-                    histories.RemoveAt(index);
-                    SaveHistories();
-                    RefreshDataGridView();
-                }
+            var history = histories.FirstOrDefault(h => h.MedicalHistoryID == selectedID);
+            if (history == null) return;
+
+            var confirm = MessageBox.Show(
+                $"Delete medical history for {history.PatientName}?",
+                "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.Yes)
+            {
+                histories.Remove(history);
+                SaveHistories();
+                RefreshGrid();
             }
         }
 
-        // Model
-        public class MedicalHistory
+        // ------------------ SEARCH ------------------
+        private void textBoxSearch_TextChanged(object? sender, EventArgs e)
         {
-            public string PatientName { get; set; } = "";
-            public string Condition { get; set; } = "";
-            public DateTime DateRecorded { get; set; } = DateTime.Now;
-            public string Allergies { get; set; } = "";
-            public string Abnormalities { get; set; } = "";
-            public string BloodPressure { get; set; } = "";
-            public string DrugsTaken { get; set; } = "";
+            string search = textBoxSearch.Text.Trim().ToLower();
+            var filtered = histories.Where(h =>
+                h.PatientName.ToLower().Contains(search) ||
+                h.Condition.ToLower().Contains(search) ||
+                h.Allergies.ToLower().Contains(search) ||
+                h.Abnormalities.ToLower().Contains(search) ||
+                h.BloodPressure.ToLower().Contains(search) ||
+                h.DrugsTaken.ToLower().Contains(search)
+            ).ToList();
+
+            dataGridViewMedicalHistory.DataSource = null;
+            dataGridViewMedicalHistory.DataSource = filtered.Select(h => new
+            {
+                h.MedicalHistoryID,
+                h.PatientID,
+                h.PatientName,
+                h.Condition,
+                h.DateRecorded,
+                h.Allergies,
+                h.Abnormalities,
+                h.BloodPressure,
+                h.DrugsTaken
+            }).ToList();
+
+            if (dataGridViewMedicalHistory.Columns["MedicalHistoryID"] != null)
+                dataGridViewMedicalHistory.Columns["MedicalHistoryID"].Visible = false;
+            if (dataGridViewMedicalHistory.Columns["PatientID"] != null)
+                dataGridViewMedicalHistory.Columns["PatientID"].Visible = false;
         }
     }
 }

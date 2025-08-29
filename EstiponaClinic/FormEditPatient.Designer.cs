@@ -17,113 +17,152 @@
 
         private void InitializeComponent()
         {
-            this.label1 = new Label();
-            this.textBoxPatientsFullName = new TextBox();
-            this.label2 = new Label();
-            this.textBoxPatientsPhoneNumber = new TextBox();
-            this.label3 = new Label();
-            this.textBoxPatientsAddress = new TextBox();
-            this.label4 = new Label();
-            this.dateTimePickerBirthDate = new DateTimePicker();
-            this.label5 = new Label();
-            this.comboBoxPatientsGender = new ComboBox();
-            this.label6 = new Label();
-            this.textBoxPatientsAllergies = new TextBox();
-            this.buttonUpdate = new Button();
-            this.buttonCancel = new Button();
-            this.SuspendLayout();
+            label1 = new Label();
+            textBoxPatientsFullName = new TextBox();
+            label2 = new Label();
+            textBoxPatientsPhoneNumber = new TextBox();
+            label3 = new Label();
+            textBoxPatientsAddress = new TextBox();
+            label4 = new Label();
+            dateTimePickerBirthDate = new DateTimePicker();
+            label5 = new Label();
+            comboBoxPatientsGender = new ComboBox();
+            label6 = new Label();
+            textBoxPatientsNotes = new TextBox();
+            buttonUpdate = new Button();
+            buttonCancel = new Button();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.Text = "Full Name:";
-            this.label1.Location = new Point(20, 20);
+            label1.Location = new Point(20, 20);
+            label1.Name = "label1";
+            label1.Size = new Size(100, 23);
+            label1.TabIndex = 0;
+            label1.Text = "Full Name:";
             // 
             // textBoxPatientsFullName
             // 
-            this.textBoxPatientsFullName.Location = new Point(150, 20);
-            this.textBoxPatientsFullName.Width = 200;
+            textBoxPatientsFullName.Location = new Point(150, 20);
+            textBoxPatientsFullName.Name = "textBoxPatientsFullName";
+            textBoxPatientsFullName.Size = new Size(200, 23);
+            textBoxPatientsFullName.TabIndex = 1;
             // 
             // label2
             // 
-            this.label2.Text = "Phone Number:";
-            this.label2.Location = new Point(20, 60);
+            label2.Location = new Point(20, 60);
+            label2.Name = "label2";
+            label2.Size = new Size(100, 23);
+            label2.TabIndex = 2;
+            label2.Text = "Phone Number:";
             // 
             // textBoxPatientsPhoneNumber
             // 
-            this.textBoxPatientsPhoneNumber.Location = new Point(150, 60);
-            this.textBoxPatientsPhoneNumber.Width = 200;
+            textBoxPatientsPhoneNumber.Location = new Point(150, 60);
+            textBoxPatientsPhoneNumber.Name = "textBoxPatientsPhoneNumber";
+            textBoxPatientsPhoneNumber.Size = new Size(200, 23);
+            textBoxPatientsPhoneNumber.TabIndex = 3;
             // 
             // label3
             // 
-            this.label3.Text = "Address:";
-            this.label3.Location = new Point(20, 100);
+            label3.Location = new Point(20, 100);
+            label3.Name = "label3";
+            label3.Size = new Size(100, 23);
+            label3.TabIndex = 4;
+            label3.Text = "Address:";
             // 
             // textBoxPatientsAddress
             // 
-            this.textBoxPatientsAddress.Location = new Point(150, 100);
-            this.textBoxPatientsAddress.Width = 200;
+            textBoxPatientsAddress.Location = new Point(150, 100);
+            textBoxPatientsAddress.Name = "textBoxPatientsAddress";
+            textBoxPatientsAddress.Size = new Size(200, 23);
+            textBoxPatientsAddress.TabIndex = 5;
             // 
             // label4
             // 
-            this.label4.Text = "Date of Birth:";
-            this.label4.Location = new Point(20, 140);
+            label4.Location = new Point(20, 140);
+            label4.Name = "label4";
+            label4.Size = new Size(100, 23);
+            label4.TabIndex = 6;
+            label4.Text = "Date of Birth:";
             // 
             // dateTimePickerBirthDate
             // 
-            this.dateTimePickerBirthDate.Location = new Point(150, 140);
-            this.dateTimePickerBirthDate.Width = 200;
+            dateTimePickerBirthDate.Location = new Point(150, 140);
+            dateTimePickerBirthDate.Name = "dateTimePickerBirthDate";
+            dateTimePickerBirthDate.Size = new Size(200, 23);
+            dateTimePickerBirthDate.TabIndex = 7;
             // 
             // label5
             // 
-            this.label5.Text = "Gender:";
-            this.label5.Location = new Point(20, 180);
+            label5.Location = new Point(20, 180);
+            label5.Name = "label5";
+            label5.Size = new Size(100, 23);
+            label5.TabIndex = 8;
+            label5.Text = "Gender:";
             // 
             // comboBoxPatientsGender
             // 
-            this.comboBoxPatientsGender.Location = new Point(150, 180);
-            this.comboBoxPatientsGender.Width = 200;
+            comboBoxPatientsGender.Location = new Point(150, 180);
+            comboBoxPatientsGender.Name = "comboBoxPatientsGender";
+            comboBoxPatientsGender.Size = new Size(200, 23);
+            comboBoxPatientsGender.TabIndex = 9;
             // 
             // label6
             // 
-            this.label6.Text = "Allergies:";
-            this.label6.Location = new Point(20, 220);
+            label6.Location = new Point(20, 220);
+            label6.Name = "label6";
+            label6.Size = new Size(100, 23);
+            label6.TabIndex = 10;
+            label6.Text = "Notes:";
             // 
-            // textBoxPatientsAllergies
+            // textBoxPatientsNotes
             // 
-            this.textBoxPatientsAllergies.Location = new Point(150, 220);
-            this.textBoxPatientsAllergies.Width = 200;
+            textBoxPatientsNotes.Location = new Point(150, 220);
+            textBoxPatientsNotes.Name = "textBoxPatientsNotes";
+            textBoxPatientsNotes.Size = new Size(200, 23);
+            textBoxPatientsNotes.TabIndex = 11;
             // 
             // buttonUpdate
             // 
-            this.buttonUpdate.Text = "Update";
-            this.buttonUpdate.Location = new Point(50, 270);
-            this.buttonUpdate.Click += new EventHandler(this.buttonUpdate_Click);
+            buttonUpdate.Location = new Point(50, 270);
+            buttonUpdate.Name = "buttonUpdate";
+            buttonUpdate.Size = new Size(75, 23);
+            buttonUpdate.TabIndex = 12;
+            buttonUpdate.Text = "Update";
+            buttonUpdate.Click += buttonUpdate_Click;
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.Location = new Point(200, 270);
-            this.buttonCancel.Click += new EventHandler(this.buttonCancel_Click);
+            buttonCancel.Location = new Point(200, 270);
+            buttonCancel.Name = "buttonCancel";
+            buttonCancel.Size = new Size(75, 23);
+            buttonCancel.TabIndex = 13;
+            buttonCancel.Text = "Cancel";
+            buttonCancel.Click += buttonCancel_Click;
             // 
             // FormEditPatient
             // 
-            this.ClientSize = new Size(400, 330);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxPatientsFullName);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBoxPatientsPhoneNumber);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBoxPatientsAddress);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.dateTimePickerBirthDate);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.comboBoxPatientsGender);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBoxPatientsAllergies);
-            this.Controls.Add(this.buttonUpdate);
-            this.Controls.Add(this.buttonCancel);
-            this.Text = "Edit Patient";
-            this.ResumeLayout(false);
+            ClientSize = new Size(400, 330);
+            Controls.Add(label1);
+            Controls.Add(textBoxPatientsFullName);
+            Controls.Add(label2);
+            Controls.Add(textBoxPatientsPhoneNumber);
+            Controls.Add(label3);
+            Controls.Add(textBoxPatientsAddress);
+            Controls.Add(label4);
+            Controls.Add(dateTimePickerBirthDate);
+            Controls.Add(label5);
+            Controls.Add(comboBoxPatientsGender);
+            Controls.Add(label6);
+            Controls.Add(textBoxPatientsNotes);
+            Controls.Add(buttonUpdate);
+            Controls.Add(buttonCancel);
+            Name = "FormEditPatient";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Edit Patient";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -139,7 +178,7 @@
         private Label label5;
         private ComboBox comboBoxPatientsGender;
         private Label label6;
-        private TextBox textBoxPatientsAllergies;
+        private TextBox textBoxPatientsNotes;
         private Button buttonUpdate;
         private Button buttonCancel;
     }

@@ -1,0 +1,11 @@
+[
+  {
+    "PatientID": 321048,
+    "PatientName": "Joseph Estipona",
+    "Teeth": {
+      "6": "Healthy",
+      "21": "Healthy",
+      "22": "Healthy"
+    }
+  }
+]

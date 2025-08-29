@@ -11,6 +11,7 @@ namespace EstiponaClinic
         {
             InitializeComponent();
 
+            // Patient fields shown but not editable (per your prior design)
             textBoxPatientName.Text = existing.PatientName;
             textBoxCondition.Text = existing.Condition;
             dateTimePickerDate.Value = existing.DateRecorded;
@@ -24,7 +25,8 @@ namespace EstiponaClinic
         {
             UpdatedHistory = new FormMedicalHistory.MedicalHistory
             {
-                PatientName = textBoxPatientName.Text, // locked, not editable
+                // keep IDs & PatientName the same in parent when applying
+                PatientName = textBoxPatientName.Text,
                 Condition = textBoxCondition.Text.Trim(),
                 DateRecorded = dateTimePickerDate.Value,
                 Allergies = textBoxAllergies.Text.Trim(),
@@ -33,8 +35,8 @@ namespace EstiponaClinic
                 DrugsTaken = textBoxDrugsTaken.Text.Trim()
             };
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
     }
 }

@@ -6,14 +6,17 @@ namespace EstiponaClinic
     public partial class FormEditAppointment : Form
     {
         public FormAppointment.Appointment? EditedAppointment { get; private set; }
+        private readonly int _appointmentID;
 
         public FormEditAppointment(FormAppointment.Appointment appointment)
         {
             InitializeComponent();
 
+            _appointmentID = appointment.AppointmentID;
+
             textBoxPatient.Text = appointment.PatientName;
             textBoxTreatment.Text = appointment.TreatmentName;
-            textBoxCost.Text = appointment.TreatmentCost.ToString();
+            textBoxCost.Text = appointment.TreatmentCost.ToString("F2");
             dateTimePickerDate.Value = appointment.AppointmentDate;
             dateTimePickerTime.Value = appointment.AppointmentTime;
         }
@@ -31,6 +34,7 @@ namespace EstiponaClinic
 
             EditedAppointment = new FormAppointment.Appointment
             {
+                AppointmentID = _appointmentID, // keep the same integer ID
                 PatientName = textBoxPatient.Text.Trim(),
                 TreatmentName = textBoxTreatment.Text.Trim(),
                 TreatmentCost = cost,

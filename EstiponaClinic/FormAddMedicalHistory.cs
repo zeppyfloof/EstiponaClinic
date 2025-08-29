@@ -10,15 +10,15 @@ namespace EstiponaClinic
     public partial class FormAddMedicalHistory : Form
     {
         public FormMedicalHistory.MedicalHistory? NewHistory { get; private set; }
-        private List<string> availablePatients = new();
+        private readonly List<ComboItem> availablePatients = new();
 
-        public FormAddMedicalHistory(List<string> existingPatients)
+        public FormAddMedicalHistory(List<int> existingPatients)
         {
             InitializeComponent();
             LoadPatients(existingPatients);
         }
 
-        private void LoadPatients(List<string> existingPatients)
+        private void LoadPatients(List<int> existingPatients)
         {
             string patientFile = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
@@ -26,25 +26,31 @@ namespace EstiponaClinic
                 "patients.json"
             );
 
-            if (File.Exists(patientFile))
-            {
-                var patients = JsonConvert.DeserializeObject<List<dynamic>>(File.ReadAllText(patientFile));
-                if (patients != null)
-                {
-                    availablePatients = patients
-                        .Select(p => (string)p.name)
-                        .Where(name => !existingPatients.Contains(name))
-                        .ToList();
+            if (!File.Exists(patientFile)) return;
 
-                    comboBoxPatientName.Items.Clear();
-                    comboBoxPatientName.Items.AddRange(availablePatients.ToArray());
-                }
+            var json = File.ReadAllText(patientFile);
+            var patients = JsonConvert.DeserializeObject<List<FormPatients.Patient>>(json) ?? new();
+
+            comboBoxPatientName.Items.Clear();
+            availablePatients.Clear();
+
+            foreach (var p in patients)
+            {
+                // skip if already linked to a history (by PatientID)
+                if (existingPatients.Contains(p.PatientID)) continue;
+
+                var item = new ComboItem { PatientID = p.PatientID, DisplayName = p.Name };
+                availablePatients.Add(item);
+                comboBoxPatientName.Items.Add(item);
             }
+
+            comboBoxPatientName.DisplayMember = nameof(ComboItem.DisplayName);
+            comboBoxPatientName.ValueMember = nameof(ComboItem.PatientID);
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            if (comboBoxPatientName.SelectedItem == null)
+            if (comboBoxPatientName.SelectedItem is not ComboItem selected)
             {
                 MessageBox.Show("Please select a patient.");
                 return;
@@ -52,7 +58,9 @@ namespace EstiponaClinic
 
             NewHistory = new FormMedicalHistory.MedicalHistory
             {
-                PatientName = comboBoxPatientName.SelectedItem.ToString()!,
+                // MedicalHistoryID is assigned by the parent form after dialog OK
+                PatientID = selected.PatientID,
+                PatientName = selected.DisplayName,
                 Condition = textBoxCondition.Text.Trim(),
                 DateRecorded = dateTimePickerDate.Value,
                 Allergies = textBoxAllergies.Text.Trim(),
@@ -61,8 +69,15 @@ namespace EstiponaClinic
                 DrugsTaken = textBoxDrugsTaken.Text.Trim()
             };
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private class ComboItem
+        {
+            public int PatientID { get; set; }
+            public string DisplayName { get; set; } = string.Empty;
+            public override string ToString() => DisplayName;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 
@@ -8,207 +9,208 @@ namespace EstiponaClinic
 {
     public partial class FormPatients : Form
     {
-        private List<Patient> patients = new List<Patient>();
-        private readonly string jsonFilePath = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            "EstiponaClinic",
-            "patients.json"
-        );
+        private List<Patient> patients = new();
+        private readonly string patientFile;
+        private readonly Random rng = new();
 
         public FormPatients()
         {
             InitializeComponent();
 
-            // Event hookups
-            this.Load += FormPatients_Load;
-            buttonPatientsSave.Click += buttonPatientsSave_Click;
-            buttonPatientsDelete.Click += buttonPatientsDelete_Click;
-            buttonPatientsEdit.Click += buttonPatientsEdit_Click;
-            textBoxPatientsSearch.TextChanged += textBoxPatientsSearch_TextChanged; // ✅ Hook up search event
+            patientFile = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "EstiponaClinic",
+                "patients.json"
+            );
+            Directory.CreateDirectory(Path.GetDirectoryName(patientFile)!);
 
-            InitializeDataGridView();
-        }
-
-        private void FormPatients_Load(object sender, EventArgs e)
-        {
-            Directory.CreateDirectory(Path.GetDirectoryName(jsonFilePath) ?? "");
             LoadPatients();
+            SetupEventHandlers();
+            RefreshGrid();
         }
 
-        private void InitializeDataGridView()
+        // ------------------ MODEL ------------------
+        public class Patient
         {
-            dataGridViewPatients.Columns.Clear();
-            dataGridViewPatients.Columns.Add("PatientName", "Patient");
-            dataGridViewPatients.Columns.Add("PatientNumber", "Contact No.");
-            dataGridViewPatients.Columns.Add("PatientAddress", "Address");
-            dataGridViewPatients.Columns.Add("PatientBirthDay", "Date of Birth");
-            dataGridViewPatients.Columns.Add("PatientGender", "Gender");
-            dataGridViewPatients.Columns.Add("PatientAllergies", "Allergies");
-            dataGridViewPatients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewPatients.MultiSelect = false;
+            public int PatientID { get; set; }                     // int ID
+            public string Name { get; set; } = string.Empty;
+            public string Phone { get; set; } = string.Empty;
+            public string Address { get; set; } = string.Empty;
+            public DateTime BirthDate { get; set; }
+            public string Gender { get; set; } = string.Empty;
+            public string Notes { get; set; } = string.Empty;      // ✅ changed
         }
 
+        // ------------------ HELPERS ------------------
+        private int GenerateUniquePatientID()
+        {
+            int id;
+            do { id = rng.Next(100000, 999999); }
+            while (patients.Any(p => p.PatientID == id));
+            return id;
+        }
+
+        private int CalculateAge(DateTime birthDate)
+        {
+            var today = DateTime.Today;
+            int age = today.Year - birthDate.Year;
+            if (birthDate.Date > today.AddYears(-age)) age--;
+            return age;
+        }
+
+        // ------------------ EVENTS ------------------
+        private void SetupEventHandlers()
+        {
+            buttonPatientsSave.Click += buttonPatientsSave_Click;
+            buttonPatientsEdit.Click += buttonPatientsEdit_Click;
+            buttonPatientsDelete.Click += buttonPatientsDelete_Click;
+            textBoxPatientsSearch.TextChanged += textBoxPatientsSearch_TextChanged;
+        }
+
+        // ------------------ FILE I/O ------------------
         private void LoadPatients()
         {
-            try
+            if (File.Exists(patientFile))
             {
-                if (File.Exists(jsonFilePath))
+                try
                 {
-                    string json = File.ReadAllText(jsonFilePath);
-                    patients = JsonConvert.DeserializeObject<List<Patient>>(json) ?? new List<Patient>();
+                    var json = File.ReadAllText(patientFile);
+                    var loaded = JsonConvert.DeserializeObject<List<Patient>>(json);
+                    if (loaded != null) patients = loaded;
                 }
-                RefreshDataGridView();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading patients: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                catch
+                {
+                    patients = new();
+                }
             }
         }
 
         private void SavePatients()
         {
-            try
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(jsonFilePath) ?? "");
-                string json = JsonConvert.SerializeObject(patients, Formatting.Indented);
-                File.WriteAllText(jsonFilePath, json);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error saving patients: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            File.WriteAllText(patientFile, JsonConvert.SerializeObject(patients, Formatting.Indented));
         }
 
-        private void RefreshDataGridView()
+        // ------------------ GRID ------------------
+        private void RefreshGrid()
         {
-            dataGridViewPatients.Rows.Clear();
-            foreach (var patient in patients)
+            var view = patients.Select(p => new
             {
-                dataGridViewPatients.Rows.Add(
-                    patient.PatientName,
-                    patient.PatientNumber,
-                    patient.PatientAddress,
-                    patient.PatientBirthDay.ToShortDateString(),
-                    patient.PatientGender,
-                    patient.PatientAllergies
-                );
-            }
+                p.PatientID,
+                p.Name,
+                p.Phone,
+                p.Address,
+                p.BirthDate,
+                Age = CalculateAge(p.BirthDate),
+                p.Gender,
+                p.Notes               // ✅ changed
+            }).ToList();
+
+            dataGridViewPatients.DataSource = null;
+            dataGridViewPatients.DataSource = view;
+
+            // Hide PatientID column if present
+            if (dataGridViewPatients.Columns["PatientID"] != null)
+                dataGridViewPatients.Columns["PatientID"].Visible = false;
+
+            // Format BirthDate
+            if (dataGridViewPatients.Columns["BirthDate"] != null)
+                dataGridViewPatients.Columns["BirthDate"].DefaultCellStyle.Format = "MM/dd/yyyy";
+
+            // Rename headers
+            if (dataGridViewPatients.Columns["Name"] != null)
+                dataGridViewPatients.Columns["Name"].HeaderText = "Full Name";
+            if (dataGridViewPatients.Columns["Phone"] != null)
+                dataGridViewPatients.Columns["Phone"].HeaderText = "Contact No.";
+            if (dataGridViewPatients.Columns["Address"] != null)
+                dataGridViewPatients.Columns["Address"].HeaderText = "Home Address";
+            if (dataGridViewPatients.Columns["BirthDate"] != null)
+                dataGridViewPatients.Columns["BirthDate"].HeaderText = "Date of Birth";
         }
 
-        // 🔹 Search filter (only PatientName)
-        private void textBoxPatientsSearch_TextChanged(object sender, EventArgs e)
+        // ------------------ BUTTONS ------------------
+        private void buttonPatientsSave_Click(object? sender, EventArgs e)
         {
-            string query = textBoxPatientsSearch.Text.Trim().ToLower();
-
-            dataGridViewPatients.Rows.Clear();
-
-            var filteredPatients = string.IsNullOrEmpty(query)
-                ? patients
-                : patients.FindAll(p => p.PatientName.ToLower().Contains(query));
-
-            foreach (var patient in filteredPatients)
+            using var form = new FormAddPatient();
+            if (form.ShowDialog() == DialogResult.OK)
             {
-                dataGridViewPatients.Rows.Add(
-                    patient.PatientName,
-                    patient.PatientNumber,
-                    patient.PatientAddress,
-                    patient.PatientBirthDay.ToShortDateString(),
-                    patient.PatientGender,
-                    patient.PatientAllergies
-                );
-            }
-        }
-
-        // 🔹 Save button opens FormAddPatient
-        private void buttonPatientsSave_Click(object sender, EventArgs e)
-        {
-            using (var addForm = new FormAddPatient())
-            {
-                if (addForm.ShowDialog() == DialogResult.OK)
+                var patient = new Patient
                 {
-                    var newPatient = new Patient
-                    {
-                        PatientName = addForm.PatientName,
-                        PatientNumber = addForm.PatientNumber,
-                        PatientAddress = addForm.PatientAddress,
-                        PatientBirthDay = addForm.PatientBirthDay,
-                        PatientGender = addForm.PatientGender,
-                        PatientAllergies = addForm.PatientAllergies
-                    };
-
-                    patients.Add(newPatient);
-                    SavePatients();
-                    RefreshDataGridView();
-                    MessageBox.Show("Patient saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                    PatientID = GenerateUniquePatientID(),
+                    Name = form.PatientName,
+                    Phone = form.PatientNumber,
+                    Address = form.PatientAddress,
+                    BirthDate = form.PatientBirthDay,
+                    Gender = form.PatientGender,
+                    Notes = form.PatientNotes         // ✅ changed
+                };
+                patients.Add(patient);
+                SavePatients();
+                RefreshGrid();
             }
         }
 
-        // 🔹 Edit button opens FormEditPatient
-        private void buttonPatientsEdit_Click(object sender, EventArgs e)
+        private void buttonPatientsEdit_Click(object? sender, EventArgs e)
         {
-            if (dataGridViewPatients.SelectedRows.Count == 0)
+            if (dataGridViewPatients.CurrentRow == null) return;
+
+            var patient = patients.FirstOrDefault(p => p.PatientID ==
+                (int)dataGridViewPatients.CurrentRow.Cells["PatientID"].Value);
+            if (patient == null) return;
+
+            using var form = new FormEditPatient(patient);
+            if (form.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("Please select a patient to edit.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            int index = dataGridViewPatients.SelectedRows[0].Index;
-            if (index < 0 || index >= patients.Count) return;
-
-            var patientToEdit = patients[index];
-
-            using (var editForm = new FormEditPatient(patientToEdit))
-            {
-                if (editForm.ShowDialog() == DialogResult.OK && editForm.EditedPatient != null)
-                {
-                    patients[index] = editForm.EditedPatient; // Replace old with updated
-                    SavePatients();
-                    RefreshDataGridView();
-                    MessageBox.Show("Patient updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                SavePatients();
+                RefreshGrid();
             }
         }
 
-        private void buttonPatientsDelete_Click(object sender, EventArgs e)
+        private void buttonPatientsDelete_Click(object? sender, EventArgs e)
         {
-            if (dataGridViewPatients.SelectedRows.Count == 0)
+            if (dataGridViewPatients.CurrentRow == null) return;
+
+            var patient = patients.FirstOrDefault(p => p.PatientID ==
+                (int)dataGridViewPatients.CurrentRow.Cells["PatientID"].Value);
+            if (patient == null) return;
+
+            var confirm = MessageBox.Show(
+                $"Are you sure you want to delete {patient.Name}?",
+                "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirm == DialogResult.Yes)
             {
-                MessageBox.Show("Please select a patient to delete.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            int index = dataGridViewPatients.SelectedRows[0].Index;
-
-            if (index >= 0 && index < patients.Count)
-            {
-                var result = MessageBox.Show(
-                    $"Are you sure you want to delete patient \"{patients[index].PatientName}\"?\nThis action cannot be undone.",
-                    "Confirm Deletion",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning,
-                    MessageBoxDefaultButton.Button2
-                );
-
-                if (result == DialogResult.Yes)
-                {
-                    patients.RemoveAt(index);
-                    SavePatients();
-                    RefreshDataGridView();
-                    MessageBox.Show("Patient deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                patients.Remove(patient);
+                SavePatients();
+                RefreshGrid();
             }
         }
 
-        // 🔹 Patient model
-        public class Patient
+        // ------------------ SEARCH ------------------
+        private void textBoxPatientsSearch_TextChanged(object? sender, EventArgs e)
         {
-            public string PatientName { get; set; } = string.Empty;
-            public string PatientNumber { get; set; } = string.Empty;
-            public string PatientAddress { get; set; } = string.Empty;
-            public DateTime PatientBirthDay { get; set; }
-            public string PatientGender { get; set; } = string.Empty;
-            public string? PatientAllergies { get; set; }
+            string search = textBoxPatientsSearch.Text.Trim().ToLower();
+            var filtered = patients.Where(p =>
+                p.Name.ToLower().Contains(search) ||
+                p.Phone.ToLower().Contains(search) ||
+                p.Address.ToLower().Contains(search) ||
+                p.Gender.ToLower().Contains(search)
+            ).Select(p => new
+            {
+                p.PatientID,
+                p.Name,
+                p.Phone,
+                p.Address,
+                p.BirthDate,
+                Age = CalculateAge(p.BirthDate),
+                p.Gender,
+                p.Notes                 // ✅ changed
+            }).ToList();
+
+            dataGridViewPatients.DataSource = null;
+            dataGridViewPatients.DataSource = filtered;
+
+            if (dataGridViewPatients.Columns["PatientID"] != null)
+                dataGridViewPatients.Columns["PatientID"].Visible = false;
         }
     }
 }

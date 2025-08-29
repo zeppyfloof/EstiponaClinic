@@ -15,7 +15,6 @@
 
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
             buttonFormAppointment = new Button();
             buttonFormTreatment = new Button();
@@ -29,9 +28,9 @@
             // 
             // panel1
             // 
-            panel1.Location = new Point(159, 12);
+            panel1.Location = new Point(168, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(822, 726);
+            panel1.Size = new Size(813, 695);
             panel1.TabIndex = 0;
             // 
             // buttonFormAppointment
@@ -101,7 +100,6 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(12, 12);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(129, 135);

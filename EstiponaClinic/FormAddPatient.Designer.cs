@@ -25,7 +25,7 @@
             textBoxPatientsAddress = new TextBox();
             comboBoxPatientsGender = new ComboBox();
             dateTimePickerBirthDate = new DateTimePicker();
-            textBoxPatientsAllergies = new TextBox();
+            textBoxPatientsNotes = new TextBox();
             buttonAdd = new Button();
             buttonCancel = new Button();
             label1 = new Label();
@@ -73,13 +73,13 @@
             dateTimePickerBirthDate.Size = new Size(250, 23);
             dateTimePickerBirthDate.TabIndex = 4;
             // 
-            // textBoxPatientsAllergies
+            // textBoxPatientsNotes
             // 
-            textBoxPatientsAllergies.Location = new Point(30, 300);
-            textBoxPatientsAllergies.Multiline = true;
-            textBoxPatientsAllergies.Name = "textBoxPatientsAllergies";
-            textBoxPatientsAllergies.Size = new Size(250, 60);
-            textBoxPatientsAllergies.TabIndex = 5;
+            textBoxPatientsNotes.Location = new Point(30, 300);
+            textBoxPatientsNotes.Multiline = true;
+            textBoxPatientsNotes.Name = "textBoxPatientsNotes";
+            textBoxPatientsNotes.Size = new Size(250, 60);
+            textBoxPatientsNotes.TabIndex = 5;
             // 
             // buttonAdd
             // 
@@ -157,9 +157,9 @@
             label6.AutoSize = true;
             label6.Location = new Point(30, 280);
             label6.Name = "label6";
-            label6.Size = new Size(52, 15);
+            label6.Size = new Size(38, 15);
             label6.TabIndex = 13;
-            label6.Text = "Allergies";
+            label6.Text = "Notes";
             // 
             // FormAddPatient
             // 
@@ -174,7 +174,7 @@
             Controls.Add(label1);
             Controls.Add(buttonCancel);
             Controls.Add(buttonAdd);
-            Controls.Add(textBoxPatientsAllergies);
+            Controls.Add(textBoxPatientsNotes);
             Controls.Add(dateTimePickerBirthDate);
             Controls.Add(comboBoxPatientsGender);
             Controls.Add(textBoxPatientsAddress);
@@ -193,7 +193,7 @@
         private TextBox textBoxPatientsAddress;
         private ComboBox comboBoxPatientsGender;
         private DateTimePicker dateTimePickerBirthDate;
-        private TextBox textBoxPatientsAllergies;
+        private TextBox textBoxPatientsNotes;
         private Button buttonAdd;
         private Button buttonCancel;
         private Label label1;

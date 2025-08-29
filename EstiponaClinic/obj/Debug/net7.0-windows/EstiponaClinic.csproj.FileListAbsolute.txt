@@ -31,3 +31,4 @@ C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windo
 C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormAddMedicalHistory.resources
 C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormMedicalHistory.resources
 C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormEditMedicalHistory.resources
+C:\Users\Floof\source\repos\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormTeethChart.resources

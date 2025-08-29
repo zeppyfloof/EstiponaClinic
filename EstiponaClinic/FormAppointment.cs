@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 
@@ -23,7 +24,7 @@ namespace EstiponaClinic
             buttonAppointmentsAdd.Click += buttonAppointmentsAdd_Click;
             buttonAppointmentsEdit.Click += buttonAppointmentsEdit_Click;
             buttonAppointmentsDelete.Click += buttonAppointmentsDelete_Click;
-            textBoxAppointmentsSearch.TextChanged += textBoxAppointmentsSearch_TextChanged; // ✅ search hook
+            textBoxAppointmentsSearch.TextChanged += textBoxAppointmentsSearch_TextChanged;
 
             InitializeDataGridView();
         }
@@ -37,6 +38,7 @@ namespace EstiponaClinic
         private void InitializeDataGridView()
         {
             dataGridViewAppointments.Columns.Clear();
+            dataGridViewAppointments.Columns.Add("AppointmentID", "ID"); // show ID
             dataGridViewAppointments.Columns.Add("PatientName", "Patient");
             dataGridViewAppointments.Columns.Add("TreatmentName", "Treatment");
             dataGridViewAppointments.Columns.Add("TreatmentCost", "Cost");
@@ -86,6 +88,7 @@ namespace EstiponaClinic
             foreach (var appt in appointments)
             {
                 dataGridViewAppointments.Rows.Add(
+                    appt.AppointmentID,
                     appt.PatientName,
                     appt.TreatmentName,
                     appt.TreatmentCost.ToString("F2"),
@@ -95,11 +98,10 @@ namespace EstiponaClinic
             }
         }
 
-        // 🔎 SEARCH (by Patient or Treatment name)
+        // 🔎 SEARCH
         private void textBoxAppointmentsSearch_TextChanged(object sender, EventArgs e)
         {
             string query = textBoxAppointmentsSearch.Text.Trim().ToLower();
-
             dataGridViewAppointments.Rows.Clear();
 
             var filteredAppointments = string.IsNullOrEmpty(query)
@@ -111,6 +113,7 @@ namespace EstiponaClinic
             foreach (var appt in filteredAppointments)
             {
                 dataGridViewAppointments.Rows.Add(
+                    appt.AppointmentID,
                     appt.PatientName,
                     appt.TreatmentName,
                     appt.TreatmentCost.ToString("F2"),
@@ -127,6 +130,10 @@ namespace EstiponaClinic
             {
                 if (addForm.ShowDialog() == DialogResult.OK && addForm.NewAppointment != null)
                 {
+                    // assign unique integer ID
+                    int nextID = appointments.Count > 0 ? appointments.Max(a => a.AppointmentID) + 1 : 1;
+                    addForm.NewAppointment.AppointmentID = nextID;
+
                     appointments.Add(addForm.NewAppointment);
                     SaveAppointments();
                     RefreshDataGridView();
@@ -155,6 +162,8 @@ namespace EstiponaClinic
             {
                 if (editForm.ShowDialog() == DialogResult.OK && editForm.EditedAppointment != null)
                 {
+                    // keep original AppointmentID
+                    editForm.EditedAppointment.AppointmentID = apptToEdit.AppointmentID;
                     appointments[index] = editForm.EditedAppointment;
                     SaveAppointments();
                     RefreshDataGridView();
@@ -200,6 +209,7 @@ namespace EstiponaClinic
         // Appointment model
         public class Appointment
         {
+            public int AppointmentID { get; set; } // new integer ID
             public string PatientName { get; set; } = string.Empty;
             public string TreatmentName { get; set; } = string.Empty;
             public decimal TreatmentCost { get; set; }

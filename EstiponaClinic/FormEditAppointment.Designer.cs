@@ -14,100 +14,156 @@
 
         private void InitializeComponent()
         {
-            this.labelPatient = new System.Windows.Forms.Label();
-            this.labelTreatment = new System.Windows.Forms.Label();
-            this.labelCost = new System.Windows.Forms.Label();
-            this.labelDate = new System.Windows.Forms.Label();
-            this.labelTime = new System.Windows.Forms.Label();
-
-            this.textBoxPatient = new System.Windows.Forms.TextBox();
-            this.textBoxTreatment = new System.Windows.Forms.TextBox();
-            this.textBoxCost = new System.Windows.Forms.TextBox();
-            this.dateTimePickerDate = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerTime = new System.Windows.Forms.DateTimePicker();
-
-            this.buttonUpdate = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
-
-            this.SuspendLayout();
+            labelPatient = new Label();
+            labelTreatment = new Label();
+            labelCost = new Label();
+            labelDate = new Label();
+            labelTime = new Label();
+            textBoxPatient = new TextBox();
+            textBoxTreatment = new TextBox();
+            textBoxCost = new TextBox();
+            dateTimePickerDate = new DateTimePicker();
+            dateTimePickerTime = new DateTimePicker();
+            buttonUpdate = new Button();
+            buttonCancel = new Button();
+            SuspendLayout();
             // 
-            // Labels
+            // labelPatient
             // 
-            this.labelPatient.AutoSize = true;
-            this.labelPatient.Location = new System.Drawing.Point(30, 30);
-            this.labelPatient.Text = "Patient:";
-            this.labelTreatment.AutoSize = true;
-            this.labelTreatment.Location = new System.Drawing.Point(30, 70);
-            this.labelTreatment.Text = "Treatment:";
-            this.labelCost.AutoSize = true;
-            this.labelCost.Location = new System.Drawing.Point(30, 110);
-            this.labelCost.Text = "Cost:";
-            this.labelDate.AutoSize = true;
-            this.labelDate.Location = new System.Drawing.Point(30, 150);
-            this.labelDate.Text = "Date:";
-            this.labelTime.AutoSize = true;
-            this.labelTime.Location = new System.Drawing.Point(30, 190);
-            this.labelTime.Text = "Time:";
+            labelPatient.AutoSize = true;
+            labelPatient.Location = new Point(30, 30);
+            labelPatient.Name = "labelPatient";
+            labelPatient.Size = new Size(47, 15);
+            labelPatient.TabIndex = 0;
+            labelPatient.Text = "Patient:";
             // 
-            // Textboxes
+            // labelTreatment
             // 
-            this.textBoxPatient.Location = new System.Drawing.Point(120, 27);
-            this.textBoxTreatment.Location = new System.Drawing.Point(120, 67);
-            this.textBoxCost.Location = new System.Drawing.Point(120, 107);
-            this.dateTimePickerDate.Location = new System.Drawing.Point(120, 147);
-            this.dateTimePickerTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePickerTime.ShowUpDown = true;
-            this.dateTimePickerTime.Location = new System.Drawing.Point(120, 187);
+            labelTreatment.AutoSize = true;
+            labelTreatment.Location = new Point(30, 70);
+            labelTreatment.Name = "labelTreatment";
+            labelTreatment.Size = new Size(63, 15);
+            labelTreatment.TabIndex = 1;
+            labelTreatment.Text = "Treatment:";
             // 
-            // Buttons
+            // labelCost
             // 
-            this.buttonUpdate.Location = new System.Drawing.Point(120, 230);
-            this.buttonUpdate.Text = "Update";
-            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
-
-            this.buttonCancel.Location = new System.Drawing.Point(200, 230);
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            labelCost.AutoSize = true;
+            labelCost.Location = new Point(30, 110);
+            labelCost.Name = "labelCost";
+            labelCost.Size = new Size(34, 15);
+            labelCost.TabIndex = 2;
+            labelCost.Text = "Cost:";
+            // 
+            // labelDate
+            // 
+            labelDate.AutoSize = true;
+            labelDate.Location = new Point(30, 150);
+            labelDate.Name = "labelDate";
+            labelDate.Size = new Size(34, 15);
+            labelDate.TabIndex = 3;
+            labelDate.Text = "Date:";
+            // 
+            // labelTime
+            // 
+            labelTime.AutoSize = true;
+            labelTime.Location = new Point(30, 190);
+            labelTime.Name = "labelTime";
+            labelTime.Size = new Size(36, 15);
+            labelTime.TabIndex = 4;
+            labelTime.Text = "Time:";
+            // 
+            // textBoxPatient
+            // 
+            textBoxPatient.Location = new Point(120, 27);
+            textBoxPatient.Name = "textBoxPatient";
+            textBoxPatient.Size = new Size(155, 23);
+            textBoxPatient.TabIndex = 5;
+            // 
+            // textBoxTreatment
+            // 
+            textBoxTreatment.Location = new Point(120, 67);
+            textBoxTreatment.Name = "textBoxTreatment";
+            textBoxTreatment.Size = new Size(155, 23);
+            textBoxTreatment.TabIndex = 6;
+            // 
+            // textBoxCost
+            // 
+            textBoxCost.Location = new Point(120, 107);
+            textBoxCost.Name = "textBoxCost";
+            textBoxCost.Size = new Size(155, 23);
+            textBoxCost.TabIndex = 7;
+            // 
+            // dateTimePickerDate
+            // 
+            dateTimePickerDate.Location = new Point(120, 147);
+            dateTimePickerDate.Name = "dateTimePickerDate";
+            dateTimePickerDate.Size = new Size(200, 23);
+            dateTimePickerDate.TabIndex = 8;
+            // 
+            // dateTimePickerTime
+            // 
+            dateTimePickerTime.Format = DateTimePickerFormat.Time;
+            dateTimePickerTime.Location = new Point(120, 187);
+            dateTimePickerTime.Name = "dateTimePickerTime";
+            dateTimePickerTime.ShowUpDown = true;
+            dateTimePickerTime.Size = new Size(200, 23);
+            dateTimePickerTime.TabIndex = 9;
+            // 
+            // buttonUpdate
+            // 
+            buttonUpdate.Location = new Point(120, 230);
+            buttonUpdate.Name = "buttonUpdate";
+            buttonUpdate.Size = new Size(75, 23);
+            buttonUpdate.TabIndex = 10;
+            buttonUpdate.Text = "Update";
+            buttonUpdate.Click += buttonUpdate_Click;
+            // 
+            // buttonCancel
+            // 
+            buttonCancel.Location = new Point(200, 230);
+            buttonCancel.Name = "buttonCancel";
+            buttonCancel.Size = new Size(75, 23);
+            buttonCancel.TabIndex = 11;
+            buttonCancel.Text = "Cancel";
+            buttonCancel.Click += buttonCancel_Click;
             // 
             // FormEditAppointment
             // 
-            this.ClientSize = new System.Drawing.Size(350, 300);
-            this.Controls.Add(this.labelPatient);
-            this.Controls.Add(this.labelTreatment);
-            this.Controls.Add(this.labelCost);
-            this.Controls.Add(this.labelDate);
-            this.Controls.Add(this.labelTime);
-
-            this.Controls.Add(this.textBoxPatient);
-            this.Controls.Add(this.textBoxTreatment);
-            this.Controls.Add(this.textBoxCost);
-            this.Controls.Add(this.dateTimePickerDate);
-            this.Controls.Add(this.dateTimePickerTime);
-
-            this.Controls.Add(this.buttonUpdate);
-            this.Controls.Add(this.buttonCancel);
-
-            this.Name = "FormEditAppointment";
-            this.Text = "Edit Appointment";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            ClientSize = new Size(350, 300);
+            Controls.Add(labelPatient);
+            Controls.Add(labelTreatment);
+            Controls.Add(labelCost);
+            Controls.Add(labelDate);
+            Controls.Add(labelTime);
+            Controls.Add(textBoxPatient);
+            Controls.Add(textBoxTreatment);
+            Controls.Add(textBoxCost);
+            Controls.Add(dateTimePickerDate);
+            Controls.Add(dateTimePickerTime);
+            Controls.Add(buttonUpdate);
+            Controls.Add(buttonCancel);
+            Name = "FormEditAppointment";
+            Text = "Edit Appointment";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private System.Windows.Forms.Label labelPatient;
-        private System.Windows.Forms.Label labelTreatment;
-        private System.Windows.Forms.Label labelCost;
-        private System.Windows.Forms.Label labelDate;
-        private System.Windows.Forms.Label labelTime;
+        private Label labelPatient;
+        private Label labelTreatment;
+        private Label labelCost;
+        private Label labelDate;
+        private Label labelTime;
 
-        private System.Windows.Forms.TextBox textBoxPatient;
-        private System.Windows.Forms.TextBox textBoxTreatment;
-        private System.Windows.Forms.TextBox textBoxCost;
-        private System.Windows.Forms.DateTimePicker dateTimePickerDate;
-        private System.Windows.Forms.DateTimePicker dateTimePickerTime;
+        private TextBox textBoxPatient;
+        private TextBox textBoxTreatment;
+        private TextBox textBoxCost;
+        private DateTimePicker dateTimePickerDate;
+        private DateTimePicker dateTimePickerTime;
 
-        private System.Windows.Forms.Button buttonUpdate;
-        private System.Windows.Forms.Button buttonCancel;
+        private Button buttonUpdate;
+        private Button buttonCancel;
     }
 }

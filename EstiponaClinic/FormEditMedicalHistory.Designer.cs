@@ -14,133 +14,178 @@
         #region Windows Form Designer generated code
         private void InitializeComponent()
         {
-            this.labelPatient = new System.Windows.Forms.Label();
-            this.textBoxPatientName = new System.Windows.Forms.TextBox();
-            this.labelCondition = new System.Windows.Forms.Label();
-            this.textBoxCondition = new System.Windows.Forms.TextBox();
-            this.labelDate = new System.Windows.Forms.Label();
-            this.dateTimePickerDate = new System.Windows.Forms.DateTimePicker();
-            this.labelAllergies = new System.Windows.Forms.Label();
-            this.textBoxAllergies = new System.Windows.Forms.TextBox();
-            this.labelAbnormalities = new System.Windows.Forms.Label();
-            this.textBoxAbnormalities = new System.Windows.Forms.TextBox();
-            this.labelBloodPressure = new System.Windows.Forms.Label();
-            this.textBoxBloodPressure = new System.Windows.Forms.TextBox();
-            this.labelDrugs = new System.Windows.Forms.Label();
-            this.textBoxDrugsTaken = new System.Windows.Forms.TextBox();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            labelPatient = new Label();
+            textBoxPatientName = new TextBox();
+            labelCondition = new Label();
+            textBoxCondition = new TextBox();
+            labelDate = new Label();
+            dateTimePickerDate = new DateTimePicker();
+            labelAllergies = new Label();
+            textBoxAllergies = new TextBox();
+            labelAbnormalities = new Label();
+            textBoxAbnormalities = new TextBox();
+            labelBloodPressure = new Label();
+            textBoxBloodPressure = new TextBox();
+            labelDrugs = new Label();
+            textBoxDrugsTaken = new TextBox();
+            buttonSave = new Button();
+            SuspendLayout();
             // 
             // labelPatient
             // 
-            this.labelPatient.Text = "Patient Name";
-            this.labelPatient.Location = new System.Drawing.Point(20, 20);
+            labelPatient.Location = new Point(20, 20);
+            labelPatient.Name = "labelPatient";
+            labelPatient.Size = new Size(100, 23);
+            labelPatient.TabIndex = 0;
+            labelPatient.Text = "Patient Name";
             // 
             // textBoxPatientName
             // 
-            this.textBoxPatientName.Location = new System.Drawing.Point(120, 20);
-            this.textBoxPatientName.Size = new System.Drawing.Size(200, 23);
-            this.textBoxPatientName.ReadOnly = true;
+            textBoxPatientName.Location = new Point(120, 20);
+            textBoxPatientName.Name = "textBoxPatientName";
+            textBoxPatientName.ReadOnly = true;
+            textBoxPatientName.Size = new Size(200, 23);
+            textBoxPatientName.TabIndex = 1;
             // 
             // labelCondition
             // 
-            this.labelCondition.Text = "Condition";
-            this.labelCondition.Location = new System.Drawing.Point(20, 60);
+            labelCondition.Location = new Point(20, 60);
+            labelCondition.Name = "labelCondition";
+            labelCondition.Size = new Size(100, 23);
+            labelCondition.TabIndex = 2;
+            labelCondition.Text = "Condition";
             // 
             // textBoxCondition
             // 
-            this.textBoxCondition.Location = new System.Drawing.Point(120, 60);
-            this.textBoxCondition.Size = new System.Drawing.Size(200, 23);
+            textBoxCondition.Location = new Point(120, 60);
+            textBoxCondition.Name = "textBoxCondition";
+            textBoxCondition.Size = new Size(200, 23);
+            textBoxCondition.TabIndex = 3;
             // 
             // labelDate
             // 
-            this.labelDate.Text = "Date";
-            this.labelDate.Location = new System.Drawing.Point(20, 100);
+            labelDate.Location = new Point(20, 100);
+            labelDate.Name = "labelDate";
+            labelDate.Size = new Size(100, 23);
+            labelDate.TabIndex = 4;
+            labelDate.Text = "Date";
             // 
             // dateTimePickerDate
             // 
-            this.dateTimePickerDate.Location = new System.Drawing.Point(120, 100);
-            this.dateTimePickerDate.Size = new System.Drawing.Size(200, 23);
+            dateTimePickerDate.Location = new Point(120, 100);
+            dateTimePickerDate.Name = "dateTimePickerDate";
+            dateTimePickerDate.Size = new Size(200, 23);
+            dateTimePickerDate.TabIndex = 5;
             // 
             // labelAllergies
             // 
-            this.labelAllergies.Text = "Allergies";
-            this.labelAllergies.Location = new System.Drawing.Point(20, 140);
+            labelAllergies.Location = new Point(20, 140);
+            labelAllergies.Name = "labelAllergies";
+            labelAllergies.Size = new Size(100, 23);
+            labelAllergies.TabIndex = 6;
+            labelAllergies.Text = "Allergies";
             // 
             // textBoxAllergies
             // 
-            this.textBoxAllergies.Location = new System.Drawing.Point(120, 140);
-            this.textBoxAllergies.Size = new System.Drawing.Size(200, 23);
+            textBoxAllergies.Location = new Point(120, 140);
+            textBoxAllergies.Name = "textBoxAllergies";
+            textBoxAllergies.Size = new Size(200, 23);
+            textBoxAllergies.TabIndex = 7;
             // 
             // labelAbnormalities
             // 
-            this.labelAbnormalities.Text = "Abnormalities";
-            this.labelAbnormalities.Location = new System.Drawing.Point(20, 180);
+            labelAbnormalities.Location = new Point(20, 180);
+            labelAbnormalities.Name = "labelAbnormalities";
+            labelAbnormalities.Size = new Size(100, 23);
+            labelAbnormalities.TabIndex = 8;
+            labelAbnormalities.Text = "Abnormalities";
             // 
             // textBoxAbnormalities
             // 
-            this.textBoxAbnormalities.Location = new System.Drawing.Point(120, 180);
-            this.textBoxAbnormalities.Size = new System.Drawing.Size(200, 23);
+            textBoxAbnormalities.Location = new Point(120, 180);
+            textBoxAbnormalities.Name = "textBoxAbnormalities";
+            textBoxAbnormalities.Size = new Size(200, 23);
+            textBoxAbnormalities.TabIndex = 9;
             // 
             // labelBloodPressure
             // 
-            this.labelBloodPressure.Text = "Blood Pressure";
-            this.labelBloodPressure.Location = new System.Drawing.Point(20, 220);
+            labelBloodPressure.Location = new Point(20, 220);
+            labelBloodPressure.Name = "labelBloodPressure";
+            labelBloodPressure.Size = new Size(100, 23);
+            labelBloodPressure.TabIndex = 10;
+            labelBloodPressure.Text = "Blood Pressure";
             // 
             // textBoxBloodPressure
             // 
-            this.textBoxBloodPressure.Location = new System.Drawing.Point(120, 220);
-            this.textBoxBloodPressure.Size = new System.Drawing.Size(200, 23);
+            textBoxBloodPressure.Location = new Point(120, 220);
+            textBoxBloodPressure.Name = "textBoxBloodPressure";
+            textBoxBloodPressure.Size = new Size(200, 23);
+            textBoxBloodPressure.TabIndex = 11;
             // 
             // labelDrugs
             // 
-            this.labelDrugs.Text = "Drugs Taken";
-            this.labelDrugs.Location = new System.Drawing.Point(20, 260);
+            labelDrugs.Location = new Point(20, 260);
+            labelDrugs.Name = "labelDrugs";
+            labelDrugs.Size = new Size(100, 23);
+            labelDrugs.TabIndex = 12;
+            labelDrugs.Text = "Drugs Taken";
             // 
             // textBoxDrugsTaken
             // 
-            this.textBoxDrugsTaken.Location = new System.Drawing.Point(120, 260);
-            this.textBoxDrugsTaken.Size = new System.Drawing.Size(200, 23);
+            textBoxDrugsTaken.Location = new Point(120, 260);
+            textBoxDrugsTaken.Name = "textBoxDrugsTaken";
+            textBoxDrugsTaken.Size = new Size(200, 23);
+            textBoxDrugsTaken.TabIndex = 13;
             // 
             // buttonSave
             // 
-            this.buttonSave.Text = "Save Changes";
-            this.buttonSave.Location = new System.Drawing.Point(120, 310);
-            this.buttonSave.Size = new System.Drawing.Size(120, 30);
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            buttonSave.Location = new Point(120, 310);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Size = new Size(120, 30);
+            buttonSave.TabIndex = 14;
+            buttonSave.Text = "Save Changes";
+            buttonSave.Click += buttonSave_Click;
             // 
             // FormEditMedicalHistory
             // 
-            this.ClientSize = new System.Drawing.Size(360, 370);
-            this.Controls.AddRange(new System.Windows.Forms.Control[] {
-                this.labelPatient, this.textBoxPatientName,
-                this.labelCondition, this.textBoxCondition,
-                this.labelDate, this.dateTimePickerDate,
-                this.labelAllergies, this.textBoxAllergies,
-                this.labelAbnormalities, this.textBoxAbnormalities,
-                this.labelBloodPressure, this.textBoxBloodPressure,
-                this.labelDrugs, this.textBoxDrugsTaken,
-                this.buttonSave
-            });
-            this.Text = "Edit Medical History";
-            this.ResumeLayout(false);
+            ClientSize = new Size(360, 370);
+            Controls.Add(labelPatient);
+            Controls.Add(textBoxPatientName);
+            Controls.Add(labelCondition);
+            Controls.Add(textBoxCondition);
+            Controls.Add(labelDate);
+            Controls.Add(dateTimePickerDate);
+            Controls.Add(labelAllergies);
+            Controls.Add(textBoxAllergies);
+            Controls.Add(labelAbnormalities);
+            Controls.Add(textBoxAbnormalities);
+            Controls.Add(labelBloodPressure);
+            Controls.Add(textBoxBloodPressure);
+            Controls.Add(labelDrugs);
+            Controls.Add(textBoxDrugsTaken);
+            Controls.Add(buttonSave);
+            Name = "FormEditMedicalHistory";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Edit Medical History";
+            ResumeLayout(false);
+            PerformLayout();
         }
         #endregion
 
-        private System.Windows.Forms.Label labelPatient;
-        private System.Windows.Forms.TextBox textBoxPatientName;
-        private System.Windows.Forms.Label labelCondition;
-        private System.Windows.Forms.TextBox textBoxCondition;
-        private System.Windows.Forms.Label labelDate;
-        private System.Windows.Forms.DateTimePicker dateTimePickerDate;
-        private System.Windows.Forms.Label labelAllergies;
-        private System.Windows.Forms.TextBox textBoxAllergies;
-        private System.Windows.Forms.Label labelAbnormalities;
-        private System.Windows.Forms.TextBox textBoxAbnormalities;
-        private System.Windows.Forms.Label labelBloodPressure;
-        private System.Windows.Forms.TextBox textBoxBloodPressure;
-        private System.Windows.Forms.Label labelDrugs;
-        private System.Windows.Forms.TextBox textBoxDrugsTaken;
-        private System.Windows.Forms.Button buttonSave;
+        private Label labelPatient;
+        private TextBox textBoxPatientName;
+        private Label labelCondition;
+        private TextBox textBoxCondition;
+        private Label labelDate;
+        private DateTimePicker dateTimePickerDate;
+        private Label labelAllergies;
+        private TextBox textBoxAllergies;
+        private Label labelAbnormalities;
+        private TextBox textBoxAbnormalities;
+        private Label labelBloodPressure;
+        private TextBox textBoxBloodPressure;
+        private Label labelDrugs;
+        private TextBox textBoxDrugsTaken;
+        private Button buttonSave;
     }
 }

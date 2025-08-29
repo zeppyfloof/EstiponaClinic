@@ -43,6 +43,9 @@
     <Compile Update="FormPatients.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FormTeethChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FormTreatment.cs">
       <SubType>Form</SubType>
     </Compile>
