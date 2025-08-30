@@ -34,9 +34,11 @@ namespace EstiponaClinic
             comboBoxPatientName.Items.Clear();
             availablePatients.Clear();
 
+            // skip if already linked to a history (by PatientID)
             foreach (var p in patients)
             {
-                // skip if already linked to a history (by PatientID)
+                if (p == null) continue; // Skip null entries
+
                 if (existingPatients.Contains(p.PatientID)) continue;
 
                 var item = new ComboItem { PatientID = p.PatientID, DisplayName = p.Name };
@@ -78,6 +80,12 @@ namespace EstiponaClinic
             public int PatientID { get; set; }
             public string DisplayName { get; set; } = string.Empty;
             public override string ToString() => DisplayName;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

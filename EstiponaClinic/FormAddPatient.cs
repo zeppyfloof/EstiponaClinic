@@ -41,5 +41,6 @@ namespace EstiponaClinic
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
     }
 }

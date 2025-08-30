@@ -11,10 +11,12 @@ namespace EstiponaClinic
 {
     public partial class FormDentalRecord : Form
     {
-        private Button[] toothButtons;
+        private RoundButton[] toothButtons;
 
         private List<Patient> patients = new();
         private List<MedicalHistory> medicalHistories = new();
+        private List<PictureBox> toothIcons = new();
+
 
         // same JSON path used in FormTeethChart
         private readonly string jsonPath = Path.Combine(Application.StartupPath, "dentalrecord.json");
@@ -42,6 +44,38 @@ namespace EstiponaClinic
             public string BloodPressure { get; set; } = string.Empty;
             public string DrugsTaken { get; set; } = string.Empty;
         }
+
+        // ------------------ DIM BACKGROUND ------------------
+        private DialogResult ShowDimmedDialog(Form dialog)
+        {
+            var host = this.TopLevelControl as Form ?? this.FindForm() ?? this;
+            var hostBounds = host.Bounds;
+
+            var overlay = new Form
+            {
+                StartPosition = FormStartPosition.Manual,
+                Bounds = hostBounds,
+                BackColor = System.Drawing.Color.Black,
+                Opacity = 0.45,
+                FormBorderStyle = FormBorderStyle.None,
+                ShowInTaskbar = false,
+                TopMost = true
+            };
+
+            overlay.Show();
+            overlay.BringToFront();
+
+            dialog.StartPosition = FormStartPosition.CenterParent;
+            dialog.TopMost = true;
+
+            var result = dialog.ShowDialog(host);
+
+            overlay.Close();
+            overlay.Dispose();
+
+            return result;
+        }
+
 
         // ------------------ LOAD PATIENTS ------------------
         private void LoadPatients()
@@ -160,12 +194,17 @@ namespace EstiponaClinic
 
             using (FormTeethChart chartForm = new FormTeethChart(selected.PatientID, selected.Name))
             {
-                chartForm.ShowDialog();
+                if (ShowDimmedDialog(chartForm) == DialogResult.OK)
+                {
+                    ApplyTeethChart(selected.PatientID);
+                }
+                else
+                {
+                    ApplyTeethChart(selected.PatientID);
+                }
             }
-
-            // refresh teeth chart after closing editor
-            ApplyTeethChart(selected.PatientID);
         }
+
 
         // ------------------ HELPERS ------------------
         private int CalculateAge(DateTime birthDate)
@@ -179,53 +218,151 @@ namespace EstiponaClinic
 
         private void CreateTeethChartButtons()
         {
-            toothButtons = new Button[32];
+            panelTeethChart.Controls.Clear();
+            toothIcons.Clear();
 
-            for (int i = 0; i < 32; i++)
+
+            // FDI notation
+            string[] upperRight = { "18", "17", "16", "15", "14", "13", "12", "11" };
+            string[] upperLeft = { "21", "22", "23", "24", "25", "26", "27", "28" };
+            string[] lowerRight = { "48", "47", "46", "45", "44", "43", "42", "41" };
+            string[] lowerLeft = { "31", "32", "33", "34", "35", "36", "37", "38" };
+
+            toothButtons = new RoundButton[32];
+
+            int buttonSize = 40;
+            int spacing = 8;
+            int midGap = 80; // space between central incisors
+
+            // total width for 8 + gap + 8
+            int archWidth = (8 * (buttonSize + spacing)) * 2 - spacing + midGap;
+
+            // center horizontally
+            int startX = (panelTeethChart.Width - archWidth) / 2;
+
+            // vertical placement
+            int upperY = panelTeethChart.Height / 2 - 70;
+            int lowerY = panelTeethChart.Height / 2 + 20;
+
+            string toothImagePath = @"D:\dentalrecord4\EstiponaClinic\images\tooth.png";
+            Image toothImg = File.Exists(toothImagePath) ? Image.FromFile(toothImagePath) : null;
+
+            int index = 0;
+
+            // --- Upper Right & Upper Left ---
+            index = AddArch(upperRight, startX, upperY, buttonSize, spacing, true, toothImg, index);
+            index = AddArch(upperLeft, startX + (8 * (buttonSize + spacing)) + midGap, upperY,
+                            buttonSize, spacing, true, toothImg, index);
+
+            // --- Lower Right & Lower Left ---
+            index = AddArch(lowerRight, startX, lowerY, buttonSize, spacing, false, toothImg, index);
+            index = AddArch(lowerLeft, startX + (8 * (buttonSize + spacing)) + midGap, lowerY,
+                            buttonSize, spacing, false, toothImg, index);
+        }
+
+        private int AddArch(string[] teeth, int x, int y, int size, int spacing,
+                            bool isUpper, Image toothImg, int indexStart)
+        {
+            for (int i = 0; i < teeth.Length; i++)
             {
-                var b = new Button
+                string toothNum = teeth[i];
+
+                // Button
+                var b = new RoundButton
                 {
-                    Text = (i + 1).ToString(),
-                    Name = $"tooth{i + 1}",
-                    Size = new Size(35, 35),
-                    BackColor = Color.LightGreen, // default Healthy
-                    FlatStyle = FlatStyle.Standard,
-                    Tag = i + 1
+                    Text = toothNum,
+                    Name = $"tooth{toothNum}",
+                    Size = new Size(size, size),
+                    Location = new Point(x, y),
+                    BackColor = Color.White,
+                    FlatStyle = FlatStyle.Flat,
+                    Font = new Font("Segoe UI", 8, FontStyle.Bold),
+                    Tag = int.Parse(toothNum)
                 };
+                b.FlatAppearance.BorderSize = 1;
+                b.FlatAppearance.BorderColor = Color.Black;
 
-                // Keep buttons enabled so ForeColor works
-                b.Enabled = true;
-
-                // Optional: ignore clicks on main form
-                b.Click += (s, e) => { /* do nothing */ };
-
-                toothButtons[i] = b;
                 panelTeethChart.Controls.Add(b);
+                toothButtons[indexStart++] = b;
+
+                // Tooth icon
+                if (toothImg != null)
+                {
+                    var pic = new PictureBox
+                    {
+                        Size = new Size(60, 60),
+                        SizeMode = PictureBoxSizeMode.Zoom,
+                        Image = toothImg,
+                        BackColor = Color.Transparent
+                    };
+                    panelTeethChart.Controls.Add(pic);
+                    pic.BringToFront();
+                    toothIcons.Add(pic);
+                }
+
+                x += size + spacing;
             }
 
-            LayoutTeethButtons();
+            return indexStart;
         }
+
 
         private void LayoutTeethButtons()
         {
             if (toothButtons == null || toothButtons.Length == 0) return;
 
-            int buttonSize = 35;
-            int spacing = 5;
-            int countPerRow = 16;
+            int buttonSize = 40;
+            int spacing = 8;
+            int midGap = 80;
 
-            int rowWidth = countPerRow * buttonSize + (countPerRow - 1) * spacing;
-            int startX = Math.Max(12, (panelTeethChart.Width - rowWidth) / 2);
+            int archWidth = (8 * (buttonSize + spacing)) * 2 - spacing + midGap;
+            int startX = (panelTeethChart.Width - archWidth) / 2;
 
-            int upperY = 25;
-            int lowerY = 70;
+            int upperY = panelTeethChart.Height / 2 - 70;
+            int lowerY = panelTeethChart.Height / 2 + 20;
 
-            for (int i = 0; i < 16; i++)
-                toothButtons[i].Location = new Point(startX + i * (buttonSize + spacing), upperY);
+            // Keep a counter for icons
+            int iconIndex = 0;
 
-            for (int i = 0; i < 16; i++)
-                toothButtons[i + 16].Location = new Point(startX + i * (buttonSize + spacing), lowerY);
+            // --- Upper Right (18–11) ---
+            for (int i = 0; i < 8; i++)
+            {
+                int x = startX + i * (buttonSize + spacing);
+                toothButtons[i].Location = new Point(x, upperY);
+                if (iconIndex < toothIcons.Count)
+                    toothIcons[iconIndex++].Location = new Point(x - 10, upperY - 60);
+            }
+
+            // --- Upper Left (21–28) ---
+            for (int i = 0; i < 8; i++)
+            {
+                int x = startX + (8 * (buttonSize + spacing)) + midGap + i * (buttonSize + spacing);
+                toothButtons[8 + i].Location = new Point(x, upperY);
+                if (iconIndex < toothIcons.Count)
+                    toothIcons[iconIndex++].Location = new Point(x - 10, upperY - 60);
+            }
+
+            // --- Lower Right (48–41) ---
+            for (int i = 0; i < 8; i++)
+            {
+                int x = startX + i * (buttonSize + spacing);
+                toothButtons[16 + i].Location = new Point(x, lowerY);
+                if (iconIndex < toothIcons.Count)
+                    toothIcons[iconIndex++].Location = new Point(x - 10, lowerY + buttonSize + 10);
+            }
+
+            // --- Lower Left (31–38) ---
+            for (int i = 0; i < 8; i++)
+            {
+                int x = startX + (8 * (buttonSize + spacing)) + midGap + i * (buttonSize + spacing);
+                toothButtons[24 + i].Location = new Point(x, lowerY);
+                if (iconIndex < toothIcons.Count)
+                    toothIcons[iconIndex++].Location = new Point(x - 10, lowerY + buttonSize + 10);
+            }
         }
+
+
+
 
         // Apply saved states OR default Healthy if no data exists
         private void ApplyTeethChart(int patientId)
@@ -233,7 +370,7 @@ namespace EstiponaClinic
             // Default: all Healthy
             foreach (var btn in toothButtons)
             {
-                btn.BackColor = Color.LightGreen;
+                btn.BackColor = Color.White;
                 btn.ForeColor = Color.Black;
             }
 
@@ -278,6 +415,11 @@ namespace EstiponaClinic
                     }
                 }
             }
+        }
+
+        private void labelLegend_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

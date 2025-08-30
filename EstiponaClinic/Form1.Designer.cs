@@ -15,6 +15,7 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
             buttonFormAppointment = new Button();
             buttonFormTreatment = new Button();
@@ -28,11 +29,13 @@
             // 
             // panel1
             // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.AutoSize = true;
-            panel1.Location = new Point(168, 12);
+            panel1.BackColor = Color.PowderBlue;
+            panel1.Location = new Point(190, 16);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(813, 737);
+            panel1.Size = new Size(931, 983);
             panel1.TabIndex = 0;
             // 
             // buttonFormAppointment
@@ -40,9 +43,10 @@
             buttonFormAppointment.BackColor = Color.Green;
             buttonFormAppointment.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonFormAppointment.ForeColor = SystemColors.ButtonHighlight;
-            buttonFormAppointment.Location = new Point(12, 274);
+            buttonFormAppointment.Location = new Point(14, 398);
+            buttonFormAppointment.Margin = new Padding(3, 4, 3, 4);
             buttonFormAppointment.Name = "buttonFormAppointment";
-            buttonFormAppointment.Size = new Size(129, 53);
+            buttonFormAppointment.Size = new Size(170, 71);
             buttonFormAppointment.TabIndex = 2;
             buttonFormAppointment.Text = "Appointment";
             buttonFormAppointment.UseVisualStyleBackColor = false;
@@ -53,9 +57,10 @@
             buttonFormTreatment.BackColor = Color.Green;
             buttonFormTreatment.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonFormTreatment.ForeColor = SystemColors.ButtonHighlight;
-            buttonFormTreatment.Location = new Point(12, 392);
+            buttonFormTreatment.Location = new Point(14, 623);
+            buttonFormTreatment.Margin = new Padding(3, 4, 3, 4);
             buttonFormTreatment.Name = "buttonFormTreatment";
-            buttonFormTreatment.Size = new Size(129, 53);
+            buttonFormTreatment.Size = new Size(170, 71);
             buttonFormTreatment.TabIndex = 4;
             buttonFormTreatment.Text = "Treatment";
             buttonFormTreatment.UseVisualStyleBackColor = false;
@@ -66,9 +71,10 @@
             buttonFormDentalRecord.BackColor = Color.Green;
             buttonFormDentalRecord.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonFormDentalRecord.ForeColor = SystemColors.ButtonHighlight;
-            buttonFormDentalRecord.Location = new Point(12, 451);
+            buttonFormDentalRecord.Location = new Point(12, 732);
+            buttonFormDentalRecord.Margin = new Padding(3, 4, 3, 4);
             buttonFormDentalRecord.Name = "buttonFormDentalRecord";
-            buttonFormDentalRecord.Size = new Size(129, 53);
+            buttonFormDentalRecord.Size = new Size(170, 71);
             buttonFormDentalRecord.TabIndex = 5;
             buttonFormDentalRecord.Text = "Dental Records";
             buttonFormDentalRecord.UseVisualStyleBackColor = false;
@@ -77,11 +83,12 @@
             // buttonFormMedicalHistory
             // 
             buttonFormMedicalHistory.BackColor = Color.Green;
-            buttonFormMedicalHistory.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonFormMedicalHistory.Font = new Font("Segoe UI Historic", 11F, FontStyle.Bold, GraphicsUnit.Point);
             buttonFormMedicalHistory.ForeColor = SystemColors.ButtonHighlight;
-            buttonFormMedicalHistory.Location = new Point(12, 333);
+            buttonFormMedicalHistory.Location = new Point(14, 513);
+            buttonFormMedicalHistory.Margin = new Padding(3, 4, 3, 4);
             buttonFormMedicalHistory.Name = "buttonFormMedicalHistory";
-            buttonFormMedicalHistory.Size = new Size(129, 53);
+            buttonFormMedicalHistory.Size = new Size(170, 71);
             buttonFormMedicalHistory.TabIndex = 3;
             buttonFormMedicalHistory.Text = "Medical History";
             buttonFormMedicalHistory.UseVisualStyleBackColor = false;
@@ -92,9 +99,10 @@
             buttonFormPatients.BackColor = Color.Green;
             buttonFormPatients.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonFormPatients.ForeColor = SystemColors.ButtonHighlight;
-            buttonFormPatients.Location = new Point(12, 215);
+            buttonFormPatients.Location = new Point(14, 287);
+            buttonFormPatients.Margin = new Padding(3, 4, 3, 4);
             buttonFormPatients.Name = "buttonFormPatients";
-            buttonFormPatients.Size = new Size(129, 53);
+            buttonFormPatients.Size = new Size(170, 71);
             buttonFormPatients.TabIndex = 1;
             buttonFormPatients.Text = "Patients";
             buttonFormPatients.UseVisualStyleBackColor = false;
@@ -102,10 +110,11 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources._297_16d7cc85a07e078393b2485e7bbb93cca38de8f361a951c6c379736611960e60;
-            pictureBox1.Location = new Point(12, 12);
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(12, 16);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(129, 135);
+            pictureBox1.Size = new Size(170, 209);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
@@ -115,18 +124,19 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.Green;
-            label1.Location = new Point(12, 150);
+            label1.Location = new Point(14, 200);
             label1.Name = "label1";
-            label1.Size = new Size(134, 20);
+            label1.Size = new Size(170, 25);
             label1.TabIndex = 0;
             label1.Text = "ESTIPONA CLINIC";
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            ClientSize = new Size(993, 761);
+            BackColor = Color.PowderBlue;
+            ClientSize = new Size(1135, 1015);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             Controls.Add(buttonFormTreatment);
@@ -136,10 +146,12 @@
             Controls.Add(buttonFormAppointment);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            MinimumSize = new Size(1009, 800);
+            Margin = new Padding(3, 4, 3, 4);
+            MinimumSize = new Size(1151, 1018);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Estipona Clinic";
+            WindowState = FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

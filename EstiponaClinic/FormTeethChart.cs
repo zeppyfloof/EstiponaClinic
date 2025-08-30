@@ -11,6 +11,7 @@ namespace EstiponaClinic
     {
         private int PatientID;
         private string PatientName;
+        private Image toothImage;
 
         private Dictionary<int, string> teethStates = new();
         private readonly string jsonPath = Path.Combine(Application.StartupPath, "dentalrecord.json");
@@ -35,6 +36,11 @@ namespace EstiponaClinic
         {
             textBoxPatientNameTeethChart.Text = PatientName;
 
+            // ✅ Load tooth image once
+            string imgPath = @"D:\dentalrecord4\EstiponaClinic\images\tooth.png";
+            if (File.Exists(imgPath))
+                toothImage = Image.FromFile(imgPath);
+
             GenerateTeethButtons();
 
             if (File.Exists(jsonPath))
@@ -54,29 +60,73 @@ namespace EstiponaClinic
         private void GenerateTeethButtons()
         {
             panelTeethChartEdit.Controls.Clear();
-            int x = 5, y = 5;
 
-            for (int i = 1; i <= 32; i++)
+            int toothSize = 40;  // round button size
+            int spacing = 10;    // space between teeth
+            int startY = 20;     // vertical offset
+
+            string[] upperRight = { "18", "17", "16", "15", "14", "13", "12", "11" };
+            string[] upperLeft = { "21", "22", "23", "24", "25", "26", "27", "28" };
+            string[] lowerLeft = { "48", "47", "46", "45", "44", "43", "42", "41" };
+            string[] lowerRight = { "31", "32", "33", "34", "35", "36", "37", "38" };
+
+            // Total number of buttons per row = 16
+            int totalButtons = upperRight.Length + upperLeft.Length;
+            int rowWidth = totalButtons * toothSize + (totalButtons - 1) * spacing;
+
+            // Center horizontally inside panel
+            int startX = (panelTeethChartEdit.Width - rowWidth) / 2;
+
+            // --- TOP ROW ---
+            for (int i = 0; i < upperRight.Length; i++)
             {
-                Button toothBtn = new()
-                {
-                    Text = i.ToString(),
-                    Tag = i,
-                    Width = 40,
-                    Height = 40,
-                    Left = x,
-                    Top = y,
-                    BackColor = Color.LightGreen,
-                    ForeColor = Color.Black // default
-                };
-                toothBtn.Click += ToothButton_Click;
+                var btn = CreateToothButton(upperRight[i]);
+                btn.Location = new Point(startX + i * (toothSize + spacing), startY);
+                panelTeethChartEdit.Controls.Add(btn);
+            }
+            for (int i = 0; i < upperLeft.Length; i++)
+            {
+                var btn = CreateToothButton(upperLeft[i]);
+                btn.Location = new Point(startX + (upperRight.Length + i) * (toothSize + spacing), startY);
+                panelTeethChartEdit.Controls.Add(btn);
+            }
 
-                panelTeethChartEdit.Controls.Add(toothBtn);
-
-                x += 45;
-                if (i % 16 == 0) { y += 50; x = 5; }
+            // --- BOTTOM ROW ---
+            for (int i = 0; i < lowerLeft.Length; i++)
+            {
+                var btn = CreateToothButton(lowerLeft[i]);
+                btn.Location = new Point(startX + i * (toothSize + spacing), startY + toothSize + 2 * spacing);
+                panelTeethChartEdit.Controls.Add(btn);
+            }
+            for (int i = 0; i < lowerRight.Length; i++)
+            {
+                var btn = CreateToothButton(lowerRight[i]);
+                btn.Location = new Point(startX + (lowerLeft.Length + i) * (toothSize + spacing), startY + toothSize + 2 * spacing);
+                panelTeethChartEdit.Controls.Add(btn);
             }
         }
+
+
+        private RoundButton CreateToothButton(string toothNumber)
+        {
+            var btn = new RoundButton
+            {
+                Width = 40,
+                Height = 40,
+                Text = toothNumber,
+                BackColor = Color.White,
+                ForeColor = Color.Black,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 8, FontStyle.Bold),
+                Tag = toothNumber
+            };
+            btn.FlatAppearance.BorderColor = Color.Black;
+            btn.FlatAppearance.BorderSize = 1;
+            btn.Click += ToothButton_Click;
+            return btn;
+        }
+
+
 
         private void ToothButton_Click(object sender, EventArgs e)
         {

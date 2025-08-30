@@ -90,20 +90,70 @@ namespace EstiponaClinic
             File.WriteAllText(patientFile, JsonConvert.SerializeObject(patients, Formatting.Indented));
         }
 
+        // ------------------ DIM BACKGROUND FOR POP-UPS ----------------
+        private DialogResult ShowDimmedDialog(Form dialog)
+        {
+            var host = this.TopLevelControl as Form ?? this.FindForm() ?? this;
+            var hostBounds = host.Bounds;
+
+            // Create the overlay (do NOT set Owner!)
+            var overlay = new Form
+            {
+                StartPosition = FormStartPosition.Manual,
+                Bounds = hostBounds,
+                BackColor = Color.Black,
+                Opacity = 0.45,
+                FormBorderStyle = FormBorderStyle.None,
+                ShowInTaskbar = false,
+                TopMost = true   // ensures it covers host
+            };
+
+            // Clicking overlay should close the dialog
+            overlay.MouseDown += (s, e) =>
+            {
+                if (!dialog.IsDisposed && dialog.Visible)
+                {
+                    dialog.DialogResult = DialogResult.Cancel;
+                }
+            };
+
+            // Show overlay
+            overlay.Show();
+            overlay.BringToFront();
+
+            // Ensure dialog is on top of overlay
+            dialog.StartPosition = FormStartPosition.CenterParent;
+            dialog.TopMost = true;
+
+            // Show dialog with host as owner (NOT overlay)
+            var result = dialog.ShowDialog(host);
+
+            overlay.Close();
+            overlay.Dispose();
+
+            return result;
+        }
+
+
+
         // ------------------ GRID ------------------
         private void RefreshGrid()
         {
-            var view = patients.Select(p => new
-            {
-                p.PatientID,
-                p.Name,
-                p.Phone,
-                p.Address,
-                p.BirthDate,
-                Age = CalculateAge(p.BirthDate),
-                p.Gender,
-                p.Notes               // ✅ changed
-            }).ToList();
+            var view = patients
+                .Where(p => p != null)
+                .Select(p => new
+                {
+                    p.PatientID,
+                    p.Name,
+                    p.Phone,
+                    p.Address,
+                    p.BirthDate,
+                    Age = CalculateAge(p.BirthDate),
+                    p.Gender,
+                    p.Notes
+                })
+                .ToList();
+
 
             dataGridViewPatients.DataSource = null;
             dataGridViewPatients.DataSource = view;
@@ -131,7 +181,7 @@ namespace EstiponaClinic
         private void buttonPatientsSave_Click(object? sender, EventArgs e)
         {
             using var form = new FormAddPatient();
-            if (form.ShowDialog() == DialogResult.OK)
+            if (ShowDimmedDialog(form) == DialogResult.OK)
             {
                 var patient = new Patient
                 {
@@ -141,7 +191,7 @@ namespace EstiponaClinic
                     Address = form.PatientAddress,
                     BirthDate = form.PatientBirthDay,
                     Gender = form.PatientGender,
-                    Notes = form.PatientNotes         // ✅ changed
+                    Notes = form.PatientNotes
                 };
                 patients.Add(patient);
                 SavePatients();
@@ -153,12 +203,14 @@ namespace EstiponaClinic
         {
             if (dataGridViewPatients.CurrentRow == null) return;
 
-            var patient = patients.FirstOrDefault(p => p.PatientID ==
-                (int)dataGridViewPatients.CurrentRow.Cells["PatientID"].Value);
-            if (patient == null) return;
+            var cell = dataGridViewPatients.CurrentRow.Cells["PatientID"];
+            if (cell == null || cell.Value == null) return;
+
+            var patientId = (int)cell.Value;
+            var patient = patients.FirstOrDefault(p => p != null && p.PatientID == patientId);
 
             using var form = new FormEditPatient(patient);
-            if (form.ShowDialog() == DialogResult.OK)
+            if (ShowDimmedDialog(form) == DialogResult.OK)
             {
                 SavePatients();
                 RefreshGrid();
@@ -212,5 +264,6 @@ namespace EstiponaClinic
             if (dataGridViewPatients.Columns["PatientID"] != null)
                 dataGridViewPatients.Columns["PatientID"].Visible = false;
         }
+
     }
 }

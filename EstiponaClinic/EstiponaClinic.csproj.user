@@ -49,5 +49,8 @@
     <Compile Update="FormTreatment.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="RoundButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

@@ -97,14 +97,58 @@ namespace EstiponaClinic
             return id;
         }
 
+        // ------------------ DIALOG DIM BACKGROUND ------------------
+        private DialogResult ShowDimmedDialog(Form dialog)
+        {
+            var host = this.TopLevelControl as Form ?? this.FindForm() ?? this;
+            var hostBounds = host.Bounds;
+
+            // Create the overlay (do NOT set Owner!)
+            var overlay = new Form
+            {
+                StartPosition = FormStartPosition.Manual,
+                Bounds = hostBounds,
+                BackColor = Color.Black,
+                Opacity = 0.45,
+                FormBorderStyle = FormBorderStyle.None,
+                ShowInTaskbar = false,
+                TopMost = true   // ensures it covers host
+            };
+
+            // Clicking overlay should close the dialog
+            overlay.MouseDown += (s, e) =>
+            {
+                if (!dialog.IsDisposed && dialog.Visible)
+                {
+                    dialog.DialogResult = DialogResult.Cancel;
+                }
+            };
+
+            // Show overlay
+            overlay.Show();
+            overlay.BringToFront();
+
+            // Ensure dialog is on top of overlay
+            dialog.StartPosition = FormStartPosition.CenterParent;
+            dialog.TopMost = true;
+
+            // Show dialog with host as owner (NOT overlay)
+            var result = dialog.ShowDialog(host);
+
+            overlay.Close();
+            overlay.Dispose();
+
+            return result;
+        }
+
+
         // ------------------ BUTTONS ------------------
         private void buttonAdd_Click(object? sender, EventArgs e)
         {
-            var existing = histories.Select(h => h.PatientID).ToList(); // prevent duplicate patient link
+            var existing = histories.Select(h => h.PatientID).ToList();
             using var form = new FormAddMedicalHistory(existing);
-            if (form.ShowDialog() == DialogResult.OK && form.NewHistory != null)
+            if (ShowDimmedDialog(form) == DialogResult.OK && form.NewHistory != null)
             {
-                // assign unique int ID here
                 form.NewHistory.MedicalHistoryID = GenerateUniqueHistoryID();
                 histories.Add(form.NewHistory);
                 SaveHistories();
@@ -112,17 +156,18 @@ namespace EstiponaClinic
             }
         }
 
-        private void buttonEdit_Click(object? sender, EventArgs e)
+        private void buttonEdit_Click(object sender, EventArgs e)
         {
             if (dataGridViewMedicalHistory.CurrentRow == null) return;
 
-            int historyId = Convert.ToInt32(dataGridViewMedicalHistory.CurrentRow
-                .Cells["MedicalHistoryID"].Value);
+            int historyId = Convert.ToInt32(
+                dataGridViewMedicalHistory.CurrentRow.Cells["MedicalHistoryID"].Value);
+
             var history = histories.FirstOrDefault(h => h.MedicalHistoryID == historyId);
             if (history == null) return;
 
             using var form = new FormEditMedicalHistory(history);
-            if (form.ShowDialog() == DialogResult.OK && form.UpdatedHistory != null)
+            if (ShowDimmedDialog(form) == DialogResult.OK && form.UpdatedHistory != null)
             {
                 history.Condition = form.UpdatedHistory.Condition;
                 history.DateRecorded = form.UpdatedHistory.DateRecorded;
@@ -135,6 +180,7 @@ namespace EstiponaClinic
                 RefreshGrid();
             }
         }
+
 
         private void buttonDelete_Click(object? sender, EventArgs e)
         {

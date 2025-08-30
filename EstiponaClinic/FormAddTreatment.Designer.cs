@@ -14,74 +14,116 @@
 
         private void InitializeComponent()
         {
-            this.labelName = new System.Windows.Forms.Label();
-            this.labelDescription = new System.Windows.Forms.Label();
-            this.labelCost = new System.Windows.Forms.Label();
-
-            this.textBoxName = new System.Windows.Forms.TextBox();
-            this.textBoxDescription = new System.Windows.Forms.TextBox();
-            this.textBoxCost = new System.Windows.Forms.TextBox();
-
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
-
-            this.SuspendLayout();
+            labelName = new Label();
+            labelDescription = new Label();
+            labelCost = new Label();
+            textBoxName = new TextBox();
+            textBoxDescription = new TextBox();
+            textBoxCost = new TextBox();
+            buttonSave = new Button();
+            buttonCancel = new Button();
+            SuspendLayout();
             // 
-            // Labels
+            // labelName
             // 
-            this.labelName.Location = new System.Drawing.Point(30, 30);
-            this.labelName.Text = "Name:";
-            this.labelDescription.Location = new System.Drawing.Point(30, 70);
-            this.labelDescription.Text = "Description:";
-            this.labelCost.Location = new System.Drawing.Point(30, 110);
-            this.labelCost.Text = "Cost:";
+            labelName.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            labelName.ForeColor = Color.Green;
+            labelName.Location = new Point(95, 27);
+            labelName.Name = "labelName";
+            labelName.Size = new Size(92, 37);
+            labelName.TabIndex = 0;
+            labelName.Text = "Name:";
             // 
-            // Textboxes
+            // labelDescription
             // 
-            this.textBoxName.Location = new System.Drawing.Point(140, 27);
-            this.textBoxName.Size = new System.Drawing.Size(200, 23);
-
-            this.textBoxDescription.Location = new System.Drawing.Point(140, 67);
-            this.textBoxDescription.Size = new System.Drawing.Size(200, 23);
-
-            this.textBoxCost.Location = new System.Drawing.Point(140, 107);
-            this.textBoxCost.Size = new System.Drawing.Size(200, 23);
+            labelDescription.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            labelDescription.ForeColor = Color.Green;
+            labelDescription.Location = new Point(30, 89);
+            labelDescription.Name = "labelDescription";
+            labelDescription.Size = new Size(157, 37);
+            labelDescription.TabIndex = 1;
+            labelDescription.Text = "Description:";
             // 
-            // Buttons
+            // labelCost
             // 
-            this.buttonSave.BackColor = System.Drawing.Color.Green;
-            this.buttonSave.ForeColor = System.Drawing.Color.White;
-            this.buttonSave.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.buttonSave.Location = new System.Drawing.Point(140, 160);
-            this.buttonSave.Size = new System.Drawing.Size(80, 35);
-            this.buttonSave.Text = "Save";
-            this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-
-            this.buttonCancel.BackColor = System.Drawing.Color.Red;
-            this.buttonCancel.ForeColor = System.Drawing.Color.White;
-            this.buttonCancel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.buttonCancel.Location = new System.Drawing.Point(260, 160);
-            this.buttonCancel.Size = new System.Drawing.Size(80, 35);
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = false;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            labelCost.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            labelCost.ForeColor = Color.Green;
+            labelCost.Location = new Point(111, 206);
+            labelCost.Name = "labelCost";
+            labelCost.Size = new Size(76, 37);
+            labelCost.TabIndex = 2;
+            labelCost.Text = "Cost:";
+            // 
+            // textBoxName
+            // 
+            textBoxName.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxName.Location = new Point(210, 27);
+            textBoxName.Name = "textBoxName";
+            textBoxName.Size = new Size(282, 39);
+            textBoxName.TabIndex = 3;
+            // 
+            // textBoxDescription
+            // 
+            textBoxDescription.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxDescription.Location = new Point(210, 86);
+            textBoxDescription.Multiline = true;
+            textBoxDescription.Name = "textBoxDescription";
+            textBoxDescription.Size = new Size(282, 98);
+            textBoxDescription.TabIndex = 4;
+            // 
+            // textBoxCost
+            // 
+            textBoxCost.BackColor = SystemColors.ControlLight;
+            textBoxCost.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxCost.Location = new Point(210, 206);
+            textBoxCost.Name = "textBoxCost";
+            textBoxCost.Size = new Size(282, 39);
+            textBoxCost.TabIndex = 5;
+            // 
+            // buttonSave
+            // 
+            buttonSave.BackColor = Color.Green;
+            buttonSave.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonSave.ForeColor = Color.White;
+            buttonSave.Location = new Point(83, 278);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Size = new Size(137, 59);
+            buttonSave.TabIndex = 6;
+            buttonSave.Text = "Save";
+            buttonSave.UseVisualStyleBackColor = false;
+            buttonSave.Click += buttonSave_Click;
+            // 
+            // buttonCancel
+            // 
+            buttonCancel.BackColor = Color.Red;
+            buttonCancel.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonCancel.ForeColor = Color.White;
+            buttonCancel.Location = new Point(342, 278);
+            buttonCancel.Name = "buttonCancel";
+            buttonCancel.Size = new Size(137, 59);
+            buttonCancel.TabIndex = 7;
+            buttonCancel.Text = "Cancel";
+            buttonCancel.UseVisualStyleBackColor = false;
+            buttonCancel.Click += buttonCancel_Click;
             // 
             // FormAddTreatment
             // 
-            this.ClientSize = new System.Drawing.Size(400, 230);
-            this.Controls.Add(this.labelName);
-            this.Controls.Add(this.labelDescription);
-            this.Controls.Add(this.labelCost);
-            this.Controls.Add(this.textBoxName);
-            this.Controls.Add(this.textBoxDescription);
-            this.Controls.Add(this.textBoxCost);
-            this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.buttonCancel);
-            this.Name = "FormAddTreatment";
-            this.Text = "Add Treatment";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            BackColor = Color.PowderBlue;
+            ClientSize = new Size(558, 365);
+            Controls.Add(labelName);
+            Controls.Add(labelDescription);
+            Controls.Add(labelCost);
+            Controls.Add(textBoxName);
+            Controls.Add(textBoxDescription);
+            Controls.Add(textBoxCost);
+            Controls.Add(buttonSave);
+            Controls.Add(buttonCancel);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "FormAddTreatment";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Add Treatment";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

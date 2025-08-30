@@ -98,6 +98,45 @@ namespace EstiponaClinic
             }
         }
 
+        // ------------------ DIM BACKGROUND FOR POP-UPS ----------------
+        private DialogResult ShowDimmedDialog(Form dialog)
+        {
+            var host = this.TopLevelControl as Form ?? this.FindForm() ?? this;
+            var hostBounds = host.Bounds;
+
+            var overlay = new Form
+            {
+                StartPosition = FormStartPosition.Manual,
+                Bounds = hostBounds,
+                BackColor = Color.Black,
+                Opacity = 0.45,
+                FormBorderStyle = FormBorderStyle.None,
+                ShowInTaskbar = false,
+                TopMost = true
+            };
+
+            overlay.MouseDown += (s, e) =>
+            {
+                if (!dialog.IsDisposed && dialog.Visible)
+                {
+                    dialog.DialogResult = DialogResult.Cancel;
+                }
+            };
+
+            overlay.Show();
+            overlay.BringToFront();
+
+            dialog.StartPosition = FormStartPosition.CenterParent;
+            dialog.TopMost = true;
+
+            var result = dialog.ShowDialog(host);
+
+            overlay.Close();
+            overlay.Dispose();
+
+            return result;
+        }
+
         // 🔎 SEARCH
         private void textBoxAppointmentsSearch_TextChanged(object sender, EventArgs e)
         {
@@ -128,7 +167,7 @@ namespace EstiponaClinic
         {
             using (var addForm = new FormAddAppointment())
             {
-                if (addForm.ShowDialog() == DialogResult.OK && addForm.NewAppointment != null)
+                if (ShowDimmedDialog(addForm) == DialogResult.OK && addForm.NewAppointment != null)
                 {
                     // assign unique integer ID
                     int nextID = appointments.Count > 0 ? appointments.Max(a => a.AppointmentID) + 1 : 1;
@@ -160,7 +199,7 @@ namespace EstiponaClinic
 
             using (var editForm = new FormEditAppointment(apptToEdit))
             {
-                if (editForm.ShowDialog() == DialogResult.OK && editForm.EditedAppointment != null)
+                if (ShowDimmedDialog(editForm) == DialogResult.OK && editForm.EditedAppointment != null)
                 {
                     // keep original AppointmentID
                     editForm.EditedAppointment.AppointmentID = apptToEdit.AppointmentID;
@@ -216,5 +255,6 @@ namespace EstiponaClinic
             public DateTime AppointmentDate { get; set; }
             public DateTime AppointmentTime { get; set; }
         }
+
     }
 }

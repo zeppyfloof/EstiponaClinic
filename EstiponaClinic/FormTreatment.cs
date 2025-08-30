@@ -91,6 +91,38 @@ namespace EstiponaClinic
             }
         }
 
+        // ------------------ DIM BACKGROUND FOR POP-UPS ----------------
+        private DialogResult ShowDimmedDialog(Form dialog)
+        {
+            var host = this.TopLevelControl as Form ?? this.FindForm() ?? this;
+            var hostBounds = host.Bounds;
+
+            var overlay = new Form
+            {
+                StartPosition = FormStartPosition.Manual,
+                Bounds = hostBounds,
+                BackColor = System.Drawing.Color.Black,
+                Opacity = 0.45,
+                FormBorderStyle = FormBorderStyle.None,
+                ShowInTaskbar = false,
+                TopMost = true
+            };
+
+            overlay.Show();
+            overlay.BringToFront();
+
+            dialog.StartPosition = FormStartPosition.CenterParent;
+            dialog.TopMost = true;
+
+            var result = dialog.ShowDialog(host);
+
+            overlay.Close();
+            overlay.Dispose();
+
+            return result;
+        }
+
+
         // 🔎 Search filter (only TreatmentName)
         private void textBoxTreatmentSearch_TextChanged(object sender, EventArgs e)
         {
@@ -115,16 +147,14 @@ namespace EstiponaClinic
         // ADD
         private void buttonTreatmentAdd_Click(object sender, EventArgs e)
         {
-            using (var addForm = new FormAddTreatment())
+            using var addForm = new FormAddTreatment();
+            if (ShowDimmedDialog(addForm) == DialogResult.OK && addForm.NewTreatment != null)
             {
-                if (addForm.ShowDialog() == DialogResult.OK && addForm.NewTreatment != null)
-                {
-                    treatments.Add(addForm.NewTreatment);
-                    SaveTreatments();
-                    RefreshDataGridView();
-                    MessageBox.Show("Treatment added successfully.", "Success",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                treatments.Add(addForm.NewTreatment);
+                SaveTreatments();
+                RefreshDataGridView();
+                MessageBox.Show("Treatment added successfully.", "Success",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -143,16 +173,14 @@ namespace EstiponaClinic
 
             var treatmentToEdit = treatments[index];
 
-            using (var editForm = new FormEditTreatment(treatmentToEdit))
+            using var editForm = new FormEditTreatment(treatmentToEdit);
+            if (ShowDimmedDialog(editForm) == DialogResult.OK && editForm.EditedTreatment != null)
             {
-                if (editForm.ShowDialog() == DialogResult.OK && editForm.EditedTreatment != null)
-                {
-                    treatments[index] = editForm.EditedTreatment;
-                    SaveTreatments();
-                    RefreshDataGridView();
-                    MessageBox.Show("Treatment updated successfully.", "Success",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                treatments[index] = editForm.EditedTreatment;
+                SaveTreatments();
+                RefreshDataGridView();
+                MessageBox.Show("Treatment updated successfully.", "Success",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

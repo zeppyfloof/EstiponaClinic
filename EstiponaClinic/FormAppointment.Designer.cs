@@ -29,79 +29,91 @@
             // 
             // buttonAppointmentsAdd
             // 
+            buttonAppointmentsAdd.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             buttonAppointmentsAdd.BackColor = Color.Green;
             buttonAppointmentsAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonAppointmentsAdd.ForeColor = Color.White;
-            buttonAppointmentsAdd.Location = new Point(510, 77);
+            buttonAppointmentsAdd.Location = new Point(520, 116);
             buttonAppointmentsAdd.Name = "buttonAppointmentsAdd";
-            buttonAppointmentsAdd.Size = new Size(80, 35);
+            buttonAppointmentsAdd.Size = new Size(116, 54);
             buttonAppointmentsAdd.TabIndex = 0;
             buttonAppointmentsAdd.Text = "Add";
             buttonAppointmentsAdd.UseVisualStyleBackColor = false;
             // 
             // buttonAppointmentsEdit
             // 
+            buttonAppointmentsEdit.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             buttonAppointmentsEdit.BackColor = Color.Green;
             buttonAppointmentsEdit.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonAppointmentsEdit.ForeColor = Color.White;
-            buttonAppointmentsEdit.Location = new Point(600, 77);
+            buttonAppointmentsEdit.Location = new Point(642, 116);
             buttonAppointmentsEdit.Name = "buttonAppointmentsEdit";
-            buttonAppointmentsEdit.Size = new Size(80, 35);
+            buttonAppointmentsEdit.Size = new Size(116, 54);
             buttonAppointmentsEdit.TabIndex = 1;
             buttonAppointmentsEdit.Text = "Edit";
             buttonAppointmentsEdit.UseVisualStyleBackColor = false;
             // 
             // buttonAppointmentsDelete
             // 
+            buttonAppointmentsDelete.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             buttonAppointmentsDelete.BackColor = Color.FromArgb(192, 0, 0);
             buttonAppointmentsDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonAppointmentsDelete.ForeColor = Color.White;
-            buttonAppointmentsDelete.Location = new Point(690, 77);
+            buttonAppointmentsDelete.Location = new Point(764, 116);
             buttonAppointmentsDelete.Name = "buttonAppointmentsDelete";
-            buttonAppointmentsDelete.Size = new Size(80, 35);
+            buttonAppointmentsDelete.Size = new Size(116, 54);
             buttonAppointmentsDelete.TabIndex = 2;
             buttonAppointmentsDelete.Text = "Delete";
             buttonAppointmentsDelete.UseVisualStyleBackColor = false;
             // 
             // dataGridViewAppointments
             // 
+            dataGridViewAppointments.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewAppointments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewAppointments.Location = new Point(30, 140);
+            dataGridViewAppointments.BackgroundColor = Color.Azure;
+            dataGridViewAppointments.ColumnHeadersHeight = 29;
+            dataGridViewAppointments.Location = new Point(34, 189);
             dataGridViewAppointments.Name = "dataGridViewAppointments";
             dataGridViewAppointments.ReadOnly = true;
+            dataGridViewAppointments.RowHeadersWidth = 51;
             dataGridViewAppointments.RowTemplate.Height = 25;
-            dataGridViewAppointments.Size = new Size(740, 580);
+            dataGridViewAppointments.Size = new Size(846, 797);
             dataGridViewAppointments.TabIndex = 3;
             // 
             // labelTitle
             // 
             labelTitle.AutoSize = true;
-            labelTitle.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
-            labelTitle.Location = new Point(30, 20);
+            labelTitle.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            labelTitle.ForeColor = Color.Green;
+            labelTitle.Location = new Point(23, 29);
             labelTitle.Name = "labelTitle";
-            labelTitle.Size = new Size(201, 37);
+            labelTitle.Size = new Size(293, 54);
             labelTitle.TabIndex = 4;
             labelTitle.Text = "Appointments";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(30, 69);
+            label7.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.ForeColor = Color.Green;
+            label7.Location = new Point(34, 94);
             label7.Name = "label7";
-            label7.Size = new Size(42, 15);
+            label7.Size = new Size(89, 32);
             label7.TabIndex = 20;
             label7.Text = "Search";
             // 
             // textBoxAppointmentsSearch
             // 
-            textBoxAppointmentsSearch.Location = new Point(30, 89);
+            textBoxAppointmentsSearch.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAppointmentsSearch.Location = new Point(34, 131);
             textBoxAppointmentsSearch.Name = "textBoxAppointmentsSearch";
-            textBoxAppointmentsSearch.Size = new Size(250, 23);
-            textBoxAppointmentsSearch.TabIndex = 19;
+            textBoxAppointmentsSearch.Size = new Size(371, 39);
+            textBoxAppointmentsSearch.TabIndex = 17;
             // 
             // FormAppointment
             // 
-            ClientSize = new Size(800, 760);
+            BackColor = Color.PowderBlue;
+            ClientSize = new Size(914, 1013);
             Controls.Add(label7);
             Controls.Add(textBoxAppointmentsSearch);
             Controls.Add(labelTitle);

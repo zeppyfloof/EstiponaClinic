@@ -46,7 +46,9 @@ namespace EstiponaClinic
             if (File.Exists(patientsFile))
             {
                 string json = File.ReadAllText(patientsFile);
-                patients = JsonConvert.DeserializeObject<List<FormPatients.Patient>>(json) ?? new();
+                patients = (JsonConvert.DeserializeObject<List<FormPatients.Patient>>(json) ?? new())
+                 .Where(p => p != null)
+                 .ToList();
 
                 comboBoxPatient.DataSource = null;
                 comboBoxPatient.DataSource = patients;

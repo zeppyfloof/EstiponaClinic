@@ -23,7 +23,7 @@
 
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             dataGridViewDental = new DataGridView();
             labelTitle = new Label();
             labelSearch = new Label();
@@ -62,69 +62,84 @@
             // 
             // dataGridViewDental
             // 
+            dataGridViewDental.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewDental.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewDental.BackgroundColor = Color.Azure;
+            dataGridViewDental.ColumnHeadersHeight = 29;
             dataGridViewDental.Cursor = Cursors.Hand;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dataGridViewDental.DefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewDental.Location = new Point(30, 552);
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridViewDental.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewDental.Location = new Point(34, 736);
+            dataGridViewDental.Margin = new Padding(3, 4, 3, 4);
             dataGridViewDental.Name = "dataGridViewDental";
             dataGridViewDental.ReadOnly = true;
+            dataGridViewDental.RowHeadersWidth = 51;
             dataGridViewDental.RowTemplate.Height = 25;
-            dataGridViewDental.Size = new Size(740, 188);
+            dataGridViewDental.Size = new Size(1571, 293);
             dataGridViewDental.TabIndex = 3;
             // 
             // labelTitle
             // 
             labelTitle.AutoSize = true;
-            labelTitle.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
-            labelTitle.Location = new Point(30, 20);
+            labelTitle.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point);
+            labelTitle.ForeColor = Color.Green;
+            labelTitle.Location = new Point(34, 27);
             labelTitle.Name = "labelTitle";
-            labelTitle.Size = new Size(211, 37);
+            labelTitle.Size = new Size(308, 54);
             labelTitle.TabIndex = 4;
             labelTitle.Text = "Dental Records";
             // 
             // labelSearch
             // 
             labelSearch.AutoSize = true;
-            labelSearch.Location = new Point(30, 493);
+            labelSearch.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            labelSearch.ForeColor = Color.Green;
+            labelSearch.Location = new Point(34, 663);
             labelSearch.Name = "labelSearch";
-            labelSearch.Size = new Size(42, 15);
+            labelSearch.Size = new Size(71, 25);
             labelSearch.TabIndex = 5;
             labelSearch.Text = "Search";
             // 
             // textBoxDentalSearch
             // 
-            textBoxDentalSearch.Location = new Point(30, 513);
+            textBoxDentalSearch.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxDentalSearch.Location = new Point(34, 692);
+            textBoxDentalSearch.Margin = new Padding(3, 4, 3, 4);
             textBoxDentalSearch.Name = "textBoxDentalSearch";
-            textBoxDentalSearch.Size = new Size(250, 23);
+            textBoxDentalSearch.Size = new Size(285, 32);
             textBoxDentalSearch.TabIndex = 6;
             // 
             // panelTeethChart
             // 
+            panelTeethChart.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panelTeethChart.BorderStyle = BorderStyle.FixedSingle;
-            panelTeethChart.Location = new Point(30, 310);
+            panelTeethChart.Location = new Point(34, 329);
+            panelTeethChart.Margin = new Padding(3, 4, 3, 4);
             panelTeethChart.Name = "panelTeethChart";
-            panelTeethChart.Size = new Size(740, 130);
+            panelTeethChart.Size = new Size(1570, 257);
             panelTeethChart.TabIndex = 7;
             // 
             // labelLegend
             // 
             labelLegend.AutoSize = true;
-            labelLegend.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            labelLegend.Location = new Point(30, 450);
+            labelLegend.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            labelLegend.ForeColor = Color.Green;
+            labelLegend.Location = new Point(34, 600);
             labelLegend.Name = "labelLegend";
-            labelLegend.Size = new Size(429, 30);
+            labelLegend.Size = new Size(716, 50);
             labelLegend.TabIndex = 3;
             labelLegend.Text = "Legend:\nHealthy = Green,   To be Completed = Red,   Completed = Blue   Black = Missing";
+            labelLegend.Click += labelLegend_Click;
             // 
             // panelPatientInfo
             // 
+            panelPatientInfo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panelPatientInfo.BorderStyle = BorderStyle.FixedSingle;
             panelPatientInfo.Controls.Add(dateTimePickerDateRecorded);
             panelPatientInfo.Controls.Add(labelCondition);
@@ -150,224 +165,290 @@
             panelPatientInfo.Controls.Add(textBoxAddress);
             panelPatientInfo.Controls.Add(labelNotes);
             panelPatientInfo.Controls.Add(textBoxNotes);
-            panelPatientInfo.Location = new Point(30, 60);
+            panelPatientInfo.Location = new Point(34, 80);
+            panelPatientInfo.Margin = new Padding(3, 4, 3, 4);
             panelPatientInfo.Name = "panelPatientInfo";
-            panelPatientInfo.Size = new Size(740, 235);
+            panelPatientInfo.Size = new Size(1570, 229);
             panelPatientInfo.TabIndex = 9;
             // 
             // dateTimePickerDateRecorded
             // 
+            dateTimePickerDateRecorded.Anchor = AnchorStyles.Top;
             dateTimePickerDateRecorded.Enabled = false;
+            dateTimePickerDateRecorded.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
             dateTimePickerDateRecorded.Format = DateTimePickerFormat.Short;
-            dateTimePickerDateRecorded.Location = new Point(390, 94);
+            dateTimePickerDateRecorded.Location = new Point(791, 84);
+            dateTimePickerDateRecorded.Margin = new Padding(3, 4, 3, 4);
             dateTimePickerDateRecorded.Name = "dateTimePickerDateRecorded";
-            dateTimePickerDateRecorded.Size = new Size(120, 23);
+            dateTimePickerDateRecorded.Size = new Size(234, 32);
             dateTimePickerDateRecorded.TabIndex = 5;
             // 
             // labelCondition
             // 
             labelCondition.AutoSize = true;
-            labelCondition.Location = new Point(14, 100);
+            labelCondition.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            labelCondition.ForeColor = Color.Green;
+            labelCondition.Location = new Point(50, 133);
             labelCondition.Name = "labelCondition";
-            labelCondition.Size = new Size(63, 15);
+            labelCondition.Size = new Size(106, 25);
             labelCondition.TabIndex = 12;
             labelCondition.Text = "Condition:";
             // 
             // textBoxCondition
             // 
-            textBoxCondition.Location = new Point(100, 97);
+            textBoxCondition.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxCondition.Location = new Point(155, 130);
+            textBoxCondition.Margin = new Padding(3, 4, 3, 4);
             textBoxCondition.Name = "textBoxCondition";
             textBoxCondition.ReadOnly = true;
-            textBoxCondition.Size = new Size(180, 23);
+            textBoxCondition.Size = new Size(437, 32);
             textBoxCondition.TabIndex = 13;
             // 
             // labelDateRecorded
             // 
+            labelDateRecorded.Anchor = AnchorStyles.Top;
             labelDateRecorded.AutoSize = true;
-            labelDateRecorded.Location = new Point(300, 100);
+            labelDateRecorded.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            labelDateRecorded.ForeColor = Color.Green;
+            labelDateRecorded.Location = new Point(637, 90);
             labelDateRecorded.Name = "labelDateRecorded";
-            labelDateRecorded.Size = new Size(87, 15);
+            labelDateRecorded.Size = new Size(148, 25);
             labelDateRecorded.TabIndex = 14;
             labelDateRecorded.Text = "Date Recorded:";
             // 
             // labelAllergies
             // 
+            labelAllergies.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             labelAllergies.AutoSize = true;
-            labelAllergies.Location = new Point(520, 100);
+            labelAllergies.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            labelAllergies.ForeColor = Color.Green;
+            labelAllergies.Location = new Point(1066, 130);
             labelAllergies.Name = "labelAllergies";
-            labelAllergies.Size = new Size(55, 15);
+            labelAllergies.Size = new Size(93, 25);
             labelAllergies.TabIndex = 16;
             labelAllergies.Text = "Allergies:";
             // 
             // textBoxAllergies
             // 
-            textBoxAllergies.Location = new Point(600, 97);
+            textBoxAllergies.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            textBoxAllergies.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAllergies.Location = new Point(1161, 124);
+            textBoxAllergies.Margin = new Padding(3, 4, 3, 4);
             textBoxAllergies.Name = "textBoxAllergies";
             textBoxAllergies.ReadOnly = true;
-            textBoxAllergies.Size = new Size(120, 23);
+            textBoxAllergies.Size = new Size(393, 32);
             textBoxAllergies.TabIndex = 17;
             // 
             // labelAbnormalities
             // 
             labelAbnormalities.AutoSize = true;
-            labelAbnormalities.Location = new Point(14, 135);
+            labelAbnormalities.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            labelAbnormalities.ForeColor = Color.Green;
+            labelAbnormalities.Location = new Point(16, 180);
             labelAbnormalities.Name = "labelAbnormalities";
-            labelAbnormalities.Size = new Size(84, 15);
+            labelAbnormalities.Size = new Size(141, 25);
             labelAbnormalities.TabIndex = 18;
             labelAbnormalities.Text = "Abnormalities:";
             // 
             // textBoxAbnormalities
             // 
-            textBoxAbnormalities.Location = new Point(100, 132);
+            textBoxAbnormalities.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAbnormalities.Location = new Point(155, 180);
+            textBoxAbnormalities.Margin = new Padding(3, 4, 3, 4);
             textBoxAbnormalities.Name = "textBoxAbnormalities";
             textBoxAbnormalities.ReadOnly = true;
-            textBoxAbnormalities.Size = new Size(180, 23);
+            textBoxAbnormalities.Size = new Size(437, 32);
             textBoxAbnormalities.TabIndex = 19;
             // 
             // labelBloodPressure
             // 
+            labelBloodPressure.Anchor = AnchorStyles.Top;
             labelBloodPressure.AutoSize = true;
-            labelBloodPressure.Location = new Point(300, 135);
+            labelBloodPressure.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            labelBloodPressure.ForeColor = Color.Green;
+            labelBloodPressure.Location = new Point(634, 159);
             labelBloodPressure.Name = "labelBloodPressure";
-            labelBloodPressure.Size = new Size(88, 15);
+            labelBloodPressure.Size = new Size(151, 25);
             labelBloodPressure.TabIndex = 20;
             labelBloodPressure.Text = "Blood Pressure:";
             // 
             // textBoxBloodPressure
             // 
-            textBoxBloodPressure.Location = new Point(390, 132);
+            textBoxBloodPressure.Anchor = AnchorStyles.Top;
+            textBoxBloodPressure.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxBloodPressure.Location = new Point(791, 156);
+            textBoxBloodPressure.Margin = new Padding(3, 4, 3, 4);
             textBoxBloodPressure.Name = "textBoxBloodPressure";
             textBoxBloodPressure.ReadOnly = true;
-            textBoxBloodPressure.Size = new Size(120, 23);
+            textBoxBloodPressure.Size = new Size(234, 32);
             textBoxBloodPressure.TabIndex = 21;
             // 
             // labelDrugsTaken
             // 
+            labelDrugsTaken.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             labelDrugsTaken.AutoSize = true;
-            labelDrugsTaken.Location = new Point(520, 135);
+            labelDrugsTaken.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            labelDrugsTaken.ForeColor = Color.Green;
+            labelDrugsTaken.Location = new Point(1031, 173);
             labelDrugsTaken.Name = "labelDrugsTaken";
-            labelDrugsTaken.Size = new Size(74, 15);
+            labelDrugsTaken.Size = new Size(128, 25);
             labelDrugsTaken.TabIndex = 22;
             labelDrugsTaken.Text = "Drugs Taken:";
             // 
             // textBoxDrugsTaken
             // 
-            textBoxDrugsTaken.Location = new Point(600, 132);
+            textBoxDrugsTaken.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            textBoxDrugsTaken.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxDrugsTaken.Location = new Point(1161, 170);
+            textBoxDrugsTaken.Margin = new Padding(3, 4, 3, 4);
             textBoxDrugsTaken.Name = "textBoxDrugsTaken";
             textBoxDrugsTaken.ReadOnly = true;
-            textBoxDrugsTaken.Size = new Size(120, 23);
+            textBoxDrugsTaken.Size = new Size(393, 32);
             textBoxDrugsTaken.TabIndex = 23;
             // 
             // labelName
             // 
             labelName.AutoSize = true;
-            labelName.Location = new Point(14, 20);
+            labelName.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            labelName.ForeColor = Color.Green;
+            labelName.Location = new Point(48, 27);
             labelName.Name = "labelName";
-            labelName.Size = new Size(64, 15);
+            labelName.Size = new Size(106, 25);
             labelName.TabIndex = 0;
             labelName.Text = "Full Name:";
             // 
             // textBoxName
             // 
-            textBoxName.Location = new Point(100, 17);
+            textBoxName.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxName.Location = new Point(155, 20);
+            textBoxName.Margin = new Padding(3, 4, 3, 4);
             textBoxName.Name = "textBoxName";
             textBoxName.ReadOnly = true;
-            textBoxName.Size = new Size(200, 23);
+            textBoxName.Size = new Size(437, 32);
             textBoxName.TabIndex = 1;
             // 
             // labelAge
             // 
+            labelAge.Anchor = AnchorStyles.Top;
             labelAge.AutoSize = true;
-            labelAge.Location = new Point(320, 20);
+            labelAge.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            labelAge.ForeColor = Color.Green;
+            labelAge.Location = new Point(637, 20);
             labelAge.Name = "labelAge";
-            labelAge.Size = new Size(31, 15);
+            labelAge.Size = new Size(52, 25);
             labelAge.TabIndex = 2;
             labelAge.Text = "Age:";
             // 
             // textBoxAge
             // 
-            textBoxAge.Location = new Point(360, 17);
+            textBoxAge.Anchor = AnchorStyles.Top;
+            textBoxAge.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAge.Location = new Point(692, 17);
+            textBoxAge.Margin = new Padding(3, 4, 3, 4);
             textBoxAge.Name = "textBoxAge";
             textBoxAge.ReadOnly = true;
-            textBoxAge.Size = new Size(50, 23);
+            textBoxAge.Size = new Size(83, 32);
             textBoxAge.TabIndex = 3;
             // 
             // labelGender
             // 
+            labelGender.Anchor = AnchorStyles.Top;
             labelGender.AutoSize = true;
-            labelGender.Location = new Point(430, 20);
+            labelGender.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            labelGender.ForeColor = Color.Green;
+            labelGender.Location = new Point(794, 20);
             labelGender.Name = "labelGender";
-            labelGender.Size = new Size(48, 15);
+            labelGender.Size = new Size(84, 25);
             labelGender.TabIndex = 4;
             labelGender.Text = "Gender:";
             // 
             // textBoxGender
             // 
-            textBoxGender.Location = new Point(485, 17);
+            textBoxGender.Anchor = AnchorStyles.Top;
+            textBoxGender.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxGender.Location = new Point(878, 16);
+            textBoxGender.Margin = new Padding(3, 4, 3, 4);
             textBoxGender.Name = "textBoxGender";
             textBoxGender.ReadOnly = true;
-            textBoxGender.Size = new Size(100, 23);
+            textBoxGender.Size = new Size(147, 32);
             textBoxGender.TabIndex = 5;
             // 
             // labelContact
             // 
+            labelContact.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             labelContact.AutoSize = true;
-            labelContact.Location = new Point(600, 20);
+            labelContact.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            labelContact.ForeColor = Color.Green;
+            labelContact.Location = new Point(1074, 20);
             labelContact.Name = "labelContact";
-            labelContact.Size = new Size(52, 15);
+            labelContact.Size = new Size(86, 25);
             labelContact.TabIndex = 6;
             labelContact.Text = "Contact:";
             // 
             // textBoxPhone
             // 
-            textBoxPhone.Location = new Point(660, 17);
+            textBoxPhone.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            textBoxPhone.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxPhone.Location = new Point(1161, 17);
+            textBoxPhone.Margin = new Padding(3, 4, 3, 4);
             textBoxPhone.Name = "textBoxPhone";
             textBoxPhone.ReadOnly = true;
-            textBoxPhone.Size = new Size(70, 23);
+            textBoxPhone.Size = new Size(393, 32);
             textBoxPhone.TabIndex = 7;
             // 
             // labelAddress
             // 
             labelAddress.AutoSize = true;
-            labelAddress.Location = new Point(14, 60);
+            labelAddress.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            labelAddress.ForeColor = Color.Green;
+            labelAddress.Location = new Point(66, 79);
             labelAddress.Name = "labelAddress";
-            labelAddress.Size = new Size(52, 15);
+            labelAddress.Size = new Size(88, 25);
             labelAddress.TabIndex = 8;
             labelAddress.Text = "Address:";
             // 
             // textBoxAddress
             // 
-            textBoxAddress.Location = new Point(100, 57);
+            textBoxAddress.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAddress.Location = new Point(155, 76);
+            textBoxAddress.Margin = new Padding(3, 4, 3, 4);
             textBoxAddress.Name = "textBoxAddress";
             textBoxAddress.ReadOnly = true;
-            textBoxAddress.Size = new Size(300, 23);
+            textBoxAddress.Size = new Size(437, 32);
             textBoxAddress.TabIndex = 9;
             // 
             // labelNotes
             // 
+            labelNotes.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             labelNotes.AutoSize = true;
-            labelNotes.Location = new Point(420, 60);
+            labelNotes.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            labelNotes.ForeColor = Color.Green;
+            labelNotes.Location = new Point(1090, 73);
             labelNotes.Name = "labelNotes";
-            labelNotes.Size = new Size(41, 15);
+            labelNotes.Size = new Size(69, 25);
             labelNotes.TabIndex = 10;
             labelNotes.Text = "Notes:";
             // 
             // textBoxNotes
             // 
-            textBoxNotes.Location = new Point(470, 57);
+            textBoxNotes.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            textBoxNotes.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxNotes.Location = new Point(1161, 70);
+            textBoxNotes.Margin = new Padding(3, 4, 3, 4);
             textBoxNotes.Name = "textBoxNotes";
             textBoxNotes.ReadOnly = true;
-            textBoxNotes.Size = new Size(260, 23);
+            textBoxNotes.Size = new Size(394, 32);
             textBoxNotes.TabIndex = 11;
             // 
             // buttonTeethChartEdit
             // 
             buttonTeethChartEdit.BackColor = Color.Green;
-            buttonTeethChartEdit.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonTeethChartEdit.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             buttonTeethChartEdit.ForeColor = SystemColors.ButtonHighlight;
-            buttonTeethChartEdit.Location = new Point(691, 450);
+            buttonTeethChartEdit.Location = new Point(790, 600);
+            buttonTeethChartEdit.Margin = new Padding(3, 4, 3, 4);
             buttonTeethChartEdit.Name = "buttonTeethChartEdit";
-            buttonTeethChartEdit.Size = new Size(80, 35);
+            buttonTeethChartEdit.Size = new Size(123, 50);
             buttonTeethChartEdit.TabIndex = 24;
             buttonTeethChartEdit.Text = "Edit";
             buttonTeethChartEdit.UseVisualStyleBackColor = false;
@@ -375,9 +456,10 @@
             // 
             // FormDentalRecord
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 760);
+            BackColor = Color.PowderBlue;
+            ClientSize = new Size(1639, 1055);
             Controls.Add(buttonTeethChartEdit);
             Controls.Add(panelPatientInfo);
             Controls.Add(labelLegend);
@@ -386,6 +468,7 @@
             Controls.Add(labelSearch);
             Controls.Add(labelTitle);
             Controls.Add(dataGridViewDental);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FormDentalRecord";
             Text = "Dental Record Management";
             WindowState = FormWindowState.Maximized;
