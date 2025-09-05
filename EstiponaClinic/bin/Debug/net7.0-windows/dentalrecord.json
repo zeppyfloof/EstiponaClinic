@@ -14,23 +14,12 @@
     "2": "Decayed"
   },
   "0": {
-    "19": "Decayed",
-    "20": "Completed",
-    "21": "Missing",
-    "22": "Decayed",
-    "7": "Missing",
-    "0": "Healthy",
-    "25": "Decayed",
-    "24": "Missing",
-    "26": "Completed",
-    "27": "Missing",
-    "18": "Healthy",
-    "43": "Decayed",
+    "18": "Decayed",
     "41": "Completed",
-    "13": "Completed",
-    "36": "Decayed",
-    "38": "Completed",
-    "47": "Missing",
-    "48": "Completed"
+    "54": "Decayed",
+    "83": "Missing",
+    "63": "Decayed",
+    "32": "Completed",
+    "36": "Missing"
   }
 }

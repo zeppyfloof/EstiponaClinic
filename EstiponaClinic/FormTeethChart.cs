@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace EstiponaClinic
 {
@@ -12,8 +13,11 @@ namespace EstiponaClinic
         private int PatientID;
         private string PatientName;
         private Image toothImage;
+        private int PatientAge;
 
-        private Dictionary<int, string> teethStates = new();
+
+        // ✅ use string keys for tooth numbers
+        private Dictionary<string, string> teethStates = new();
         private readonly string jsonPath = Path.Combine(Application.StartupPath, "dentalrecord.json");
 
         // Define available states in order
@@ -25,52 +29,64 @@ namespace EstiponaClinic
             ("Missing",   Color.Black,      Color.White)
         };
 
-        public FormTeethChart(int patientId, string patientName)
+        public FormTeethChart(int patientId, string patientName, int patientAge)
         {
             InitializeComponent();
             this.PatientID = patientId;
             this.PatientName = patientName;
+            this.PatientAge = patientAge; // ✅ new field
         }
 
         private void FormTeethChart_Load(object sender, EventArgs e)
         {
             textBoxPatientNameTeethChart.Text = PatientName;
 
-            // ✅ Load tooth image once
-            string imgPath = @"D:\dentalrecord4\EstiponaClinic\images\tooth.png";
-            if (File.Exists(imgPath))
-                toothImage = Image.FromFile(imgPath);
-
-            GenerateTeethButtons();
-
             if (File.Exists(jsonPath))
             {
                 string json = File.ReadAllText(jsonPath);
-                var records = JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, string>>>(json)
-                              ?? new Dictionary<int, Dictionary<int, string>>();
+                var records = JsonConvert.DeserializeObject<Dictionary<int, Dictionary<string, string>>>(json)
+                              ?? new Dictionary<int, Dictionary<string, string>>();
 
                 if (records.ContainsKey(PatientID))
                 {
                     teethStates = records[PatientID];
-                    ApplyTeethStates();
                 }
             }
+
+            // ✅ use actual age
+            GenerateTeethButtons(PatientAge);
+
+            ApplyTeethStates();
         }
 
-        private void GenerateTeethButtons()
+
+        private void GenerateTeethButtons(int age = 18)
         {
             panelTeethChartEdit.Controls.Clear();
 
-            int toothSize = 40;  // round button size
-            int spacing = 10;    // space between teeth
+            int toothSize = 40;  // button size
+            int spacing = 10;    // spacing between teeth
             int startY = 20;     // vertical offset
 
-            string[] upperRight = { "18", "17", "16", "15", "14", "13", "12", "11" };
-            string[] upperLeft = { "21", "22", "23", "24", "25", "26", "27", "28" };
-            string[] lowerLeft = { "48", "47", "46", "45", "44", "43", "42", "41" };
-            string[] lowerRight = { "31", "32", "33", "34", "35", "36", "37", "38" };
+            string[] upperRight, upperLeft, lowerLeft, lowerRight;
 
-            // Total number of buttons per row = 16
+            if (age <= 6)
+            {
+                // 🦷 Primary teeth (20 total)
+                upperRight = new[] { "55", "54", "53", "52", "51" };
+                upperLeft = new[] { "61", "62", "63", "64", "65" };
+                lowerLeft = new[] { "71", "72", "73", "74", "75" };
+                lowerRight = new[] { "85", "84", "83", "82", "81" };
+            }
+            else
+            {
+                // 🦷 Permanent teeth (32 total)
+                upperRight = new[] { "18", "17", "16", "15", "14", "13", "12", "11" };
+                upperLeft = new[] { "21", "22", "23", "24", "25", "26", "27", "28" };
+                lowerLeft = new[] { "48", "47", "46", "45", "44", "43", "42", "41" };
+                lowerRight = new[] { "31", "32", "33", "34", "35", "36", "37", "38" };
+            }
+
             int totalButtons = upperRight.Length + upperLeft.Length;
             int rowWidth = totalButtons * toothSize + (totalButtons - 1) * spacing;
 
@@ -106,7 +122,6 @@ namespace EstiponaClinic
             }
         }
 
-
         private RoundButton CreateToothButton(string toothNumber)
         {
             var btn = new RoundButton
@@ -118,7 +133,7 @@ namespace EstiponaClinic
                 ForeColor = Color.Black,
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Segoe UI", 8, FontStyle.Bold),
-                Tag = toothNumber
+                Tag = toothNumber // ✅ keep as string
             };
             btn.FlatAppearance.BorderColor = Color.Black;
             btn.FlatAppearance.BorderSize = 1;
@@ -126,66 +141,75 @@ namespace EstiponaClinic
             return btn;
         }
 
-
-
         private void ToothButton_Click(object sender, EventArgs e)
         {
-            if (sender is Button btn)
+            if (sender is RoundButton btn && btn.Tag != null) // ✅ use RoundButton
             {
-                int toothNumber = Convert.ToInt32(btn.Tag);
+                string toothNumber = btn.Tag.ToString(); // safe conversion
 
-                string currentState = teethStates.ContainsKey(toothNumber) ? teethStates[toothNumber] : "Healthy";
+                string currentState = teethStates.ContainsKey(toothNumber)
+                    ? teethStates[toothNumber]
+                    : "Healthy";
 
                 int idx = stateCycle.FindIndex(s => s.State == currentState);
                 idx = (idx + 1) % stateCycle.Count;
 
                 teethStates[toothNumber] = stateCycle[idx].State;
                 btn.BackColor = stateCycle[idx].Color;
-                btn.ForeColor = stateCycle[idx].ForeColor; // ✅ set font color
+                btn.ForeColor = stateCycle[idx].ForeColor;
             }
         }
+
+
 
         private void ApplyTeethStates()
         {
             foreach (Control ctrl in panelTeethChartEdit.Controls)
             {
-                if (ctrl is Button btn && btn.Tag != null)
+                if (ctrl is RoundButton btn && btn.Tag != null) // ✅ RoundButton
                 {
-                    int toothNum = Convert.ToInt32(btn.Tag);
+                    string toothNum = btn.Tag.ToString();
+
                     if (teethStates.ContainsKey(toothNum))
                     {
                         var state = stateCycle.Find(s => s.State == teethStates[toothNum]);
                         if (state != default)
                         {
                             btn.BackColor = state.Color;
-                            btn.ForeColor = state.ForeColor; // ✅ set font color
+                            btn.ForeColor = state.ForeColor;
                         }
                     }
                 }
             }
         }
 
+
+
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            Dictionary<int, Dictionary<int, string>> records;
-
+            // Load existing data
+            Dictionary<int, Dictionary<string, string>> records;
             if (File.Exists(jsonPath))
             {
                 string json = File.ReadAllText(jsonPath);
-                records = JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, string>>>(json)
-                          ?? new Dictionary<int, Dictionary<int, string>>();
+                records = JsonConvert.DeserializeObject<Dictionary<int, Dictionary<string, string>>>(json)
+                          ?? new Dictionary<int, Dictionary<string, string>>();
             }
             else
             {
-                records = new Dictionary<int, Dictionary<int, string>>();
+                records = new Dictionary<int, Dictionary<string, string>>();
             }
 
-            records[PatientID] = teethStates;
+            // Save current teeth states only
+            records[PatientID] = new Dictionary<string, string>(teethStates);
 
             File.WriteAllText(jsonPath, JsonConvert.SerializeObject(records, Formatting.Indented));
 
             MessageBox.Show($"Dental chart saved for {PatientName} (ID: {PatientID})",
                 "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            this.DialogResult = DialogResult.OK; // ✅ So DentalRecord knows to refresh
+            this.Close();
         }
     }
 }

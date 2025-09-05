@@ -150,6 +150,9 @@ namespace EstiponaClinic
             textBoxGender.Text = selected.Gender;
             textBoxAge.Text = CalculateAge(selected.BirthDate).ToString();
 
+            int age = CalculateAge(selected.BirthDate);
+            CreateTeethChartButtons(age);  // ✅ Load child/adult chart
+
             // Fill medical history if available
             var history = medicalHistories.FirstOrDefault(h => h.PatientID == selected.PatientID);
             if (history != null)
@@ -192,7 +195,8 @@ namespace EstiponaClinic
                 return;
             }
 
-            using (FormTeethChart chartForm = new FormTeethChart(selected.PatientID, selected.Name))
+            int age = CalculateAge(selected.BirthDate);
+            using (FormTeethChart chartForm = new FormTeethChart(selected.PatientID, selected.Name, age))
             {
                 if (ShowDimmedDialog(chartForm) == DialogResult.OK)
                 {
@@ -216,31 +220,44 @@ namespace EstiponaClinic
 
         private void PanelTeethChart_Resize(object? sender, EventArgs e) => LayoutTeethButtons();
 
-        private void CreateTeethChartButtons()
+        private void CreateTeethChartButtons(int age = 18)
         {
             panelTeethChart.Controls.Clear();
             toothIcons.Clear();
 
+            string[] upperRight;
+            string[] upperLeft;
+            string[] lowerRight;
+            string[] lowerLeft;
 
-            // FDI notation
-            string[] upperRight = { "18", "17", "16", "15", "14", "13", "12", "11" };
-            string[] upperLeft = { "21", "22", "23", "24", "25", "26", "27", "28" };
-            string[] lowerRight = { "48", "47", "46", "45", "44", "43", "42", "41" };
-            string[] lowerLeft = { "31", "32", "33", "34", "35", "36", "37", "38" };
+            if (age <= 6)
+            {
+                // 🦷 Primary (deciduous) teeth, 20 total
+                upperRight = new[] { "55", "54", "53", "52", "51" };
+                upperLeft = new[] { "61", "62", "63", "64", "65" };
+                lowerRight = new[] { "85", "84", "83", "82", "81" };
+                lowerLeft = new[] { "71", "72", "73", "74", "75" };
 
-            toothButtons = new RoundButton[32];
+                toothButtons = new RoundButton[20];
+            }
+            else
+            {
+                // 🦷 Permanent (adult) teeth, 32 total
+                upperRight = new[] { "18", "17", "16", "15", "14", "13", "12", "11" };
+                upperLeft = new[] { "21", "22", "23", "24", "25", "26", "27", "28" };
+                lowerRight = new[] { "48", "47", "46", "45", "44", "43", "42", "41" };
+                lowerLeft = new[] { "31", "32", "33", "34", "35", "36", "37", "38" };
+
+                toothButtons = new RoundButton[32];
+            }
 
             int buttonSize = 40;
             int spacing = 8;
-            int midGap = 80; // space between central incisors
+            int midGap = 80;
 
-            // total width for 8 + gap + 8
-            int archWidth = (8 * (buttonSize + spacing)) * 2 - spacing + midGap;
-
-            // center horizontally
+            int archWidth = (upperRight.Length * (buttonSize + spacing)) * 2 - spacing + midGap;
             int startX = (panelTeethChart.Width - archWidth) / 2;
 
-            // vertical placement
             int upperY = panelTeethChart.Height / 2 - 70;
             int lowerY = panelTeethChart.Height / 2 + 20;
 
@@ -251,14 +268,15 @@ namespace EstiponaClinic
 
             // --- Upper Right & Upper Left ---
             index = AddArch(upperRight, startX, upperY, buttonSize, spacing, true, toothImg, index);
-            index = AddArch(upperLeft, startX + (8 * (buttonSize + spacing)) + midGap, upperY,
-                            buttonSize, spacing, true, toothImg, index);
+            index = AddArch(upperLeft, startX + (upperRight.Length * (buttonSize + spacing)) + midGap,
+                            upperY, buttonSize, spacing, true, toothImg, index);
 
             // --- Lower Right & Lower Left ---
             index = AddArch(lowerRight, startX, lowerY, buttonSize, spacing, false, toothImg, index);
-            index = AddArch(lowerLeft, startX + (8 * (buttonSize + spacing)) + midGap, lowerY,
-                            buttonSize, spacing, false, toothImg, index);
+            index = AddArch(lowerLeft, startX + (lowerRight.Length * (buttonSize + spacing)) + midGap,
+                            lowerY, buttonSize, spacing, false, toothImg, index);
         }
+
 
         private int AddArch(string[] teeth, int x, int y, int size, int spacing,
                             bool isUpper, Image toothImg, int indexStart)
@@ -293,12 +311,14 @@ namespace EstiponaClinic
                         Size = new Size(60, 60),
                         SizeMode = PictureBoxSizeMode.Zoom,
                         Image = toothImg,
-                        BackColor = Color.Transparent
+                        BackColor = Color.Transparent,
+                        Location = new Point(x - 10, isUpper ? y - 60 : y + size + 10) // ✅ Position now
                     };
                     panelTeethChart.Controls.Add(pic);
                     pic.BringToFront();
                     toothIcons.Add(pic);
                 }
+
 
                 x += size + spacing;
             }
@@ -315,53 +335,96 @@ namespace EstiponaClinic
             int spacing = 8;
             int midGap = 80;
 
-            int archWidth = (8 * (buttonSize + spacing)) * 2 - spacing + midGap;
-            int startX = (panelTeethChart.Width - archWidth) / 2;
-
             int upperY = panelTeethChart.Height / 2 - 70;
             int lowerY = panelTeethChart.Height / 2 + 20;
 
-            // Keep a counter for icons
             int iconIndex = 0;
 
-            // --- Upper Right (18–11) ---
-            for (int i = 0; i < 8; i++)
+            if (toothButtons.Length == 20)
             {
-                int x = startX + i * (buttonSize + spacing);
-                toothButtons[i].Location = new Point(x, upperY);
-                if (iconIndex < toothIcons.Count)
-                    toothIcons[iconIndex++].Location = new Point(x - 10, upperY - 60);
-            }
+                // 🧒 Child teeth (5 per quadrant)
+                int archWidth = (5 * (buttonSize + spacing)) * 2 - spacing + midGap;
+                int startX = (panelTeethChart.Width - archWidth) / 2;
 
-            // --- Upper Left (21–28) ---
-            for (int i = 0; i < 8; i++)
-            {
-                int x = startX + (8 * (buttonSize + spacing)) + midGap + i * (buttonSize + spacing);
-                toothButtons[8 + i].Location = new Point(x, upperY);
-                if (iconIndex < toothIcons.Count)
-                    toothIcons[iconIndex++].Location = new Point(x - 10, upperY - 60);
-            }
+                // Upper Right (55–51)
+                for (int i = 0; i < 5; i++)
+                {
+                    int x = startX + i * (buttonSize + spacing);
+                    toothButtons[i].Location = new Point(x, upperY);
+                    if (iconIndex < toothIcons.Count)
+                        toothIcons[iconIndex++].Location = new Point(x - 10, upperY - 60);
+                }
 
-            // --- Lower Right (48–41) ---
-            for (int i = 0; i < 8; i++)
-            {
-                int x = startX + i * (buttonSize + spacing);
-                toothButtons[16 + i].Location = new Point(x, lowerY);
-                if (iconIndex < toothIcons.Count)
-                    toothIcons[iconIndex++].Location = new Point(x - 10, lowerY + buttonSize + 10);
-            }
+                // Upper Left (61–65)
+                for (int i = 0; i < 5; i++)
+                {
+                    int x = startX + (5 * (buttonSize + spacing)) + midGap + i * (buttonSize + spacing);
+                    toothButtons[5 + i].Location = new Point(x, upperY);
+                    if (iconIndex < toothIcons.Count)
+                        toothIcons[iconIndex++].Location = new Point(x - 10, upperY - 60);
+                }
 
-            // --- Lower Left (31–38) ---
-            for (int i = 0; i < 8; i++)
+                // Lower Right (85–81)
+                for (int i = 0; i < 5; i++)
+                {
+                    int x = startX + i * (buttonSize + spacing);
+                    toothButtons[10 + i].Location = new Point(x, lowerY);
+                    if (iconIndex < toothIcons.Count)
+                        toothIcons[iconIndex++].Location = new Point(x - 10, lowerY + buttonSize + 10);
+                }
+
+                // Lower Left (71–75)
+                for (int i = 0; i < 5; i++)
+                {
+                    int x = startX + (5 * (buttonSize + spacing)) + midGap + i * (buttonSize + spacing);
+                    toothButtons[15 + i].Location = new Point(x, lowerY);
+                    if (iconIndex < toothIcons.Count)
+                        toothIcons[iconIndex++].Location = new Point(x - 10, lowerY + buttonSize + 10);
+                }
+            }
+            else
             {
-                int x = startX + (8 * (buttonSize + spacing)) + midGap + i * (buttonSize + spacing);
-                toothButtons[24 + i].Location = new Point(x, lowerY);
-                if (iconIndex < toothIcons.Count)
-                    toothIcons[iconIndex++].Location = new Point(x - 10, lowerY + buttonSize + 10);
+                // 👨 Adult teeth (8 per quadrant)
+                int archWidth = (8 * (buttonSize + spacing)) * 2 - spacing + midGap;
+                int startX = (panelTeethChart.Width - archWidth) / 2;
+
+                // Upper Right (18–11)
+                for (int i = 0; i < 8; i++)
+                {
+                    int x = startX + i * (buttonSize + spacing);
+                    toothButtons[i].Location = new Point(x, upperY);
+                    if (iconIndex < toothIcons.Count)
+                        toothIcons[iconIndex++].Location = new Point(x - 10, upperY - 60);
+                }
+
+                // Upper Left (21–28)
+                for (int i = 0; i < 8; i++)
+                {
+                    int x = startX + (8 * (buttonSize + spacing)) + midGap + i * (buttonSize + spacing);
+                    toothButtons[8 + i].Location = new Point(x, upperY);
+                    if (iconIndex < toothIcons.Count)
+                        toothIcons[iconIndex++].Location = new Point(x - 10, upperY - 60);
+                }
+
+                // Lower Right (48–41)
+                for (int i = 0; i < 8; i++)
+                {
+                    int x = startX + i * (buttonSize + spacing);
+                    toothButtons[16 + i].Location = new Point(x, lowerY);
+                    if (iconIndex < toothIcons.Count)
+                        toothIcons[iconIndex++].Location = new Point(x - 10, lowerY + buttonSize + 10);
+                }
+
+                // Lower Left (31–38)
+                for (int i = 0; i < 8; i++)
+                {
+                    int x = startX + (8 * (buttonSize + spacing)) + midGap + i * (buttonSize + spacing);
+                    toothButtons[24 + i].Location = new Point(x, lowerY);
+                    if (iconIndex < toothIcons.Count)
+                        toothIcons[iconIndex++].Location = new Point(x - 10, lowerY + buttonSize + 10);
+                }
             }
         }
-
-
 
 
         // Apply saved states OR default Healthy if no data exists
@@ -377,8 +440,8 @@ namespace EstiponaClinic
             if (!File.Exists(jsonPath)) return;
 
             string json = File.ReadAllText(jsonPath);
-            var records = JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, string>>>(json)
-                          ?? new Dictionary<int, Dictionary<int, string>>();
+            var records = JsonConvert.DeserializeObject<Dictionary<int, Dictionary<string, string>>>(json)
+                          ?? new Dictionary<int, Dictionary<string, string>>();
 
             if (!records.ContainsKey(patientId)) return;
 
@@ -386,7 +449,7 @@ namespace EstiponaClinic
 
             foreach (var btn in toothButtons)
             {
-                int toothNum = (int)btn.Tag;
+                String toothNum = btn.Tag.ToString();
                 if (teethStates.ContainsKey(toothNum))
                 {
                     string status = teethStates[toothNum];
