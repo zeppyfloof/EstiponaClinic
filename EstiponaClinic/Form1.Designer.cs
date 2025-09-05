@@ -135,6 +135,7 @@
             buttonFormCertificate.TabIndex = 7;
             buttonFormCertificate.Text = "Certificate";
             buttonFormCertificate.UseVisualStyleBackColor = false;
+            buttonFormCertificate.Click += buttonFormCertificate_Click;
             // 
             // Form1
             // 

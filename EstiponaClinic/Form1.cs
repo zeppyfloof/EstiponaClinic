@@ -73,5 +73,16 @@ namespace EstiponaClinic
             panel1.Controls.Add(formDashboard);
             formDashboard.Show();
         }
+
+        private void buttonFormCertificate_Click(object sender, EventArgs e)
+        {
+            FormCertificate formDashboard = new FormCertificate();
+            formDashboard.TopLevel = false;
+            formDashboard.FormBorderStyle = FormBorderStyle.None;
+            formDashboard.Dock = DockStyle.Fill;
+            panel1.Controls.Clear();
+            panel1.Controls.Add(formDashboard);
+            formDashboard.Show();
+        }
     }
 }
