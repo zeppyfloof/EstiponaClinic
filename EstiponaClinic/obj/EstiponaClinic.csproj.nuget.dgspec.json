@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\dentalrecord4\\EstiponaClinic\\EstiponaClinic\\EstiponaClinic.csproj": {}
+    "C:\\Users\\Floof\\Desktop\\EstiponaClinic\\EstiponaClinic\\EstiponaClinic.csproj": {}
   },
   "projects": {
-    "D:\\dentalrecord4\\EstiponaClinic\\EstiponaClinic\\EstiponaClinic.csproj": {
+    "C:\\Users\\Floof\\Desktop\\EstiponaClinic\\EstiponaClinic\\EstiponaClinic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\dentalrecord4\\EstiponaClinic\\EstiponaClinic\\EstiponaClinic.csproj",
+        "projectUniqueName": "C:\\Users\\Floof\\Desktop\\EstiponaClinic\\EstiponaClinic\\EstiponaClinic.csproj",
         "projectName": "EstiponaClinic",
-        "projectPath": "D:\\dentalrecord4\\EstiponaClinic\\EstiponaClinic\\EstiponaClinic.csproj",
-        "packagesPath": "C:\\Users\\Aileen\\.nuget\\packages\\",
-        "outputPath": "D:\\dentalrecord4\\EstiponaClinic\\EstiponaClinic\\obj\\",
+        "projectPath": "C:\\Users\\Floof\\Desktop\\EstiponaClinic\\EstiponaClinic\\EstiponaClinic.csproj",
+        "packagesPath": "C:\\Users\\Floof\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Floof\\Desktop\\EstiponaClinic\\EstiponaClinic\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Aileen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Floof\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -34,11 +39,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -69,7 +69,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

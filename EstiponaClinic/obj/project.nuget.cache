@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "aDdf8nDCSTI=",
+  "dgSpecHash": "J5s9zenW7GAk1hPqt6AGtEk54ijVzubQB7XdMxjNWETPnyiS8zfnZ//Ub3dTMjfi6Hx9D9MD2EvTR/ae9NkvNg==",
   "success": true,
-  "projectFilePath": "D:\\dentalrecord4\\EstiponaClinic\\EstiponaClinic\\EstiponaClinic.csproj",
+  "projectFilePath": "C:\\Users\\Floof\\Desktop\\EstiponaClinic\\EstiponaClinic\\EstiponaClinic.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Aileen\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\Floof\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
 }
