@@ -111,3 +111,13 @@ C:\Users\Floof\Desktop\EstiponaClinic\EstiponaClinic\bin\Debug\net7.0-windows\ru
 C:\Users\Floof\Desktop\EstiponaClinic\EstiponaClinic\bin\Debug\net7.0-windows\runtimes\win-arm64\native\libHarfBuzzSharp.dll
 C:\Users\Floof\Desktop\EstiponaClinic\EstiponaClinic\bin\Debug\net7.0-windows\runtimes\win-x64\native\libHarfBuzzSharp.dll
 C:\Users\Floof\Desktop\EstiponaClinic\EstiponaClinic\bin\Debug\net7.0-windows\runtimes\win-x86\native\libHarfBuzzSharp.dll
+D:\dentalrecord4\EstiponaClinic\EstiponaClinic\bin\Debug\net7.0-windows\DocumentFormat.OpenXml.dll
+D:\dentalrecord4\EstiponaClinic\EstiponaClinic\bin\Debug\net7.0-windows\DocumentFormat.OpenXml.Framework.dll
+D:\dentalrecord4\EstiponaClinic\EstiponaClinic\bin\Debug\net7.0-windows\Spire.Doc.dll
+D:\dentalrecord4\EstiponaClinic\EstiponaClinic\bin\Debug\net7.0-windows\HarfBuzzSharp.dll
+D:\dentalrecord4\EstiponaClinic\EstiponaClinic\bin\Debug\net7.0-windows\System.IO.Packaging.dll
+D:\dentalrecord4\EstiponaClinic\EstiponaClinic\bin\Debug\net7.0-windows\runtimes\osx\native\libHarfBuzzSharp.dylib
+D:\dentalrecord4\EstiponaClinic\EstiponaClinic\bin\Debug\net7.0-windows\runtimes\win-arm64\native\libHarfBuzzSharp.dll
+D:\dentalrecord4\EstiponaClinic\EstiponaClinic\bin\Debug\net7.0-windows\runtimes\win-x64\native\libHarfBuzzSharp.dll
+D:\dentalrecord4\EstiponaClinic\EstiponaClinic\bin\Debug\net7.0-windows\runtimes\win-x86\native\libHarfBuzzSharp.dll
+D:\dentalrecord4\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormCertificate.resources

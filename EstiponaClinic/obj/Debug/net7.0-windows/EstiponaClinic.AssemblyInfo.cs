@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EstiponaClinic")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c49046fd290602a590f4499665485dc03b2648a9")]
 [assembly: System.Reflection.AssemblyProductAttribute("EstiponaClinic")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EstiponaClinic")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
