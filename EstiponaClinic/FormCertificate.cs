@@ -74,8 +74,8 @@ namespace EstiponaClinic
             Document doc = new Document();
             Section section = doc.AddSection();
 
-            // Helper function: consistent Arial style
-            void ApplyArial(Paragraph para, float size = 12f, bool bold = false, bool italic = false)
+            // Define reusable Arial style
+            void ApplyStyle(Paragraph para, float size = 12f, bool bold = false, bool italic = false, bool underline = false)
             {
                 foreach (DocumentObject obj in para.ChildObjects)
                 {
@@ -85,86 +85,97 @@ namespace EstiponaClinic
                         txt.CharacterFormat.FontSize = size;
                         txt.CharacterFormat.Bold = bold;
                         txt.CharacterFormat.Italic = italic;
+                        txt.CharacterFormat.UnderlineStyle = underline ? UnderlineStyle.Single : UnderlineStyle.None;
                     }
                 }
             }
 
-            // Header
+            // HEADER
             Paragraph header = section.AddParagraph();
             header.AppendText("ESTIPONA DENTAL CLINIC\n");
-            header.AppendText("GENERAL DENTISTRY AND ORTHODONTICS and ORAL SURGERY\n");
+            header.AppendText("General Dentistry, Orthodontics, and Oral Surgery\n");
             header.AppendText("Door #4 & 5 DELGAR Bldg, J.P. Laurel Avenue Bajada, Davao City\n");
-            header.AppendText("Contact # 09456498475\n");
+            header.AppendText("Contact: 09456498475\n");
             header.Format.HorizontalAlignment = Spire.Doc.Documents.HorizontalAlignment.Center;
-            ApplyArial(header, 12f, false);
+            ApplyStyle(header, 12f, bold: true);
+
+            // Separator line
+            Paragraph line = section.AddParagraph();
+            line.AppendText(new string('_', 80));
+            line.Format.HorizontalAlignment = Spire.Doc.Documents.HorizontalAlignment.Center;
 
             section.AddParagraph();
 
-            // Title
+            // TITLE
             Paragraph title = section.AddParagraph();
             title.AppendText("DENTAL CERTIFICATE");
             title.Format.HorizontalAlignment = Spire.Doc.Documents.HorizontalAlignment.Center;
-            ApplyArial(title, 16f, true);
+            ApplyStyle(title, 18f, bold: true, underline: true);
 
             section.AddParagraph();
 
-            // Date
+            // DATE
             Paragraph datePara = section.AddParagraph();
             datePara.AppendText($"Date: {DateTime.Now:MMMM dd, yyyy}");
             datePara.Format.HorizontalAlignment = Spire.Doc.Documents.HorizontalAlignment.Right;
-            ApplyArial(datePara, 12f);
+            ApplyStyle(datePara, 12f);
 
             section.AddParagraph();
             section.AddParagraph();
 
-            // Body
+            // BODY
             int age = int.Parse(textBoxAge.Text);
             string address = patient.Address ?? "";
 
             Paragraph body = section.AddParagraph();
-            body.AppendText($"        This is to certify that Mr./Ms. {patient.Name}, {age} years old, residing at {address}, Davao City has been thoroughly examined in this Clinic last {DateTime.Now:MMMM dd, yyyy}.");
+            body.AppendText(
+                $"       This is to certify that Mr./Ms. {patient.Name}, " +
+                $"{age} years old, residing at {address}, Davao City, " +
+                $"has been thoroughly examined in this Clinic last {DateTime.Now:MMMM dd, yyyy}."
+            );
             body.Format.HorizontalAlignment = Spire.Doc.Documents.HorizontalAlignment.Justify;
-            ApplyArial(body, 12f);
+            ApplyStyle(body, 12f);
 
             section.AddParagraph();
 
-            // Diagnosis heading
+            // DIAGNOSIS
             Paragraph diagHeading = section.AddParagraph();
             diagHeading.AppendText("Diagnosis:");
-            ApplyArial(diagHeading, 12f, bold: true, italic: false);
+            ApplyStyle(diagHeading, 12f, bold: true, italic: true);
 
             Paragraph diagPara = section.AddParagraph();
             diagPara.AppendText(string.IsNullOrWhiteSpace(diagnosis) ? "(No diagnosis provided.)" : diagnosis);
-            ApplyArial(diagPara, 12f);
+            ApplyStyle(diagPara, 12f);
 
             section.AddParagraph();
 
-            // Recommendations heading
+            // RECOMMENDATIONS
             Paragraph recHeading = section.AddParagraph();
             recHeading.AppendText("Recommendations:");
-            ApplyArial(recHeading, 12f, bold: true, italic: false);
+            ApplyStyle(recHeading, 12f, bold: true, italic: true);
 
             Paragraph recPara = section.AddParagraph();
             recPara.AppendText(string.IsNullOrWhiteSpace(recommendations) ? "(No recommendations provided.)" : recommendations);
-            ApplyArial(recPara, 12f);
+            ApplyStyle(recPara, 12f);
 
             section.AddParagraph();
 
-            // Closing
+            // CLOSING
             Paragraph closing = section.AddParagraph();
-            closing.AppendText("This certificate is issued upon the request of above patient for employment purposes, except for medico-legal reasons.");
+            closing.AppendText("This certificate is issued upon the request of the above-named patient for employment purposes, except for medico-legal reasons.");
             closing.Format.HorizontalAlignment = Spire.Doc.Documents.HorizontalAlignment.Justify;
-            ApplyArial(closing, 12f);
+            ApplyStyle(closing, 12f);
 
             section.AddParagraph();
             section.AddParagraph();
             section.AddParagraph();
 
-            // Footer
+            // DOCTOR'S SIGNATURE
             Paragraph footer = section.AddParagraph();
+            footer.AppendText("_____________________________\n");
             footer.AppendText("SALVACION E. ESTIPONA\nLic# 0036173\nPTR #3044311s");
             footer.Format.HorizontalAlignment = Spire.Doc.Documents.HorizontalAlignment.Right;
-            ApplyArial(footer, 12f, bold: true);
+            ApplyStyle(footer, 12f, bold: true);
 
             // Save dialog
             string safeName = string.Concat(patient.Name.Where(ch => !Path.GetInvalidFileNameChars().Contains(ch)));
@@ -182,6 +193,12 @@ namespace EstiponaClinic
                     MessageBox.Show("Certificate generated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+        }
+
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
