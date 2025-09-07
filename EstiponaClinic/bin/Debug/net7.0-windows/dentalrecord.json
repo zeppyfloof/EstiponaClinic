@@ -32,5 +32,14 @@
     "38": "Completed",
     "47": "Missing",
     "48": "Completed"
+  },
+  "500919": {
+    "55": "Healthy",
+    "74": "Healthy",
+    "81": "Decayed"
+  },
+  "800911": {
+    "31": "Decayed",
+    "18": "Decayed"
   }
 }

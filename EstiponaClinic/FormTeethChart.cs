@@ -11,6 +11,7 @@ namespace EstiponaClinic
     {
         private int PatientID;
         private string PatientName;
+        private int PatientAge;
         private Image toothImage;
 
         private Dictionary<int, string> teethStates = new();
@@ -25,18 +26,18 @@ namespace EstiponaClinic
             ("Missing",   Color.Black,      Color.White)
         };
 
-        public FormTeethChart(int patientId, string patientName)
+        public FormTeethChart(int patientId, string patientName, int patientAge)
         {
             InitializeComponent();
             this.PatientID = patientId;
             this.PatientName = patientName;
+            this.PatientAge = patientAge;
         }
 
         private void FormTeethChart_Load(object sender, EventArgs e)
         {
             textBoxPatientNameTeethChart.Text = PatientName;
 
-            // ✅ Load tooth image once
             string imgPath = @"D:\dentalrecord4\EstiponaClinic\images\tooth.png";
             if (File.Exists(imgPath))
                 toothImage = Image.FromFile(imgPath);
@@ -61,51 +62,91 @@ namespace EstiponaClinic
         {
             panelTeethChartEdit.Controls.Clear();
 
-            int toothSize = 40;  // round button size
-            int spacing = 10;    // space between teeth
-            int startY = 20;     // vertical offset
+            int toothSize = 40;
+            int spacing = 10;
+            int startY = 20;
 
-            string[] upperRight = { "18", "17", "16", "15", "14", "13", "12", "11" };
-            string[] upperLeft = { "21", "22", "23", "24", "25", "26", "27", "28" };
-            string[] lowerLeft = { "48", "47", "46", "45", "44", "43", "42", "41" };
-            string[] lowerRight = { "31", "32", "33", "34", "35", "36", "37", "38" };
-
-            // Total number of buttons per row = 16
-            int totalButtons = upperRight.Length + upperLeft.Length;
-            int rowWidth = totalButtons * toothSize + (totalButtons - 1) * spacing;
-
-            // Center horizontally inside panel
-            int startX = (panelTeethChartEdit.Width - rowWidth) / 2;
-
-            // --- TOP ROW ---
-            for (int i = 0; i < upperRight.Length; i++)
+            if (PatientAge <= 6)
             {
-                var btn = CreateToothButton(upperRight[i]);
-                btn.Location = new Point(startX + i * (toothSize + spacing), startY);
-                panelTeethChartEdit.Controls.Add(btn);
+                // 👶 Child dentition (20 teeth, FDI)
+                string[] upperRight = { "55", "54", "53", "52", "51" };
+                string[] upperLeft = { "61", "62", "63", "64", "65" };
+                string[] lowerLeft = { "85", "84", "83", "82", "81" };
+                string[] lowerRight = { "71", "72", "73", "74", "75" };
+
+                int totalButtons = upperRight.Length + upperLeft.Length;
+                int rowWidth = totalButtons * toothSize + (totalButtons - 1) * spacing;
+                int startX = (panelTeethChartEdit.Width - rowWidth) / 2;
+
+                // Upper row
+                for (int i = 0; i < upperRight.Length; i++)
+                {
+                    var btn = CreateToothButton(upperRight[i]);
+                    btn.Location = new Point(startX + i * (toothSize + spacing), startY);
+                    panelTeethChartEdit.Controls.Add(btn);
+                }
+                for (int i = 0; i < upperLeft.Length; i++)
+                {
+                    var btn = CreateToothButton(upperLeft[i]);
+                    btn.Location = new Point(startX + (upperRight.Length + i) * (toothSize + spacing), startY);
+                    panelTeethChartEdit.Controls.Add(btn);
+                }
+
+                // Lower row
+                for (int i = 0; i < lowerLeft.Length; i++)
+                {
+                    var btn = CreateToothButton(lowerLeft[i]);
+                    btn.Location = new Point(startX + i * (toothSize + spacing), startY + toothSize + 2 * spacing);
+                    panelTeethChartEdit.Controls.Add(btn);
+                }
+                for (int i = 0; i < lowerRight.Length; i++)
+                {
+                    var btn = CreateToothButton(lowerRight[i]);
+                    btn.Location = new Point(startX + (lowerLeft.Length + i) * (toothSize + spacing), startY + toothSize + 2 * spacing);
+                    panelTeethChartEdit.Controls.Add(btn);
+                }
             }
-            for (int i = 0; i < upperLeft.Length; i++)
+            else
             {
-                var btn = CreateToothButton(upperLeft[i]);
-                btn.Location = new Point(startX + (upperRight.Length + i) * (toothSize + spacing), startY);
-                panelTeethChartEdit.Controls.Add(btn);
-            }
+                // 🧑 Adult dentition (32 teeth, FDI)
+                string[] upperRight = { "18", "17", "16", "15", "14", "13", "12", "11" };
+                string[] upperLeft = { "21", "22", "23", "24", "25", "26", "27", "28" };
+                string[] lowerLeft = { "48", "47", "46", "45", "44", "43", "42", "41" };
+                string[] lowerRight = { "31", "32", "33", "34", "35", "36", "37", "38" };
 
-            // --- BOTTOM ROW ---
-            for (int i = 0; i < lowerLeft.Length; i++)
-            {
-                var btn = CreateToothButton(lowerLeft[i]);
-                btn.Location = new Point(startX + i * (toothSize + spacing), startY + toothSize + 2 * spacing);
-                panelTeethChartEdit.Controls.Add(btn);
-            }
-            for (int i = 0; i < lowerRight.Length; i++)
-            {
-                var btn = CreateToothButton(lowerRight[i]);
-                btn.Location = new Point(startX + (lowerLeft.Length + i) * (toothSize + spacing), startY + toothSize + 2 * spacing);
-                panelTeethChartEdit.Controls.Add(btn);
+                int totalButtons = upperRight.Length + upperLeft.Length;
+                int rowWidth = totalButtons * toothSize + (totalButtons - 1) * spacing;
+                int startX = (panelTeethChartEdit.Width - rowWidth) / 2;
+
+                // Upper row
+                for (int i = 0; i < upperRight.Length; i++)
+                {
+                    var btn = CreateToothButton(upperRight[i]);
+                    btn.Location = new Point(startX + i * (toothSize + spacing), startY);
+                    panelTeethChartEdit.Controls.Add(btn);
+                }
+                for (int i = 0; i < upperLeft.Length; i++)
+                {
+                    var btn = CreateToothButton(upperLeft[i]);
+                    btn.Location = new Point(startX + (upperRight.Length + i) * (toothSize + spacing), startY);
+                    panelTeethChartEdit.Controls.Add(btn);
+                }
+
+                // Lower row
+                for (int i = 0; i < lowerLeft.Length; i++)
+                {
+                    var btn = CreateToothButton(lowerLeft[i]);
+                    btn.Location = new Point(startX + i * (toothSize + spacing), startY + toothSize + 2 * spacing);
+                    panelTeethChartEdit.Controls.Add(btn);
+                }
+                for (int i = 0; i < lowerRight.Length; i++)
+                {
+                    var btn = CreateToothButton(lowerRight[i]);
+                    btn.Location = new Point(startX + (lowerLeft.Length + i) * (toothSize + spacing), startY + toothSize + 2 * spacing);
+                    panelTeethChartEdit.Controls.Add(btn);
+                }
             }
         }
-
 
         private RoundButton CreateToothButton(string toothNumber)
         {
@@ -118,15 +159,13 @@ namespace EstiponaClinic
                 ForeColor = Color.Black,
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Segoe UI", 8, FontStyle.Bold),
-                Tag = toothNumber
+                Tag = int.Parse(toothNumber)
             };
             btn.FlatAppearance.BorderColor = Color.Black;
             btn.FlatAppearance.BorderSize = 1;
             btn.Click += ToothButton_Click;
             return btn;
         }
-
-
 
         private void ToothButton_Click(object sender, EventArgs e)
         {
@@ -141,7 +180,7 @@ namespace EstiponaClinic
 
                 teethStates[toothNumber] = stateCycle[idx].State;
                 btn.BackColor = stateCycle[idx].Color;
-                btn.ForeColor = stateCycle[idx].ForeColor; // ✅ set font color
+                btn.ForeColor = stateCycle[idx].ForeColor;
             }
         }
 
@@ -158,7 +197,7 @@ namespace EstiponaClinic
                         if (state != default)
                         {
                             btn.BackColor = state.Color;
-                            btn.ForeColor = state.ForeColor; // ✅ set font color
+                            btn.ForeColor = state.ForeColor;
                         }
                     }
                 }
