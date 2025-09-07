@@ -75,8 +75,8 @@ namespace EstiponaClinic
                 // 🦷 Primary teeth (20 total)
                 upperRight = new[] { "55", "54", "53", "52", "51" };
                 upperLeft = new[] { "61", "62", "63", "64", "65" };
-                lowerLeft = new[] { "71", "72", "73", "74", "75" };
-                lowerRight = new[] { "85", "84", "83", "82", "81" };
+                lowerLeft = new[] { "85", "84", "83", "82", "81" };
+                lowerRight = new[] { "71", "72", "73", "74", "75" };
             }
             else
             {
