@@ -175,6 +175,8 @@ namespace EstiponaClinic
                 dataGridViewPatients.Columns["Address"].HeaderText = "Home Address";
             if (dataGridViewPatients.Columns["BirthDate"] != null)
                 dataGridViewPatients.Columns["BirthDate"].HeaderText = "Date of Birth";
+            if (dataGridViewPatients.Columns["Notes"] != null)
+                dataGridViewPatients.Columns["Notes"].HeaderText = "HMO";
         }
 
         // ------------------ BUTTONS ------------------
