@@ -48,7 +48,7 @@
             textBoxPatientsFullName.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxPatientsFullName.Location = new Point(34, 67);
             textBoxPatientsFullName.Name = "textBoxPatientsFullName";
-            textBoxPatientsFullName.Size = new Size(401, 39);
+            textBoxPatientsFullName.Size = new Size(401, 32);
             textBoxPatientsFullName.TabIndex = 1;
             // 
             // label2
@@ -66,7 +66,7 @@
             textBoxPatientsPhoneNumber.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxPatientsPhoneNumber.Location = new Point(34, 154);
             textBoxPatientsPhoneNumber.Name = "textBoxPatientsPhoneNumber";
-            textBoxPatientsPhoneNumber.Size = new Size(401, 39);
+            textBoxPatientsPhoneNumber.Size = new Size(401, 32);
             textBoxPatientsPhoneNumber.TabIndex = 3;
             // 
             // label3
@@ -84,7 +84,7 @@
             textBoxPatientsAddress.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxPatientsAddress.Location = new Point(34, 243);
             textBoxPatientsAddress.Name = "textBoxPatientsAddress";
-            textBoxPatientsAddress.Size = new Size(401, 39);
+            textBoxPatientsAddress.Size = new Size(401, 32);
             textBoxPatientsAddress.TabIndex = 5;
             // 
             // label4
@@ -102,7 +102,7 @@
             dateTimePickerBirthDate.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             dateTimePickerBirthDate.Location = new Point(34, 331);
             dateTimePickerBirthDate.Name = "dateTimePickerBirthDate";
-            dateTimePickerBirthDate.Size = new Size(401, 39);
+            dateTimePickerBirthDate.Size = new Size(401, 32);
             dateTimePickerBirthDate.TabIndex = 7;
             // 
             // label5
@@ -120,7 +120,7 @@
             comboBoxPatientsGender.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             comboBoxPatientsGender.Location = new Point(34, 420);
             comboBoxPatientsGender.Name = "comboBoxPatientsGender";
-            comboBoxPatientsGender.Size = new Size(401, 39);
+            comboBoxPatientsGender.Size = new Size(401, 33);
             comboBoxPatientsGender.TabIndex = 9;
             // 
             // label6
@@ -131,7 +131,7 @@
             label6.Name = "label6";
             label6.Size = new Size(81, 32);
             label6.TabIndex = 10;
-            label6.Text = "Notes:";
+            label6.Text = "HMO:";
             // 
             // textBoxPatientsNotes
             // 
