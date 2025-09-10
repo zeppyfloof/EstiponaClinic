@@ -16,11 +16,12 @@
         {
             labelPatient = new Label();
             labelTreatment = new Label();
+            labelCategory = new Label();
+            comboBoxTreatment = new ComboBox();
             labelCost = new Label();
             labelDate = new Label();
             labelTime = new Label();
             comboBoxPatient = new ComboBox();
-            comboBoxTreatment = new ComboBox();
             textBoxCost = new TextBox();
             dateTimePickerDate = new DateTimePicker();
             dateTimePickerTime = new DateTimePicker();
@@ -44,18 +45,38 @@
             labelTreatment.AutoSize = true;
             labelTreatment.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             labelTreatment.ForeColor = Color.Green;
-            labelTreatment.Location = new Point(30, 108);
+            labelTreatment.Location = new Point(24, 121);
             labelTreatment.Name = "labelTreatment";
             labelTreatment.Size = new Size(137, 32);
             labelTreatment.TabIndex = 1;
             labelTreatment.Text = "Treatment:";
+            // 
+            // labelCategory
+            // 
+            labelCategory.AutoSize = true;
+            labelCategory.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelCategory.ForeColor = Color.Green;
+            labelCategory.Location = new Point(173, 176);
+            labelCategory.Name = "labelCategory";
+            labelCategory.Size = new Size(117, 28);
+            labelCategory.TabIndex = 12;
+            labelCategory.Text = "Category: -";
+            // 
+            // comboBoxTreatment
+            // 
+            comboBoxTreatment.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxTreatment.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxTreatment.Location = new Point(173, 121);
+            comboBoxTreatment.Name = "comboBoxTreatment";
+            comboBoxTreatment.Size = new Size(311, 39);
+            comboBoxTreatment.TabIndex = 6;
             // 
             // labelCost
             // 
             labelCost.AutoSize = true;
             labelCost.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             labelCost.ForeColor = Color.Green;
-            labelCost.Location = new Point(90, 181);
+            labelCost.Location = new Point(90, 235);
             labelCost.Name = "labelCost";
             labelCost.Size = new Size(71, 32);
             labelCost.TabIndex = 2;
@@ -66,7 +87,7 @@
             labelDate.AutoSize = true;
             labelDate.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             labelDate.ForeColor = Color.Green;
-            labelDate.Location = new Point(90, 250);
+            labelDate.Location = new Point(87, 313);
             labelDate.Name = "labelDate";
             labelDate.Size = new Size(74, 32);
             labelDate.TabIndex = 3;
@@ -77,7 +98,7 @@
             labelTime.AutoSize = true;
             labelTime.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             labelTime.ForeColor = Color.Green;
-            labelTime.Location = new Point(87, 320);
+            labelTime.Location = new Point(84, 390);
             labelTime.Name = "labelTime";
             labelTime.Size = new Size(77, 32);
             labelTime.TabIndex = 4;
@@ -92,20 +113,11 @@
             comboBoxPatient.Size = new Size(311, 39);
             comboBoxPatient.TabIndex = 5;
             // 
-            // comboBoxTreatment
-            // 
-            comboBoxTreatment.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxTreatment.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBoxTreatment.Location = new Point(173, 108);
-            comboBoxTreatment.Name = "comboBoxTreatment";
-            comboBoxTreatment.Size = new Size(311, 39);
-            comboBoxTreatment.TabIndex = 6;
-            // 
             // textBoxCost
             // 
             textBoxCost.BackColor = SystemColors.ControlLight;
             textBoxCost.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxCost.Location = new Point(173, 181);
+            textBoxCost.Location = new Point(173, 235);
             textBoxCost.Name = "textBoxCost";
             textBoxCost.ReadOnly = true;
             textBoxCost.Size = new Size(311, 39);
@@ -114,7 +126,7 @@
             // dateTimePickerDate
             // 
             dateTimePickerDate.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePickerDate.Location = new Point(170, 250);
+            dateTimePickerDate.Location = new Point(167, 313);
             dateTimePickerDate.Name = "dateTimePickerDate";
             dateTimePickerDate.Size = new Size(314, 39);
             dateTimePickerDate.TabIndex = 8;
@@ -123,7 +135,7 @@
             // 
             dateTimePickerTime.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             dateTimePickerTime.Format = DateTimePickerFormat.Time;
-            dateTimePickerTime.Location = new Point(170, 320);
+            dateTimePickerTime.Location = new Point(167, 390);
             dateTimePickerTime.Name = "dateTimePickerTime";
             dateTimePickerTime.ShowUpDown = true;
             dateTimePickerTime.Size = new Size(314, 39);
@@ -134,7 +146,7 @@
             buttonSave.BackColor = Color.Green;
             buttonSave.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             buttonSave.ForeColor = Color.White;
-            buttonSave.Location = new Point(70, 384);
+            buttonSave.Location = new Point(70, 474);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(129, 56);
             buttonSave.TabIndex = 10;
@@ -147,7 +159,7 @@
             buttonCancel.BackColor = Color.DarkRed;
             buttonCancel.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             buttonCancel.ForeColor = Color.White;
-            buttonCancel.Location = new Point(332, 384);
+            buttonCancel.Location = new Point(332, 474);
             buttonCancel.Name = "buttonCancel";
             buttonCancel.Size = new Size(129, 56);
             buttonCancel.TabIndex = 11;
@@ -158,9 +170,10 @@
             // FormAddAppointment
             // 
             BackColor = Color.PowderBlue;
-            ClientSize = new Size(521, 482);
+            ClientSize = new Size(521, 568);
             Controls.Add(labelPatient);
             Controls.Add(labelTreatment);
+            Controls.Add(labelCategory);
             Controls.Add(labelCost);
             Controls.Add(labelDate);
             Controls.Add(labelTime);
@@ -185,6 +198,7 @@
 
         private Label labelPatient;
         private Label labelTreatment;
+        private Label labelCategory;
         private Label labelCost;
         private Label labelDate;
         private Label labelTime;

@@ -17,9 +17,11 @@
             labelName = new Label();
             labelDescription = new Label();
             labelCost = new Label();
+            labelCategory = new Label();
             textBoxName = new TextBox();
             textBoxDescription = new TextBox();
             textBoxCost = new TextBox();
+            comboBoxCategory = new ComboBox();
             buttonSave = new Button();
             buttonCancel = new Button();
             SuspendLayout();
@@ -54,6 +56,16 @@
             labelCost.TabIndex = 2;
             labelCost.Text = "Cost:";
             // 
+            // labelCategory
+            // 
+            labelCategory.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            labelCategory.ForeColor = Color.Green;
+            labelCategory.Location = new Point(61, 258);
+            labelCategory.Name = "labelCategory";
+            labelCategory.Size = new Size(126, 37);
+            labelCategory.TabIndex = 8;
+            labelCategory.Text = "Category:";
+            // 
             // textBoxName
             // 
             textBoxName.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
@@ -80,12 +92,22 @@
             textBoxCost.Size = new Size(282, 39);
             textBoxCost.TabIndex = 5;
             // 
+            // comboBoxCategory
+            // 
+            comboBoxCategory.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxCategory.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxCategory.Location = new Point(210, 258);
+            comboBoxCategory.Name = "comboBoxCategory";
+            comboBoxCategory.Size = new Size(282, 39);
+            comboBoxCategory.TabIndex = 9;
+            comboBoxCategory.SelectedIndexChanged += comboBoxCategory_SelectedIndexChanged;
+            // 
             // buttonSave
             // 
             buttonSave.BackColor = Color.Green;
             buttonSave.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             buttonSave.ForeColor = Color.White;
-            buttonSave.Location = new Point(83, 278);
+            buttonSave.Location = new Point(83, 319);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(137, 59);
             buttonSave.TabIndex = 6;
@@ -98,7 +120,7 @@
             buttonCancel.BackColor = Color.Red;
             buttonCancel.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             buttonCancel.ForeColor = Color.White;
-            buttonCancel.Location = new Point(342, 278);
+            buttonCancel.Location = new Point(342, 319);
             buttonCancel.Name = "buttonCancel";
             buttonCancel.Size = new Size(137, 59);
             buttonCancel.TabIndex = 7;
@@ -109,13 +131,15 @@
             // FormAddTreatment
             // 
             BackColor = Color.PowderBlue;
-            ClientSize = new Size(558, 365);
+            ClientSize = new Size(558, 415);
             Controls.Add(labelName);
             Controls.Add(labelDescription);
             Controls.Add(labelCost);
+            Controls.Add(labelCategory);
             Controls.Add(textBoxName);
             Controls.Add(textBoxDescription);
             Controls.Add(textBoxCost);
+            Controls.Add(comboBoxCategory);
             Controls.Add(buttonSave);
             Controls.Add(buttonCancel);
             FormBorderStyle = FormBorderStyle.None;
@@ -128,13 +152,17 @@
 
         #endregion
 
-        private System.Windows.Forms.Label labelName;
-        private System.Windows.Forms.Label labelDescription;
-        private System.Windows.Forms.Label labelCost;
-        private System.Windows.Forms.TextBox textBoxName;
-        private System.Windows.Forms.TextBox textBoxDescription;
-        private System.Windows.Forms.TextBox textBoxCost;
-        private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.Button buttonCancel;
+        private Label labelName;
+        private Label labelDescription;
+        private Label labelCost;
+        private Label labelCategory; // ✅ NEW
+
+        private TextBox textBoxName;
+        private TextBox textBoxDescription;
+        private TextBox textBoxCost;
+
+        private ComboBox comboBoxCategory; // ✅ NEW
+        private Button buttonSave;
+        private Button buttonCancel;
     }
 }
