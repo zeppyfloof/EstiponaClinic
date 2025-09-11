@@ -25,6 +25,7 @@
             pictureBox1 = new PictureBox();
             label1 = new Label();
             buttonFormCertificate = new Button();
+            buttonBilling = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -43,7 +44,7 @@
             buttonFormAppointment.BackColor = Color.Green;
             buttonFormAppointment.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonFormAppointment.ForeColor = SystemColors.ButtonHighlight;
-            buttonFormAppointment.Location = new Point(12, 298);
+            buttonFormAppointment.Location = new Point(11, 274);
             buttonFormAppointment.Name = "buttonFormAppointment";
             buttonFormAppointment.Size = new Size(149, 53);
             buttonFormAppointment.TabIndex = 2;
@@ -56,7 +57,7 @@
             buttonFormTreatment.BackColor = Color.Green;
             buttonFormTreatment.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonFormTreatment.ForeColor = SystemColors.ButtonHighlight;
-            buttonFormTreatment.Location = new Point(12, 467);
+            buttonFormTreatment.Location = new Point(12, 392);
             buttonFormTreatment.Name = "buttonFormTreatment";
             buttonFormTreatment.Size = new Size(149, 53);
             buttonFormTreatment.TabIndex = 4;
@@ -69,7 +70,7 @@
             buttonFormDentalRecord.BackColor = Color.Green;
             buttonFormDentalRecord.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonFormDentalRecord.ForeColor = SystemColors.ButtonHighlight;
-            buttonFormDentalRecord.Location = new Point(12, 549);
+            buttonFormDentalRecord.Location = new Point(10, 451);
             buttonFormDentalRecord.Name = "buttonFormDentalRecord";
             buttonFormDentalRecord.Size = new Size(149, 53);
             buttonFormDentalRecord.TabIndex = 5;
@@ -82,7 +83,7 @@
             buttonFormMedicalHistory.BackColor = Color.Green;
             buttonFormMedicalHistory.Font = new Font("Segoe UI Historic", 11F, FontStyle.Bold, GraphicsUnit.Point);
             buttonFormMedicalHistory.ForeColor = SystemColors.ButtonHighlight;
-            buttonFormMedicalHistory.Location = new Point(12, 385);
+            buttonFormMedicalHistory.Location = new Point(12, 333);
             buttonFormMedicalHistory.Name = "buttonFormMedicalHistory";
             buttonFormMedicalHistory.Size = new Size(149, 53);
             buttonFormMedicalHistory.TabIndex = 3;
@@ -129,13 +130,26 @@
             buttonFormCertificate.BackColor = Color.Green;
             buttonFormCertificate.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point);
             buttonFormCertificate.ForeColor = SystemColors.ButtonHighlight;
-            buttonFormCertificate.Location = new Point(12, 636);
+            buttonFormCertificate.Location = new Point(12, 510);
             buttonFormCertificate.Name = "buttonFormCertificate";
             buttonFormCertificate.Size = new Size(149, 53);
             buttonFormCertificate.TabIndex = 7;
             buttonFormCertificate.Text = "Certificate";
             buttonFormCertificate.UseVisualStyleBackColor = false;
             buttonFormCertificate.Click += buttonFormCertificate_Click;
+            // 
+            // buttonBilling
+            // 
+            buttonBilling.BackColor = Color.Green;
+            buttonBilling.Font = new Font("Segoe UI Historic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonBilling.ForeColor = SystemColors.ButtonHighlight;
+            buttonBilling.Location = new Point(12, 569);
+            buttonBilling.Name = "buttonBilling";
+            buttonBilling.Size = new Size(149, 53);
+            buttonBilling.TabIndex = 8;
+            buttonBilling.Text = "Billing";
+            buttonBilling.UseVisualStyleBackColor = false;
+            buttonBilling.Click += buttonBilling_Click;
             // 
             // Form1
             // 
@@ -144,6 +158,7 @@
             AutoSize = true;
             BackColor = Color.PowderBlue;
             ClientSize = new Size(993, 761);
+            Controls.Add(buttonBilling);
             Controls.Add(buttonFormCertificate);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
@@ -173,5 +188,6 @@
         private PictureBox pictureBox1;
         private Label label1;
         private Button buttonFormCertificate;
+        private Button buttonBilling;
     }
 }

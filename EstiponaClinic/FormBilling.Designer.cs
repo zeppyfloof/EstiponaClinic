@@ -5,33 +5,33 @@
         private System.ComponentModel.IContainer components = null;
 
         // Patient Info
-        private System.Windows.Forms.Label labelPatient;
-        private System.Windows.Forms.ComboBox comboBoxPatient;
-        private System.Windows.Forms.TextBox textBoxAge;
-        private System.Windows.Forms.TextBox textBoxAddress;
+        private Label labelPatient;
+        private ComboBox comboBoxPatient;
+        private TextBox textBoxAge;
+        private TextBox textBoxAddress;
 
         // Treatments
-        private System.Windows.Forms.DataGridView dataGridViewTreatments;
+        private DataGridView dataGridViewTreatments;
 
         // Billing Summary
-        private System.Windows.Forms.Label labelSubtotal;
-        private System.Windows.Forms.TextBox textBoxSubtotal;
-        private System.Windows.Forms.Label labelDiscount;
-        private System.Windows.Forms.TextBox textBoxDiscount;
-        private System.Windows.Forms.Label labelTotal;
-        private System.Windows.Forms.TextBox textBoxTotal;
+        private Label labelSubtotal;
+        private TextBox textBoxSubtotal;
+        private Label labelDiscount;
+        private TextBox textBoxDiscount;
+        private Label labelTotal;
+        private TextBox textBoxTotal;
 
         // Payment
-        private System.Windows.Forms.Label labelAmountPaid;
-        private System.Windows.Forms.TextBox textBoxAmountPaid;
-        private System.Windows.Forms.Label labelChange;
-        private System.Windows.Forms.TextBox textBoxChange;
-        private System.Windows.Forms.Label labelPaymentMethod;
-        private System.Windows.Forms.ComboBox comboBoxPaymentMethod;
+        private Label labelAmountPaid;
+        private TextBox textBoxAmountPaid;
+        private Label labelChange;
+        private TextBox textBoxChange;
+        private Label labelPaymentMethod;
+        private ComboBox comboBoxPaymentMethod;
 
         // Actions
-        private System.Windows.Forms.Button buttonSaveBill;
-        private System.Windows.Forms.Button buttonPrintReceipt;
+        private Button buttonSaveBill;
+        private Button buttonPrintReceipt;
 
         protected override void Dispose(bool disposing)
         {
@@ -42,130 +42,216 @@
 
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-
-            // ========== PATIENT INFO ==========
-            this.labelPatient = new System.Windows.Forms.Label();
-            this.comboBoxPatient = new System.Windows.Forms.ComboBox();
-            this.textBoxAge = new System.Windows.Forms.TextBox();
-            this.textBoxAddress = new System.Windows.Forms.TextBox();
-
-            // ========== TREATMENTS ==========
-            this.dataGridViewTreatments = new System.Windows.Forms.DataGridView();
-
-            // ========== BILLING SUMMARY ==========
-            this.labelSubtotal = new System.Windows.Forms.Label();
-            this.textBoxSubtotal = new System.Windows.Forms.TextBox();
-            this.labelDiscount = new System.Windows.Forms.Label();
-            this.textBoxDiscount = new System.Windows.Forms.TextBox();
-            this.labelTotal = new System.Windows.Forms.Label();
-            this.textBoxTotal = new System.Windows.Forms.TextBox();
-
-            // ========== PAYMENT ==========
-            this.labelAmountPaid = new System.Windows.Forms.Label();
-            this.textBoxAmountPaid = new System.Windows.Forms.TextBox();
-            this.labelChange = new System.Windows.Forms.Label();
-            this.textBoxChange = new System.Windows.Forms.TextBox();
-            this.labelPaymentMethod = new System.Windows.Forms.Label();
-            this.comboBoxPaymentMethod = new System.Windows.Forms.ComboBox();
-
-            // ========== ACTIONS ==========
-            this.buttonSaveBill = new System.Windows.Forms.Button();
-            this.buttonPrintReceipt = new System.Windows.Forms.Button();
-
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTreatments)).BeginInit();
-            this.SuspendLayout();
-
-            // ---------- PATIENT INFO ----------
-            this.labelPatient.Text = "Patient:";
-            this.labelPatient.Location = new System.Drawing.Point(20, 20);
-            this.labelPatient.AutoSize = true;
-
-            this.comboBoxPatient.Location = new System.Drawing.Point(100, 18);
-            this.comboBoxPatient.Size = new System.Drawing.Size(200, 25);
-
-            this.textBoxAge.Location = new System.Drawing.Point(320, 18);
-            this.textBoxAge.Size = new System.Drawing.Size(60, 25);
-            this.textBoxAge.ReadOnly = true;
-
-            this.textBoxAddress.Location = new System.Drawing.Point(400, 18);
-            this.textBoxAddress.Size = new System.Drawing.Size(280, 25);
-            this.textBoxAddress.ReadOnly = true;
-
-            // ---------- TREATMENTS ----------
-            this.dataGridViewTreatments.Location = new System.Drawing.Point(20, 60);
-            this.dataGridViewTreatments.Size = new System.Drawing.Size(660, 200);
-            this.dataGridViewTreatments.AllowUserToAddRows = false;
-            this.dataGridViewTreatments.AllowUserToDeleteRows = false;
-            this.dataGridViewTreatments.ReadOnly = true;
-            this.dataGridViewTreatments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-
-            // ---------- BILLING SUMMARY ----------
-            this.labelSubtotal.Text = "Subtotal:";
-            this.labelSubtotal.Location = new System.Drawing.Point(20, 280);
-            this.textBoxSubtotal.Location = new System.Drawing.Point(100, 277);
-            this.textBoxSubtotal.Size = new System.Drawing.Size(100, 25);
-            this.textBoxSubtotal.ReadOnly = true;
-
-            this.labelDiscount.Text = "Discount:";
-            this.labelDiscount.Location = new System.Drawing.Point(220, 280);
-            this.textBoxDiscount.Location = new System.Drawing.Point(300, 277);
-            this.textBoxDiscount.Size = new System.Drawing.Size(100, 25);
-
-            this.labelTotal.Text = "Total:";
-            this.labelTotal.Location = new System.Drawing.Point(420, 280);
-            this.textBoxTotal.Location = new System.Drawing.Point(470, 277);
-            this.textBoxTotal.Size = new System.Drawing.Size(100, 25);
-            this.textBoxTotal.ReadOnly = true;
-            this.textBoxTotal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-
-            // ---------- PAYMENT ----------
-            this.labelAmountPaid.Text = "Amount Paid:";
-            this.labelAmountPaid.Location = new System.Drawing.Point(20, 320);
-            this.textBoxAmountPaid.Location = new System.Drawing.Point(120, 317);
-            this.textBoxAmountPaid.Size = new System.Drawing.Size(100, 25);
-
-            this.labelChange.Text = "Change:";
-            this.labelChange.Location = new System.Drawing.Point(240, 320);
-            this.textBoxChange.Location = new System.Drawing.Point(300, 317);
-            this.textBoxChange.Size = new System.Drawing.Size(100, 25);
-            this.textBoxChange.ReadOnly = true;
-
-            this.labelPaymentMethod.Text = "Payment:";
-            this.labelPaymentMethod.Location = new System.Drawing.Point(420, 320);
-            this.comboBoxPaymentMethod.Location = new System.Drawing.Point(490, 317);
-            this.comboBoxPaymentMethod.Size = new System.Drawing.Size(120, 25);
-            this.comboBoxPaymentMethod.Items.AddRange(new object[] { "Cash", "GCash", "Card" });
-
-            // ---------- ACTIONS ----------
-            this.buttonSaveBill.Text = "Save Bill";
-            this.buttonSaveBill.Location = new System.Drawing.Point(360, 360);
-            this.buttonSaveBill.Size = new System.Drawing.Size(100, 30);
-            this.buttonSaveBill.BackColor = System.Drawing.Color.Green;
-            this.buttonSaveBill.ForeColor = System.Drawing.Color.White;
-
-            this.buttonPrintReceipt.Text = "Print Receipt";
-            this.buttonPrintReceipt.Location = new System.Drawing.Point(480, 360);
-            this.buttonPrintReceipt.Size = new System.Drawing.Size(120, 30);
-            this.buttonPrintReceipt.BackColor = System.Drawing.Color.Blue;
-            this.buttonPrintReceipt.ForeColor = System.Drawing.Color.White;
-
-            // ---------- FORM ----------
-            this.ClientSize = new System.Drawing.Size(700, 420);
-            this.Controls.AddRange(new System.Windows.Forms.Control[] {
-                labelPatient, comboBoxPatient, textBoxAge, textBoxAddress,
-                dataGridViewTreatments,
-                labelSubtotal, textBoxSubtotal, labelDiscount, textBoxDiscount, labelTotal, textBoxTotal,
-                labelAmountPaid, textBoxAmountPaid, labelChange, textBoxChange,
-                labelPaymentMethod, comboBoxPaymentMethod,
-                buttonSaveBill, buttonPrintReceipt
-            });
-            this.Text = "Billing";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTreatments)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            labelPatient = new Label();
+            comboBoxPatient = new ComboBox();
+            textBoxAge = new TextBox();
+            textBoxAddress = new TextBox();
+            dataGridViewTreatments = new DataGridView();
+            labelSubtotal = new Label();
+            textBoxSubtotal = new TextBox();
+            labelDiscount = new Label();
+            textBoxDiscount = new TextBox();
+            labelTotal = new Label();
+            textBoxTotal = new TextBox();
+            labelAmountPaid = new Label();
+            textBoxAmountPaid = new TextBox();
+            labelChange = new Label();
+            textBoxChange = new TextBox();
+            labelPaymentMethod = new Label();
+            comboBoxPaymentMethod = new ComboBox();
+            buttonSaveBill = new Button();
+            buttonPrintReceipt = new Button();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewTreatments).BeginInit();
+            SuspendLayout();
+            // 
+            // labelPatient
+            // 
+            labelPatient.AutoSize = true;
+            labelPatient.Location = new Point(20, 20);
+            labelPatient.Name = "labelPatient";
+            labelPatient.Size = new Size(47, 15);
+            labelPatient.TabIndex = 0;
+            labelPatient.Text = "Patient:";
+            // 
+            // comboBoxPatient
+            // 
+            comboBoxPatient.Location = new Point(100, 18);
+            comboBoxPatient.Name = "comboBoxPatient";
+            comboBoxPatient.Size = new Size(200, 23);
+            comboBoxPatient.TabIndex = 1;
+            // 
+            // textBoxAge
+            // 
+            textBoxAge.Location = new Point(320, 18);
+            textBoxAge.Name = "textBoxAge";
+            textBoxAge.ReadOnly = true;
+            textBoxAge.Size = new Size(60, 23);
+            textBoxAge.TabIndex = 2;
+            // 
+            // textBoxAddress
+            // 
+            textBoxAddress.Location = new Point(400, 18);
+            textBoxAddress.Name = "textBoxAddress";
+            textBoxAddress.ReadOnly = true;
+            textBoxAddress.Size = new Size(280, 23);
+            textBoxAddress.TabIndex = 3;
+            // 
+            // dataGridViewTreatments
+            // 
+            dataGridViewTreatments.AllowUserToAddRows = false;
+            dataGridViewTreatments.AllowUserToDeleteRows = false;
+            dataGridViewTreatments.Location = new Point(20, 60);
+            dataGridViewTreatments.Name = "dataGridViewTreatments";
+            dataGridViewTreatments.ReadOnly = true;
+            dataGridViewTreatments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewTreatments.Size = new Size(660, 200);
+            dataGridViewTreatments.TabIndex = 4;
+            // 
+            // labelSubtotal
+            // 
+            labelSubtotal.Location = new Point(20, 280);
+            labelSubtotal.Name = "labelSubtotal";
+            labelSubtotal.Size = new Size(61, 23);
+            labelSubtotal.TabIndex = 5;
+            labelSubtotal.Text = "Subtotal:";
+            // 
+            // textBoxSubtotal
+            // 
+            textBoxSubtotal.Location = new Point(100, 277);
+            textBoxSubtotal.Name = "textBoxSubtotal";
+            textBoxSubtotal.ReadOnly = true;
+            textBoxSubtotal.Size = new Size(100, 23);
+            textBoxSubtotal.TabIndex = 6;
+            // 
+            // labelDiscount
+            // 
+            labelDiscount.Location = new Point(220, 280);
+            labelDiscount.Name = "labelDiscount";
+            labelDiscount.Size = new Size(61, 23);
+            labelDiscount.TabIndex = 7;
+            labelDiscount.Text = "Discount:";
+            // 
+            // textBoxDiscount
+            // 
+            textBoxDiscount.Location = new Point(300, 277);
+            textBoxDiscount.Name = "textBoxDiscount";
+            textBoxDiscount.Size = new Size(100, 23);
+            textBoxDiscount.TabIndex = 8;
+            // 
+            // labelTotal
+            // 
+            labelTotal.Location = new Point(420, 280);
+            labelTotal.Name = "labelTotal";
+            labelTotal.Size = new Size(51, 23);
+            labelTotal.TabIndex = 9;
+            labelTotal.Text = "Total:";
+            // 
+            // textBoxTotal
+            // 
+            textBoxTotal.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            textBoxTotal.Location = new Point(490, 277);
+            textBoxTotal.Name = "textBoxTotal";
+            textBoxTotal.ReadOnly = true;
+            textBoxTotal.Size = new Size(100, 23);
+            textBoxTotal.TabIndex = 10;
+            // 
+            // labelAmountPaid
+            // 
+            labelAmountPaid.Location = new Point(20, 320);
+            labelAmountPaid.Name = "labelAmountPaid";
+            labelAmountPaid.Size = new Size(94, 23);
+            labelAmountPaid.TabIndex = 11;
+            labelAmountPaid.Text = "Amount Paid:";
+            // 
+            // textBoxAmountPaid
+            // 
+            textBoxAmountPaid.Location = new Point(120, 317);
+            textBoxAmountPaid.Name = "textBoxAmountPaid";
+            textBoxAmountPaid.Size = new Size(100, 23);
+            textBoxAmountPaid.TabIndex = 12;
+            // 
+            // labelChange
+            // 
+            labelChange.Location = new Point(240, 320);
+            labelChange.Name = "labelChange";
+            labelChange.Size = new Size(54, 23);
+            labelChange.TabIndex = 13;
+            labelChange.Text = "Change:";
+            // 
+            // textBoxChange
+            // 
+            textBoxChange.Location = new Point(300, 317);
+            textBoxChange.Name = "textBoxChange";
+            textBoxChange.ReadOnly = true;
+            textBoxChange.Size = new Size(100, 23);
+            textBoxChange.TabIndex = 14;
+            // 
+            // labelPaymentMethod
+            // 
+            labelPaymentMethod.Location = new Point(420, 320);
+            labelPaymentMethod.Name = "labelPaymentMethod";
+            labelPaymentMethod.Size = new Size(64, 23);
+            labelPaymentMethod.TabIndex = 15;
+            labelPaymentMethod.Text = "Payment:";
+            // 
+            // comboBoxPaymentMethod
+            // 
+            comboBoxPaymentMethod.Items.AddRange(new object[] { "Cash", "GCash", "Card" });
+            comboBoxPaymentMethod.Location = new Point(490, 317);
+            comboBoxPaymentMethod.Name = "comboBoxPaymentMethod";
+            comboBoxPaymentMethod.Size = new Size(120, 23);
+            comboBoxPaymentMethod.TabIndex = 16;
+            // 
+            // buttonSaveBill
+            // 
+            buttonSaveBill.BackColor = Color.Green;
+            buttonSaveBill.ForeColor = Color.White;
+            buttonSaveBill.Location = new Point(360, 360);
+            buttonSaveBill.Name = "buttonSaveBill";
+            buttonSaveBill.Size = new Size(100, 30);
+            buttonSaveBill.TabIndex = 17;
+            buttonSaveBill.Text = "Save Bill";
+            buttonSaveBill.UseVisualStyleBackColor = false;
+            // 
+            // buttonPrintReceipt
+            // 
+            buttonPrintReceipt.BackColor = Color.Blue;
+            buttonPrintReceipt.ForeColor = Color.White;
+            buttonPrintReceipt.Location = new Point(480, 360);
+            buttonPrintReceipt.Name = "buttonPrintReceipt";
+            buttonPrintReceipt.Size = new Size(120, 30);
+            buttonPrintReceipt.TabIndex = 18;
+            buttonPrintReceipt.Text = "Print Receipt";
+            buttonPrintReceipt.UseVisualStyleBackColor = false;
+            // 
+            // FormBilling
+            // 
+            ClientSize = new Size(700, 420);
+            Controls.Add(labelPatient);
+            Controls.Add(comboBoxPatient);
+            Controls.Add(textBoxAge);
+            Controls.Add(textBoxAddress);
+            Controls.Add(dataGridViewTreatments);
+            Controls.Add(labelSubtotal);
+            Controls.Add(textBoxSubtotal);
+            Controls.Add(labelDiscount);
+            Controls.Add(textBoxDiscount);
+            Controls.Add(labelTotal);
+            Controls.Add(textBoxTotal);
+            Controls.Add(labelAmountPaid);
+            Controls.Add(textBoxAmountPaid);
+            Controls.Add(labelChange);
+            Controls.Add(textBoxChange);
+            Controls.Add(labelPaymentMethod);
+            Controls.Add(comboBoxPaymentMethod);
+            Controls.Add(buttonSaveBill);
+            Controls.Add(buttonPrintReceipt);
+            Name = "FormBilling";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "x";
+            ((System.ComponentModel.ISupportInitialize)dataGridViewTreatments).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
     }
 }

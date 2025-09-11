@@ -121,3 +121,4 @@ D:\dentalrecord4\EstiponaClinic\EstiponaClinic\bin\Debug\net7.0-windows\runtimes
 D:\dentalrecord4\EstiponaClinic\EstiponaClinic\bin\Debug\net7.0-windows\runtimes\win-x64\native\libHarfBuzzSharp.dll
 D:\dentalrecord4\EstiponaClinic\EstiponaClinic\bin\Debug\net7.0-windows\runtimes\win-x86\native\libHarfBuzzSharp.dll
 D:\dentalrecord4\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormCertificate.resources
+C:\Users\Floof\Desktop\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormBilling.resources

@@ -65,24 +65,35 @@ namespace EstiponaClinic
 
         private void buttonFormDentalRecord_Click(object sender, EventArgs e)
         {
-            FormDentalRecord formDashboard = new FormDentalRecord();
-            formDashboard.TopLevel = false;
-            formDashboard.FormBorderStyle = FormBorderStyle.None;
-            formDashboard.Dock = DockStyle.Fill;
+            FormDentalRecord formDentalRecord = new FormDentalRecord();
+            formDentalRecord.TopLevel = false;
+            formDentalRecord.FormBorderStyle = FormBorderStyle.None;
+            formDentalRecord.Dock = DockStyle.Fill;
             panel1.Controls.Clear();
-            panel1.Controls.Add(formDashboard);
-            formDashboard.Show();
+            panel1.Controls.Add(formDentalRecord);
+            formDentalRecord.Show();
         }
 
         private void buttonFormCertificate_Click(object sender, EventArgs e)
         {
-            FormCertificate formDashboard = new FormCertificate();
-            formDashboard.TopLevel = false;
-            formDashboard.FormBorderStyle = FormBorderStyle.None;
-            formDashboard.Dock = DockStyle.Fill;
+            FormCertificate formCertificate = new FormCertificate();
+            formCertificate.TopLevel = false;
+            formCertificate.FormBorderStyle = FormBorderStyle.None;
+            formCertificate.Dock = DockStyle.Fill;
             panel1.Controls.Clear();
-            panel1.Controls.Add(formDashboard);
-            formDashboard.Show();
+            panel1.Controls.Add(formCertificate);
+            formCertificate.Show();
+        }
+
+        private void buttonBilling_Click(object sender, EventArgs e)
+        {
+            FormBilling formBilling = new FormBilling();
+            formBilling.TopLevel = false;
+            formBilling.FormBorderStyle = FormBorderStyle.None;
+            formBilling.Dock = DockStyle.Fill;
+            panel1.Controls.Clear();
+            panel1.Controls.Add(formBilling);
+            formBilling.Show();
         }
     }
 }
