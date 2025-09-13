@@ -36,6 +36,10 @@
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
+            textBoxPurpose = new TextBox();
+            textBoxPTR = new TextBox();
+            label7 = new Label();
+            label8 = new Label();
             SuspendLayout();
             // 
             // comboBoxPatient
@@ -69,14 +73,14 @@
             textBoxAddress.Multiline = true;
             textBoxAddress.Name = "textBoxAddress";
             textBoxAddress.ReadOnly = true;
-            textBoxAddress.Size = new Size(775, 73);
+            textBoxAddress.Size = new Size(775, 60);
             textBoxAddress.TabIndex = 2;
             // 
             // richTextBoxDiagnosis
             // 
             richTextBoxDiagnosis.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             richTextBoxDiagnosis.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            richTextBoxDiagnosis.Location = new Point(44, 323);
+            richTextBoxDiagnosis.Location = new Point(44, 378);
             richTextBoxDiagnosis.Margin = new Padding(3, 4, 3, 4);
             richTextBoxDiagnosis.Name = "richTextBoxDiagnosis";
             richTextBoxDiagnosis.Size = new Size(896, 132);
@@ -87,10 +91,10 @@
             // 
             richTextBoxRecommendations.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             richTextBoxRecommendations.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            richTextBoxRecommendations.Location = new Point(44, 536);
+            richTextBoxRecommendations.Location = new Point(44, 571);
             richTextBoxRecommendations.Margin = new Padding(3, 4, 3, 4);
             richTextBoxRecommendations.Name = "richTextBoxRecommendations";
-            richTextBoxRecommendations.Size = new Size(896, 132);
+            richTextBoxRecommendations.Size = new Size(896, 139);
             richTextBoxRecommendations.TabIndex = 4;
             richTextBoxRecommendations.Text = "";
             // 
@@ -100,7 +104,7 @@
             buttonGenerate.BackColor = Color.Green;
             buttonGenerate.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             buttonGenerate.ForeColor = Color.White;
-            buttonGenerate.Location = new Point(791, 711);
+            buttonGenerate.Location = new Point(791, 728);
             buttonGenerate.Margin = new Padding(3, 4, 3, 4);
             buttonGenerate.Name = "buttonGenerate";
             buttonGenerate.Size = new Size(149, 56);
@@ -118,7 +122,6 @@
             label1.Size = new Size(101, 32);
             label1.TabIndex = 6;
             label1.Text = "Patient:";
-            label1.Click += label1_Click;
             // 
             // label2
             // 
@@ -148,7 +151,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.Green;
-            label4.Location = new Point(44, 287);
+            label4.Location = new Point(44, 342);
             label4.Name = "label4";
             label4.Size = new Size(133, 32);
             label4.TabIndex = 9;
@@ -160,7 +163,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.Green;
-            label5.Location = new Point(46, 500);
+            label5.Location = new Point(44, 535);
             label5.Name = "label5";
             label5.Size = new Size(233, 32);
             label5.TabIndex = 10;
@@ -177,12 +180,54 @@
             label6.TabIndex = 11;
             label6.Text = "Certificate";
             // 
+            // textBoxPurpose
+            // 
+            textBoxPurpose.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxPurpose.Location = new Point(167, 272);
+            textBoxPurpose.Name = "textBoxPurpose";
+            textBoxPurpose.Size = new Size(364, 39);
+            textBoxPurpose.TabIndex = 12;
+            // 
+            // textBoxPTR
+            // 
+            textBoxPTR.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxPTR.Location = new Point(708, 272);
+            textBoxPTR.Name = "textBoxPTR";
+            textBoxPTR.Size = new Size(230, 39);
+            textBoxPTR.TabIndex = 13;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.ForeColor = Color.Green;
+            label7.Location = new Point(46, 272);
+            label7.Name = "label7";
+            label7.Size = new Size(115, 32);
+            label7.TabIndex = 14;
+            label7.Text = "Purpose:";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.ForeColor = Color.Green;
+            label8.Location = new Point(615, 272);
+            label8.Name = "label8";
+            label8.Size = new Size(87, 32);
+            label8.TabIndex = 15;
+            label8.Text = "PTR #:";
+            // 
             // FormCertificate
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PowderBlue;
-            ClientSize = new Size(985, 780);
+            ClientSize = new Size(985, 787);
+            Controls.Add(label8);
+            Controls.Add(label7);
+            Controls.Add(textBoxPTR);
+            Controls.Add(textBoxPurpose);
             Controls.Add(label6);
             Controls.Add(comboBoxPatient);
             Controls.Add(textBoxAge);
@@ -203,5 +248,9 @@
         }
 
         private Label label6;
+        private TextBox textBoxPurpose;
+        private TextBox textBoxPTR;
+        private Label label7;
+        private Label label8;
     }
 }

@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using Spire.Doc;
-using Spire.Doc.Documents;
-using Spire.Doc.Fields;
+//using Spire.Doc;
+//using Spire.Doc.Documents;
+//using Spire.Doc.Fields;
 
 namespace EstiponaClinic
 {
     public partial class FormCertificate : Form
     {
+        private FormPatients.Patient? selectedPatientForPrint;
+        private string diagnosisText = "";
+        private string recommendationsText = "";
+
         private List<FormPatients.Patient> patients = new();
         private readonly string patientsFile = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
@@ -26,6 +31,9 @@ namespace EstiponaClinic
             comboBoxPatient.DropDownStyle = ComboBoxStyle.DropDownList;
             textBoxAge.ReadOnly = true;
             textBoxAddress.ReadOnly = true;
+
+            textBoxPurpose.Text = "employment purposes, except for medico-legal reasons.";
+            textBoxPTR.Text = "PTR #3044311s";
 
             LoadPatients();
 
@@ -68,137 +76,98 @@ namespace EstiponaClinic
                 return;
             }
 
-            string diagnosis = (richTextBoxDiagnosis?.Text ?? "").Trim();
-            string recommendations = (richTextBoxRecommendations?.Text ?? "").Trim();
+            selectedPatientForPrint = patient;
+            diagnosisText = (richTextBoxDiagnosis?.Text ?? "").Trim();
+            recommendationsText = (richTextBoxRecommendations?.Text ?? "").Trim();
 
-            Document doc = new Document();
-            Section section = doc.AddSection();
+            PrintDocument pd = new PrintDocument();
 
-            // Define reusable Arial style
-            void ApplyStyle(Paragraph para, float size = 12f, bool bold = false, bool italic = false, bool underline = false)
+            // A4 size (certificate style)
+            pd.DefaultPageSettings.PaperSize = new PaperSize("A4", 827, 1169); // 100ths of an inch (8.27x11.69 in)
+
+            pd.PrintPage += Pd_PrintPage;
+
+            PrintPreviewDialog preview = new PrintPreviewDialog
             {
-                foreach (DocumentObject obj in para.ChildObjects)
-                {
-                    if (obj is TextRange txt)
-                    {
-                        txt.CharacterFormat.FontName = "Arial";
-                        txt.CharacterFormat.FontSize = size;
-                        txt.CharacterFormat.Bold = bold;
-                        txt.CharacterFormat.Italic = italic;
-                        txt.CharacterFormat.UnderlineStyle = underline ? UnderlineStyle.Single : UnderlineStyle.None;
-                    }
-                }
-            }
+                Document = pd,
+                Width = 800,
+                Height = 600,
+                StartPosition = FormStartPosition.CenterScreen
+            };
 
-            // HEADER
-            Paragraph header = section.AddParagraph();
-            header.AppendText("ESTIPONA DENTAL CLINIC\n");
-            header.AppendText("General Dentistry, Orthodontics, and Oral Surgery\n");
-            header.AppendText("Door #4 & 5 DELGAR Bldg, J.P. Laurel Avenue Bajada, Davao City\n");
-            header.AppendText("Contact: 09456498475\n");
-            header.Format.HorizontalAlignment = Spire.Doc.Documents.HorizontalAlignment.Center;
-            ApplyStyle(header, 12f, bold: true);
-
-            // Separator line
-            Paragraph line = section.AddParagraph();
-            line.AppendText(new string('_', 80));
-            line.Format.HorizontalAlignment = Spire.Doc.Documents.HorizontalAlignment.Center;
-
-            section.AddParagraph();
-
-            // TITLE
-            Paragraph title = section.AddParagraph();
-            title.AppendText("DENTAL CERTIFICATE");
-            title.Format.HorizontalAlignment = Spire.Doc.Documents.HorizontalAlignment.Center;
-            ApplyStyle(title, 18f, bold: true, underline: true);
-
-            section.AddParagraph();
-
-            // DATE
-            Paragraph datePara = section.AddParagraph();
-            datePara.AppendText($"Date: {DateTime.Now:MMMM dd, yyyy}");
-            datePara.Format.HorizontalAlignment = Spire.Doc.Documents.HorizontalAlignment.Right;
-            ApplyStyle(datePara, 12f);
-
-            section.AddParagraph();
-            section.AddParagraph();
-
-            // BODY
-            int age = int.Parse(textBoxAge.Text);
-            string address = patient.Address ?? "";
-
-            Paragraph body = section.AddParagraph();
-            body.AppendText(
-                $"       This is to certify that Mr./Ms. {patient.Name}, " +
-                $"{age} years old, residing at {address}, Davao City, " +
-                $"has been thoroughly examined in this Clinic last {DateTime.Now:MMMM dd, yyyy}."
-            );
-            body.Format.HorizontalAlignment = Spire.Doc.Documents.HorizontalAlignment.Justify;
-            ApplyStyle(body, 12f);
-
-            section.AddParagraph();
-
-            // DIAGNOSIS
-            Paragraph diagHeading = section.AddParagraph();
-            diagHeading.AppendText("Diagnosis:");
-            ApplyStyle(diagHeading, 12f, bold: true, italic: true);
-
-            Paragraph diagPara = section.AddParagraph();
-            diagPara.AppendText(string.IsNullOrWhiteSpace(diagnosis) ? "(No diagnosis provided.)" : diagnosis);
-            ApplyStyle(diagPara, 12f);
-
-            section.AddParagraph();
-
-            // RECOMMENDATIONS
-            Paragraph recHeading = section.AddParagraph();
-            recHeading.AppendText("Recommendations:");
-            ApplyStyle(recHeading, 12f, bold: true, italic: true);
-
-            Paragraph recPara = section.AddParagraph();
-            recPara.AppendText(string.IsNullOrWhiteSpace(recommendations) ? "(No recommendations provided.)" : recommendations);
-            ApplyStyle(recPara, 12f);
-
-            section.AddParagraph();
-
-            // CLOSING
-            Paragraph closing = section.AddParagraph();
-            closing.AppendText("This certificate is issued upon the request of the above-named patient for employment purposes, except for medico-legal reasons.");
-            closing.Format.HorizontalAlignment = Spire.Doc.Documents.HorizontalAlignment.Justify;
-            ApplyStyle(closing, 12f);
-
-            section.AddParagraph();
-            section.AddParagraph();
-            section.AddParagraph();
-
-            // DOCTOR'S SIGNATURE
-            Paragraph footer = section.AddParagraph();
-            footer.AppendText("_____________________________\n");
-            footer.AppendText("SALVACION E. ESTIPONA\nLic# 0036173\nPTR #3044311s");
-            footer.Format.HorizontalAlignment = Spire.Doc.Documents.HorizontalAlignment.Right;
-            ApplyStyle(footer, 12f, bold: true);
-
-            // Save dialog
-            string safeName = string.Concat(patient.Name.Where(ch => !Path.GetInvalidFileNameChars().Contains(ch)));
-            if (string.IsNullOrWhiteSpace(safeName)) safeName = "Patient";
-
-            using (SaveFileDialog sfd = new SaveFileDialog()
-            {
-                Filter = "Word Document (*.docx)|*.docx",
-                FileName = $"DentalCertificate_{safeName}_{DateTime.Now:yyyyMMdd}.docx"
-            })
-            {
-                if (sfd.ShowDialog() == DialogResult.OK)
-                {
-                    doc.SaveToFile(sfd.FileName, FileFormat.Docx);
-                    MessageBox.Show("Certificate generated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
+            preview.ShowDialog();
         }
-
-
-        private void label1_Click(object sender, EventArgs e)
+        private void Pd_PrintPage(object sender, PrintPageEventArgs e)
         {
+            if (selectedPatientForPrint == null) return;
 
+            Graphics g = e.Graphics;
+            Font headerFont = new Font("Arial", 16, FontStyle.Bold);
+            Font bodyFont = new Font("Arial", 13);
+            Font boldFont = new Font("Arial", 13, FontStyle.Bold);
+
+            float y = 50;
+            float leftMargin = 60;
+            float pageWidth = e.PageBounds.Width;
+
+            // Header
+            g.DrawString("ESTIPONA DENTAL CLINIC", headerFont, Brushes.Black, pageWidth / 2, y, new StringFormat { Alignment = StringAlignment.Center });
+            y += 35;
+            g.DrawString("General Dentistry, Orthodontics, and Oral Surgery", bodyFont, Brushes.Black, pageWidth / 2, y, new StringFormat { Alignment = StringAlignment.Center });
+            y += 30;
+            g.DrawString("Door #4 & 5 DELGAR Bldg, J.P. Laurel Avenue Bajada, Davao City", bodyFont, Brushes.Black, pageWidth / 2, y, new StringFormat { Alignment = StringAlignment.Center });
+            y += 30;
+            g.DrawString("Contact: 09456498475", bodyFont, Brushes.Black, pageWidth / 2, y, new StringFormat { Alignment = StringAlignment.Center });
+            y += 50;
+
+            // Title
+            g.DrawString("DENTAL CERTIFICATE", new Font("Arial", 16, FontStyle.Bold | FontStyle.Underline), Brushes.Black, pageWidth / 2, y, new StringFormat { Alignment = StringAlignment.Center });
+            y += 60;
+
+            // Date
+            g.DrawString($"Date: {DateTime.Now:MMMM dd, yyyy}", bodyFont, Brushes.Black, pageWidth - 250, y);
+            y += 50;
+
+            // Patient details
+            int age = int.Parse(textBoxAge.Text);
+            string address = selectedPatientForPrint.Address ?? "";
+
+            string bodyText = $"This is to certify that Mr./Ms. {selectedPatientForPrint.Name}, {age} years old, residing at {address}, Davao City, " +
+                              $"has been thoroughly examined in this Clinic last {DateTime.Now:MMMM dd, yyyy}.";
+
+            g.DrawString(bodyText, bodyFont, Brushes.Black, new RectangleF(leftMargin, y, pageWidth - 2 * leftMargin, 100));
+            y += 110;
+
+            // Diagnosis
+            g.DrawString("Diagnosis:", boldFont, Brushes.Black, leftMargin, y); y += 20;
+            g.DrawString(string.IsNullOrWhiteSpace(diagnosisText) ? "(No diagnosis provided.)" : diagnosisText, bodyFont, Brushes.Black, new RectangleF(leftMargin, y, pageWidth - 2 * leftMargin, 80));
+            y += 90;
+
+            // Recommendations
+            g.DrawString("Recommendations:", boldFont, Brushes.Black, leftMargin, y); y += 20;
+            g.DrawString(string.IsNullOrWhiteSpace(recommendationsText) ? "(No recommendations provided.)" : recommendationsText, bodyFont, Brushes.Black, new RectangleF(leftMargin, y, pageWidth - 2 * leftMargin, 80));
+            y += 110;
+
+            //purpose
+            string purposeText = string.IsNullOrWhiteSpace(textBoxPurpose.Text)
+            ? "employment purposes, except for medico-legal reasons."
+            : textBoxPurpose.Text;
+
+            //closing
+            string closing = $"This certificate is issued upon the request of the above-named patient for {purposeText}";
+            g.DrawString(closing, bodyFont, Brushes.Black, new RectangleF(leftMargin, y, pageWidth - 2 * leftMargin, 80));
+            y += 150;
+
+            // Signature & License
+            g.DrawString("_____________________________", bodyFont, Brushes.Black, pageWidth - 340, y);
+            y += 40;
+            g.DrawString("SALVACION E. ESTIPONA", boldFont, Brushes.Black, pageWidth - 340, y); y += 40;
+            g.DrawString("Lic# 0036173", bodyFont, Brushes.Black, pageWidth - 340, y); y += 40;
+
+            // PTR dynamic
+            string ptrText = string.IsNullOrWhiteSpace(textBoxPTR.Text) ? "PTR #3044311s" : textBoxPTR.Text;
+            g.DrawString(ptrText, bodyFont, Brushes.Black, pageWidth - 340, y);
         }
+
     }
 }

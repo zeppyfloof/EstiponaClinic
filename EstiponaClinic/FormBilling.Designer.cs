@@ -28,9 +28,6 @@
         private TextBox textBoxChange;
         private Label labelPaymentMethod;
         private ComboBox comboBoxPaymentMethod;
-
-        // Actions
-        private Button buttonSaveBill;
         private Button buttonPrintReceipt;
 
         protected override void Dispose(bool disposing)
@@ -59,174 +56,251 @@
             textBoxChange = new TextBox();
             labelPaymentMethod = new Label();
             comboBoxPaymentMethod = new ComboBox();
-            buttonSaveBill = new Button();
             buttonPrintReceipt = new Button();
+            buttonRecordPayment = new Button();
+            buttonViewPayments = new Button();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridViewTreatments).BeginInit();
             SuspendLayout();
             // 
             // labelPatient
             // 
             labelPatient.AutoSize = true;
-            labelPatient.Location = new Point(20, 20);
+            labelPatient.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            labelPatient.ForeColor = Color.Green;
+            labelPatient.Location = new Point(20, 18);
             labelPatient.Name = "labelPatient";
-            labelPatient.Size = new Size(47, 15);
+            labelPatient.Size = new Size(101, 32);
             labelPatient.TabIndex = 0;
             labelPatient.Text = "Patient:";
             // 
             // comboBoxPatient
             // 
-            comboBoxPatient.Location = new Point(100, 18);
+            comboBoxPatient.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxPatient.Location = new Point(127, 17);
             comboBoxPatient.Name = "comboBoxPatient";
-            comboBoxPatient.Size = new Size(200, 23);
+            comboBoxPatient.Size = new Size(354, 37);
             comboBoxPatient.TabIndex = 1;
             // 
             // textBoxAge
             // 
-            textBoxAge.Location = new Point(320, 18);
+            textBoxAge.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            textBoxAge.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAge.Location = new Point(737, 20);
             textBoxAge.Name = "textBoxAge";
             textBoxAge.ReadOnly = true;
-            textBoxAge.Size = new Size(60, 23);
+            textBoxAge.Size = new Size(88, 34);
             textBoxAge.TabIndex = 2;
             // 
             // textBoxAddress
             // 
-            textBoxAddress.Location = new Point(400, 18);
+            textBoxAddress.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            textBoxAddress.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAddress.Location = new Point(874, 21);
             textBoxAddress.Name = "textBoxAddress";
             textBoxAddress.ReadOnly = true;
-            textBoxAddress.Size = new Size(280, 23);
+            textBoxAddress.Size = new Size(362, 34);
             textBoxAddress.TabIndex = 3;
             // 
             // dataGridViewTreatments
             // 
             dataGridViewTreatments.AllowUserToAddRows = false;
             dataGridViewTreatments.AllowUserToDeleteRows = false;
-            dataGridViewTreatments.Location = new Point(20, 60);
+            dataGridViewTreatments.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridViewTreatments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewTreatments.BackgroundColor = Color.Azure;
+            dataGridViewTreatments.ColumnHeadersHeight = 48;
+            dataGridViewTreatments.Location = new Point(20, 130);
             dataGridViewTreatments.Name = "dataGridViewTreatments";
             dataGridViewTreatments.ReadOnly = true;
+            dataGridViewTreatments.RowHeadersWidth = 61;
             dataGridViewTreatments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewTreatments.Size = new Size(660, 200);
+            dataGridViewTreatments.Size = new Size(1216, 300);
             dataGridViewTreatments.TabIndex = 4;
             // 
             // labelSubtotal
             // 
-            labelSubtotal.Location = new Point(20, 280);
+            labelSubtotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelSubtotal.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            labelSubtotal.ForeColor = Color.Green;
+            labelSubtotal.Location = new Point(73, 444);
             labelSubtotal.Name = "labelSubtotal";
-            labelSubtotal.Size = new Size(61, 23);
+            labelSubtotal.Size = new Size(119, 36);
             labelSubtotal.TabIndex = 5;
             labelSubtotal.Text = "Subtotal:";
             // 
             // textBoxSubtotal
             // 
-            textBoxSubtotal.Location = new Point(100, 277);
+            textBoxSubtotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            textBoxSubtotal.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxSubtotal.Location = new Point(198, 448);
             textBoxSubtotal.Name = "textBoxSubtotal";
             textBoxSubtotal.ReadOnly = true;
-            textBoxSubtotal.Size = new Size(100, 23);
+            textBoxSubtotal.Size = new Size(332, 34);
             textBoxSubtotal.TabIndex = 6;
             // 
             // labelDiscount
             // 
-            labelDiscount.Location = new Point(220, 280);
+            labelDiscount.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelDiscount.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            labelDiscount.ForeColor = Color.Green;
+            labelDiscount.Location = new Point(536, 445);
             labelDiscount.Name = "labelDiscount";
-            labelDiscount.Size = new Size(61, 23);
+            labelDiscount.Size = new Size(128, 37);
             labelDiscount.TabIndex = 7;
             labelDiscount.Text = "Discount:";
             // 
             // textBoxDiscount
             // 
-            textBoxDiscount.Location = new Point(300, 277);
+            textBoxDiscount.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxDiscount.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxDiscount.Location = new Point(670, 449);
             textBoxDiscount.Name = "textBoxDiscount";
-            textBoxDiscount.Size = new Size(100, 23);
+            textBoxDiscount.Size = new Size(105, 34);
             textBoxDiscount.TabIndex = 8;
             // 
             // labelTotal
             // 
-            labelTotal.Location = new Point(420, 280);
+            labelTotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            labelTotal.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            labelTotal.ForeColor = Color.Green;
+            labelTotal.Location = new Point(822, 445);
             labelTotal.Name = "labelTotal";
-            labelTotal.Size = new Size(51, 23);
+            labelTotal.Size = new Size(79, 34);
             labelTotal.TabIndex = 9;
             labelTotal.Text = "Total:";
             // 
             // textBoxTotal
             // 
-            textBoxTotal.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            textBoxTotal.Location = new Point(490, 277);
+            textBoxTotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            textBoxTotal.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxTotal.Location = new Point(907, 445);
             textBoxTotal.Name = "textBoxTotal";
             textBoxTotal.ReadOnly = true;
-            textBoxTotal.Size = new Size(100, 23);
+            textBoxTotal.Size = new Size(329, 34);
             textBoxTotal.TabIndex = 10;
             // 
             // labelAmountPaid
             // 
-            labelAmountPaid.Location = new Point(20, 320);
+            labelAmountPaid.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelAmountPaid.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            labelAmountPaid.ForeColor = Color.Green;
+            labelAmountPaid.Location = new Point(20, 509);
             labelAmountPaid.Name = "labelAmountPaid";
-            labelAmountPaid.Size = new Size(94, 23);
+            labelAmountPaid.Size = new Size(171, 38);
             labelAmountPaid.TabIndex = 11;
             labelAmountPaid.Text = "Amount Paid:";
             // 
             // textBoxAmountPaid
             // 
-            textBoxAmountPaid.Location = new Point(120, 317);
+            textBoxAmountPaid.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            textBoxAmountPaid.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxAmountPaid.Location = new Point(198, 508);
             textBoxAmountPaid.Name = "textBoxAmountPaid";
-            textBoxAmountPaid.Size = new Size(100, 23);
+            textBoxAmountPaid.Size = new Size(332, 34);
             textBoxAmountPaid.TabIndex = 12;
             // 
             // labelChange
             // 
-            labelChange.Location = new Point(240, 320);
+            labelChange.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelChange.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            labelChange.ForeColor = Color.Green;
+            labelChange.Location = new Point(554, 510);
             labelChange.Name = "labelChange";
-            labelChange.Size = new Size(54, 23);
+            labelChange.Size = new Size(110, 35);
             labelChange.TabIndex = 13;
             labelChange.Text = "Change:";
             // 
             // textBoxChange
             // 
-            textBoxChange.Location = new Point(300, 317);
+            textBoxChange.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxChange.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxChange.Location = new Point(670, 511);
             textBoxChange.Name = "textBoxChange";
             textBoxChange.ReadOnly = true;
-            textBoxChange.Size = new Size(100, 23);
+            textBoxChange.Size = new Size(105, 34);
             textBoxChange.TabIndex = 14;
             // 
             // labelPaymentMethod
             // 
-            labelPaymentMethod.Location = new Point(420, 320);
+            labelPaymentMethod.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            labelPaymentMethod.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            labelPaymentMethod.ForeColor = Color.Green;
+            labelPaymentMethod.Location = new Point(781, 508);
             labelPaymentMethod.Name = "labelPaymentMethod";
-            labelPaymentMethod.Size = new Size(64, 23);
+            labelPaymentMethod.Size = new Size(120, 37);
             labelPaymentMethod.TabIndex = 15;
             labelPaymentMethod.Text = "Payment:";
             // 
             // comboBoxPaymentMethod
             // 
-            comboBoxPaymentMethod.Items.AddRange(new object[] { "Cash", "GCash", "Card" });
-            comboBoxPaymentMethod.Location = new Point(490, 317);
+            comboBoxPaymentMethod.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            comboBoxPaymentMethod.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxPaymentMethod.Location = new Point(907, 512);
             comboBoxPaymentMethod.Name = "comboBoxPaymentMethod";
-            comboBoxPaymentMethod.Size = new Size(120, 23);
+            comboBoxPaymentMethod.Size = new Size(329, 37);
             comboBoxPaymentMethod.TabIndex = 16;
-            // 
-            // buttonSaveBill
-            // 
-            buttonSaveBill.BackColor = Color.Green;
-            buttonSaveBill.ForeColor = Color.White;
-            buttonSaveBill.Location = new Point(360, 360);
-            buttonSaveBill.Name = "buttonSaveBill";
-            buttonSaveBill.Size = new Size(100, 30);
-            buttonSaveBill.TabIndex = 17;
-            buttonSaveBill.Text = "Save Bill";
-            buttonSaveBill.UseVisualStyleBackColor = false;
             // 
             // buttonPrintReceipt
             // 
-            buttonPrintReceipt.BackColor = Color.Blue;
+            buttonPrintReceipt.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonPrintReceipt.BackColor = Color.LightSlateGray;
+            buttonPrintReceipt.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             buttonPrintReceipt.ForeColor = Color.White;
-            buttonPrintReceipt.Location = new Point(480, 360);
+            buttonPrintReceipt.Location = new Point(20, 588);
             buttonPrintReceipt.Name = "buttonPrintReceipt";
-            buttonPrintReceipt.Size = new Size(120, 30);
+            buttonPrintReceipt.Size = new Size(237, 59);
             buttonPrintReceipt.TabIndex = 18;
             buttonPrintReceipt.Text = "Print Receipt";
             buttonPrintReceipt.UseVisualStyleBackColor = false;
+            buttonPrintReceipt.Click += buttonPrintReceipt_Click;
+            // 
+            // buttonRecordPayment
+            // 
+            buttonRecordPayment.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonRecordPayment.BackColor = Color.Green;
+            buttonRecordPayment.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonRecordPayment.ForeColor = Color.White;
+            buttonRecordPayment.Location = new Point(999, 588);
+            buttonRecordPayment.Name = "buttonRecordPayment";
+            buttonRecordPayment.Size = new Size(237, 59);
+            buttonRecordPayment.TabIndex = 19;
+            buttonRecordPayment.Text = "Submit Payment";
+            buttonRecordPayment.UseVisualStyleBackColor = false;
+            buttonRecordPayment.Click += buttonRecordPayment_Click;
+            // 
+            // buttonViewPayments
+            // 
+            buttonViewPayments.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            buttonViewPayments.BackColor = Color.Azure;
+            buttonViewPayments.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonViewPayments.Location = new Point(1088, 78);
+            buttonViewPayments.Name = "buttonViewPayments";
+            buttonViewPayments.Size = new Size(148, 46);
+            buttonViewPayments.TabIndex = 20;
+            buttonViewPayments.Text = "History";
+            buttonViewPayments.UseVisualStyleBackColor = false;
+            buttonViewPayments.Click += buttonViewPayments_Click;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.Green;
+            label1.Location = new Point(665, 17);
+            label1.Name = "label1";
+            label1.Size = new Size(66, 32);
+            label1.TabIndex = 0;
+            label1.Text = "Age:";
             // 
             // FormBilling
             // 
-            ClientSize = new Size(700, 420);
+            BackColor = Color.PowderBlue;
+            ClientSize = new Size(1264, 671);
+            Controls.Add(buttonViewPayments);
+            Controls.Add(buttonRecordPayment);
+            Controls.Add(label1);
             Controls.Add(labelPatient);
             Controls.Add(comboBoxPatient);
             Controls.Add(textBoxAge);
@@ -244,7 +318,6 @@
             Controls.Add(textBoxChange);
             Controls.Add(labelPaymentMethod);
             Controls.Add(comboBoxPaymentMethod);
-            Controls.Add(buttonSaveBill);
             Controls.Add(buttonPrintReceipt);
             Name = "FormBilling";
             StartPosition = FormStartPosition.CenterScreen;
@@ -253,5 +326,9 @@
             ResumeLayout(false);
             PerformLayout();
         }
+
+        private Button buttonRecordPayment;
+        private Button buttonViewPayments;
+        private Label label1;
     }
 }

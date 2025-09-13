@@ -76,7 +76,11 @@ namespace EstiponaClinic
                 {
                     var json = File.ReadAllText(patientFile);
                     var loaded = JsonConvert.DeserializeObject<List<Patient>>(json);
-                    if (loaded != null) patients = loaded;
+
+                    if (loaded != null)
+                        patients = loaded.Where(p => p != null).ToList(); // ✅ filter out nulls
+                    else
+                        patients = new();
                 }
                 catch
                 {
@@ -84,6 +88,7 @@ namespace EstiponaClinic
                 }
             }
         }
+
 
         private void SavePatients()
         {

@@ -85,21 +85,44 @@ namespace EstiponaClinic
         private void RefreshDataGridView()
         {
             dataGridViewAppointments.Rows.Clear();
+
+            // Load billings so we can match payments
+            string billingFile = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "EstiponaClinic",
+                "billings.json"
+            );
+
+            List<FormBilling.Billing> billings = new();
+            if (File.Exists(billingFile))
+            {
+                string json = File.ReadAllText(billingFile);
+                billings = JsonConvert.DeserializeObject<List<FormBilling.Billing>>(json) ?? new();
+            }
+
             foreach (var appt in appointments)
             {
+                var billing = billings
+                    .FirstOrDefault(b =>
+                        b.PatientName == appt.PatientName &&
+                        b.Treatments.Any(t => t.TreatmentName == appt.TreatmentName) &&
+                        b.Date.Date == appt.AppointmentDate.Date);
+
+                decimal balance = billing?.Balance ?? appt.TreatmentCost;
+
                 dataGridViewAppointments.Rows.Add(
                     appt.AppointmentID,
                     appt.PatientName,
                     appt.TreatmentName,
-                    appt.TreatmentCost.ToString("F2"),
+                    $"{appt.TreatmentCost:F2} (Bal: {balance:F2})", // ✅ show balance
                     appt.AppointmentDate.ToShortDateString(),
                     appt.AppointmentTime.ToShortTimeString()
                 );
             }
         }
 
-        // ------------------ DIM BACKGROUND FOR POP-UPS ----------------
-        private DialogResult ShowDimmedDialog(Form dialog)
+    // ------------------ DIM BACKGROUND FOR POP-UPS ----------------
+    private DialogResult ShowDimmedDialog(Form dialog)
         {
             var host = this.TopLevelControl as Form ?? this.FindForm() ?? this;
             var hostBounds = host.Bounds;
