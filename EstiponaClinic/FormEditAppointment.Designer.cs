@@ -20,12 +20,13 @@
             labelDate = new Label();
             labelTime = new Label();
             textBoxPatient = new TextBox();
-            textBoxTreatment = new TextBox();
+            comboBoxTreatment = new ComboBox();
             textBoxCost = new TextBox();
             dateTimePickerDate = new DateTimePicker();
             dateTimePickerTime = new DateTimePicker();
             buttonUpdate = new Button();
             buttonCancel = new Button();
+            labelCategory = new Label();
             SuspendLayout();
             // 
             // labelPatient
@@ -44,7 +45,7 @@
             labelTreatment.AutoSize = true;
             labelTreatment.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             labelTreatment.ForeColor = Color.Green;
-            labelTreatment.Location = new Point(30, 108);
+            labelTreatment.Location = new Point(24, 121);
             labelTreatment.Name = "labelTreatment";
             labelTreatment.Size = new Size(137, 32);
             labelTreatment.TabIndex = 1;
@@ -55,7 +56,7 @@
             labelCost.AutoSize = true;
             labelCost.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             labelCost.ForeColor = Color.Green;
-            labelCost.Location = new Point(90, 181);
+            labelCost.Location = new Point(90, 235);
             labelCost.Name = "labelCost";
             labelCost.Size = new Size(71, 32);
             labelCost.TabIndex = 2;
@@ -66,7 +67,7 @@
             labelDate.AutoSize = true;
             labelDate.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             labelDate.ForeColor = Color.Green;
-            labelDate.Location = new Point(90, 250);
+            labelDate.Location = new Point(87, 313);
             labelDate.Name = "labelDate";
             labelDate.Size = new Size(74, 32);
             labelDate.TabIndex = 3;
@@ -77,7 +78,7 @@
             labelTime.AutoSize = true;
             labelTime.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             labelTime.ForeColor = Color.Green;
-            labelTime.Location = new Point(87, 320);
+            labelTime.Location = new Point(84, 390);
             labelTime.Name = "labelTime";
             labelTime.Size = new Size(77, 32);
             labelTime.TabIndex = 4;
@@ -91,19 +92,20 @@
             textBoxPatient.Size = new Size(311, 39);
             textBoxPatient.TabIndex = 5;
             // 
-            // textBoxTreatment
+            // comboBoxTreatment
             // 
-            textBoxTreatment.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxTreatment.Location = new Point(173, 108);
-            textBoxTreatment.Name = "textBoxTreatment";
-            textBoxTreatment.Size = new Size(311, 39);
-            textBoxTreatment.TabIndex = 6;
+            comboBoxTreatment.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxTreatment.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxTreatment.Location = new Point(173, 121);
+            comboBoxTreatment.Name = "comboBoxTreatment";
+            comboBoxTreatment.Size = new Size(311, 39);
+            comboBoxTreatment.TabIndex = 6;
             // 
             // textBoxCost
             // 
             textBoxCost.BackColor = SystemColors.ControlLight;
             textBoxCost.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxCost.Location = new Point(173, 181);
+            textBoxCost.Location = new Point(173, 235);
             textBoxCost.Name = "textBoxCost";
             textBoxCost.Size = new Size(311, 39);
             textBoxCost.TabIndex = 7;
@@ -111,7 +113,7 @@
             // dateTimePickerDate
             // 
             dateTimePickerDate.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePickerDate.Location = new Point(170, 250);
+            dateTimePickerDate.Location = new Point(167, 313);
             dateTimePickerDate.Name = "dateTimePickerDate";
             dateTimePickerDate.Size = new Size(314, 39);
             dateTimePickerDate.TabIndex = 8;
@@ -120,7 +122,7 @@
             // 
             dateTimePickerTime.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             dateTimePickerTime.Format = DateTimePickerFormat.Time;
-            dateTimePickerTime.Location = new Point(170, 320);
+            dateTimePickerTime.Location = new Point(167, 390);
             dateTimePickerTime.Name = "dateTimePickerTime";
             dateTimePickerTime.ShowUpDown = true;
             dateTimePickerTime.Size = new Size(314, 39);
@@ -131,7 +133,7 @@
             buttonUpdate.BackColor = Color.Green;
             buttonUpdate.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             buttonUpdate.ForeColor = SystemColors.Control;
-            buttonUpdate.Location = new Point(70, 384);
+            buttonUpdate.Location = new Point(70, 474);
             buttonUpdate.Name = "buttonUpdate";
             buttonUpdate.Size = new Size(129, 56);
             buttonUpdate.TabIndex = 10;
@@ -144,7 +146,7 @@
             buttonCancel.BackColor = Color.DarkRed;
             buttonCancel.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             buttonCancel.ForeColor = SystemColors.Control;
-            buttonCancel.Location = new Point(332, 384);
+            buttonCancel.Location = new Point(332, 474);
             buttonCancel.Name = "buttonCancel";
             buttonCancel.Size = new Size(129, 56);
             buttonCancel.TabIndex = 11;
@@ -152,17 +154,29 @@
             buttonCancel.UseVisualStyleBackColor = false;
             buttonCancel.Click += buttonCancel_Click;
             // 
+            // labelCategory
+            // 
+            labelCategory.AutoSize = true;
+            labelCategory.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelCategory.ForeColor = Color.Green;
+            labelCategory.Location = new Point(173, 176);
+            labelCategory.Name = "labelCategory";
+            labelCategory.Size = new Size(117, 28);
+            labelCategory.TabIndex = 12;
+            labelCategory.Text = "Category: -";
+            // 
             // FormEditAppointment
             // 
             BackColor = Color.PowderBlue;
-            ClientSize = new Size(521, 482);
+            ClientSize = new Size(521, 568);
             Controls.Add(labelPatient);
             Controls.Add(labelTreatment);
             Controls.Add(labelCost);
             Controls.Add(labelDate);
             Controls.Add(labelTime);
             Controls.Add(textBoxPatient);
-            Controls.Add(textBoxTreatment);
+            Controls.Add(comboBoxTreatment);
+            Controls.Add(labelCategory);
             Controls.Add(textBoxCost);
             Controls.Add(dateTimePickerDate);
             Controls.Add(dateTimePickerTime);
@@ -185,9 +199,10 @@
         private Label labelCost;
         private Label labelDate;
         private Label labelTime;
+        private Label labelCategory;
 
         private TextBox textBoxPatient;
-        private TextBox textBoxTreatment;
+        private ComboBox comboBoxTreatment;
         private TextBox textBoxCost;
         private DateTimePicker dateTimePickerDate;
         private DateTimePicker dateTimePickerTime;

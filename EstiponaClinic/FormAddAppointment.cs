@@ -84,6 +84,7 @@ namespace EstiponaClinic
             if (comboBoxTreatment.SelectedItem is FormTreatment.Treatment treatment)
             {
                 textBoxCost.Text = treatment.TreatmentCost.ToString("F2");
+                labelCategory.Text = $"Category: {treatment.Category}";
             }
         }
 

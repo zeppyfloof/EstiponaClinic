@@ -40,6 +40,7 @@ namespace EstiponaClinic
             dataGridViewTreatment.Columns.Add("TreatmentName", "Treatment Name");
             dataGridViewTreatment.Columns.Add("TreatmentDescription", "Description");
             dataGridViewTreatment.Columns.Add("TreatmentCost", "Cost");
+            dataGridViewTreatment.Columns.Add("Category", "Category");
 
             dataGridViewTreatment.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewTreatment.MultiSelect = false;
@@ -86,7 +87,8 @@ namespace EstiponaClinic
                 dataGridViewTreatment.Rows.Add(
                     treatment.TreatmentName,
                     treatment.TreatmentDescription,
-                    treatment.TreatmentCost.ToString("F2")
+                    treatment.TreatmentCost.ToString("F2"),
+                    treatment.Category
                 );
             }
         }
@@ -132,14 +134,17 @@ namespace EstiponaClinic
 
             var filteredTreatments = string.IsNullOrEmpty(query)
                 ? treatments
-                : treatments.FindAll(t => t.TreatmentName.ToLower().Contains(query));
+                : treatments.FindAll(t =>
+                t.TreatmentName.ToLower().Contains(query) || t.Category.ToLower().Contains(query));
+
 
             foreach (var treatment in filteredTreatments)
             {
                 dataGridViewTreatment.Rows.Add(
                     treatment.TreatmentName,
                     treatment.TreatmentDescription,
-                    treatment.TreatmentCost.ToString("F2")
+                    treatment.TreatmentCost.ToString("F2"),
+                    treatment.Category
                 );
             }
         }
@@ -222,6 +227,7 @@ namespace EstiponaClinic
             public string TreatmentName { get; set; } = string.Empty;
             public string TreatmentDescription { get; set; } = string.Empty;
             public decimal TreatmentCost { get; set; }
+            public string Category { get; set; } = string.Empty;
         }
     }
 }

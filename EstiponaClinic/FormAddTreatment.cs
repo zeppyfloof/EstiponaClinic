@@ -10,6 +10,23 @@ namespace EstiponaClinic
         public FormAddTreatment()
         {
             InitializeComponent();
+
+            comboBoxCategory.Items.AddRange(new string[]
+                {
+                    "General Dentistry",
+                    "Oral Surgery",
+                    "Restorative Dentistry",
+                    "Endodontics",
+                    "Prosthodontics",
+                    "Implant Dentistry",
+                    "Cosmetic Dentistry",
+                    "Orthodontics",
+                    "Periodontics",
+                    "Pediatric Dentistry",
+                    "Emergency"
+                });
+
+            comboBoxCategory.SelectedIndex = 0;
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -38,6 +55,11 @@ namespace EstiponaClinic
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void comboBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
