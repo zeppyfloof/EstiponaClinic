@@ -38,7 +38,8 @@ namespace EstiponaClinic
             public string Address { get; set; } = string.Empty;
             public DateTime BirthDate { get; set; }
             public string Gender { get; set; } = string.Empty;
-            public string Notes { get; set; } = string.Empty;      // ✅ changed
+            public string Notes { get; set; } = string.Empty;
+            public string Email { get; set; } = "";
         }
 
         // ------------------ HELPERS ------------------
@@ -151,6 +152,7 @@ namespace EstiponaClinic
                     p.PatientID,
                     p.Name,
                     p.Phone,
+                    p.Email,
                     p.Address,
                     p.BirthDate,
                     Age = CalculateAge(p.BirthDate),
@@ -195,6 +197,7 @@ namespace EstiponaClinic
                     PatientID = GenerateUniquePatientID(),
                     Name = form.PatientName,
                     Phone = form.PatientNumber,
+                    Email = form.PatientEmail,
                     Address = form.PatientAddress,
                     BirthDate = form.PatientBirthDay,
                     Gender = form.PatientGender,
@@ -251,6 +254,7 @@ namespace EstiponaClinic
             var filtered = patients.Where(p =>
                 p.Name.ToLower().Contains(search) ||
                 p.Phone.ToLower().Contains(search) ||
+                p.Email.ToLower().Contains(search) ||
                 p.Address.ToLower().Contains(search) ||
                 p.Gender.ToLower().Contains(search)
             ).Select(p => new
@@ -258,6 +262,7 @@ namespace EstiponaClinic
                 p.PatientID,
                 p.Name,
                 p.Phone,
+                p.Email,
                 p.Address,
                 p.BirthDate,
                 Age = CalculateAge(p.BirthDate),

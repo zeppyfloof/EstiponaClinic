@@ -17,140 +17,100 @@
 
         private void InitializeComponent()
         {
-            label1 = new Label();
             textBoxPatientsFullName = new TextBox();
-            label2 = new Label();
             textBoxPatientsPhoneNumber = new TextBox();
-            label3 = new Label();
+            textBoxPatientsEmail = new TextBox();
             textBoxPatientsAddress = new TextBox();
-            label4 = new Label();
-            dateTimePickerBirthDate = new DateTimePicker();
-            label5 = new Label();
             comboBoxPatientsGender = new ComboBox();
-            label6 = new Label();
+            dateTimePickerBirthDate = new DateTimePicker();
             textBoxPatientsNotes = new TextBox();
             buttonUpdate = new Button();
             buttonCancel = new Button();
+            label1 = new Label();
+            label2 = new Label();
+            labelEmail = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.Green;
-            label1.Location = new Point(34, 31);
-            label1.Name = "label1";
-            label1.Size = new Size(161, 32);
-            label1.TabIndex = 0;
-            label1.Text = "Full Name:";
             // 
             // textBoxPatientsFullName
             // 
             textBoxPatientsFullName.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxPatientsFullName.Location = new Point(34, 67);
+            textBoxPatientsFullName.Margin = new Padding(3, 4, 3, 4);
             textBoxPatientsFullName.Name = "textBoxPatientsFullName";
-            textBoxPatientsFullName.Size = new Size(401, 32);
-            textBoxPatientsFullName.TabIndex = 1;
-            // 
-            // label2
-            // 
-            label2.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.Green;
-            label2.Location = new Point(34, 118);
-            label2.Name = "label2";
-            label2.Size = new Size(86, 32);
-            label2.TabIndex = 2;
-            label2.Text = "Phone Number:";
+            textBoxPatientsFullName.Size = new Size(401, 39);
+            textBoxPatientsFullName.TabIndex = 0;
             // 
             // textBoxPatientsPhoneNumber
             // 
             textBoxPatientsPhoneNumber.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxPatientsPhoneNumber.Location = new Point(34, 154);
+            textBoxPatientsPhoneNumber.Location = new Point(34, 159);
+            textBoxPatientsPhoneNumber.Margin = new Padding(3, 4, 3, 4);
             textBoxPatientsPhoneNumber.Name = "textBoxPatientsPhoneNumber";
-            textBoxPatientsPhoneNumber.Size = new Size(401, 32);
-            textBoxPatientsPhoneNumber.TabIndex = 3;
+            textBoxPatientsPhoneNumber.Size = new Size(401, 39);
+            textBoxPatientsPhoneNumber.TabIndex = 1;
             // 
-            // label3
+            // textBoxPatientsEmail
             // 
-            label3.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.ForeColor = Color.Green;
-            label3.Location = new Point(34, 207);
-            label3.Name = "label3";
-            label3.Size = new Size(106, 32);
-            label3.TabIndex = 4;
-            label3.Text = "Address:";
+            textBoxPatientsEmail.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxPatientsEmail.Location = new Point(34, 249);
+            textBoxPatientsEmail.Margin = new Padding(3, 4, 3, 4);
+            textBoxPatientsEmail.Name = "textBoxPatientsEmail";
+            textBoxPatientsEmail.Size = new Size(401, 39);
+            textBoxPatientsEmail.TabIndex = 2;
             // 
             // textBoxPatientsAddress
             // 
             textBoxPatientsAddress.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxPatientsAddress.Location = new Point(34, 243);
+            textBoxPatientsAddress.Location = new Point(34, 341);
+            textBoxPatientsAddress.Margin = new Padding(3, 4, 3, 4);
             textBoxPatientsAddress.Name = "textBoxPatientsAddress";
-            textBoxPatientsAddress.Size = new Size(401, 32);
-            textBoxPatientsAddress.TabIndex = 5;
+            textBoxPatientsAddress.Size = new Size(401, 39);
+            textBoxPatientsAddress.TabIndex = 3;
             // 
-            // label4
+            // comboBoxPatientsGender
             // 
-            label4.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.ForeColor = Color.Green;
-            label4.Location = new Point(34, 295);
-            label4.Name = "label4";
-            label4.Size = new Size(182, 32);
-            label4.TabIndex = 6;
-            label4.Text = "Date of Birth:";
+            comboBoxPatientsGender.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxPatientsGender.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxPatientsGender.FormattingEnabled = true;
+            comboBoxPatientsGender.Location = new Point(34, 520);
+            comboBoxPatientsGender.Margin = new Padding(3, 4, 3, 4);
+            comboBoxPatientsGender.Name = "comboBoxPatientsGender";
+            comboBoxPatientsGender.Size = new Size(401, 39);
+            comboBoxPatientsGender.TabIndex = 4;
             // 
             // dateTimePickerBirthDate
             // 
             dateTimePickerBirthDate.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePickerBirthDate.Location = new Point(34, 331);
+            dateTimePickerBirthDate.Location = new Point(34, 431);
+            dateTimePickerBirthDate.Margin = new Padding(3, 4, 3, 4);
             dateTimePickerBirthDate.Name = "dateTimePickerBirthDate";
-            dateTimePickerBirthDate.Size = new Size(401, 32);
-            dateTimePickerBirthDate.TabIndex = 7;
-            // 
-            // label5
-            // 
-            label5.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.ForeColor = Color.Green;
-            label5.Location = new Point(34, 384);
-            label5.Name = "label5";
-            label5.Size = new Size(97, 32);
-            label5.TabIndex = 8;
-            label5.Text = "Gender:";
-            // 
-            // comboBoxPatientsGender
-            // 
-            comboBoxPatientsGender.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBoxPatientsGender.Location = new Point(34, 420);
-            comboBoxPatientsGender.Name = "comboBoxPatientsGender";
-            comboBoxPatientsGender.Size = new Size(401, 33);
-            comboBoxPatientsGender.TabIndex = 9;
-            // 
-            // label6
-            // 
-            label6.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.ForeColor = Color.Green;
-            label6.Location = new Point(34, 472);
-            label6.Name = "label6";
-            label6.Size = new Size(81, 32);
-            label6.TabIndex = 10;
-            label6.Text = "HMO:";
+            dateTimePickerBirthDate.Size = new Size(401, 39);
+            dateTimePickerBirthDate.TabIndex = 5;
             // 
             // textBoxPatientsNotes
             // 
             textBoxPatientsNotes.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxPatientsNotes.Location = new Point(34, 509);
+            textBoxPatientsNotes.Location = new Point(34, 610);
+            textBoxPatientsNotes.Margin = new Padding(3, 4, 3, 4);
             textBoxPatientsNotes.Multiline = true;
             textBoxPatientsNotes.Name = "textBoxPatientsNotes";
-            textBoxPatientsNotes.Size = new Size(401, 110);
-            textBoxPatientsNotes.TabIndex = 5;
+            textBoxPatientsNotes.Size = new Size(401, 111);
+            textBoxPatientsNotes.TabIndex = 6;
             // 
             // buttonUpdate
             // 
             buttonUpdate.BackColor = Color.Green;
             buttonUpdate.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonUpdate.ForeColor = SystemColors.Control;
-            buttonUpdate.Location = new Point(34, 649);
+            buttonUpdate.ForeColor = Color.White;
+            buttonUpdate.Location = new Point(34, 760);
+            buttonUpdate.Margin = new Padding(3, 4, 3, 4);
             buttonUpdate.Name = "buttonUpdate";
             buttonUpdate.Size = new Size(144, 59);
-            buttonUpdate.TabIndex = 12;
+            buttonUpdate.TabIndex = 7;
             buttonUpdate.Text = "Update";
             buttonUpdate.UseVisualStyleBackColor = false;
             buttonUpdate.Click += buttonUpdate_Click;
@@ -159,35 +119,104 @@
             // 
             buttonCancel.BackColor = Color.DarkRed;
             buttonCancel.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonCancel.ForeColor = SystemColors.Control;
-            buttonCancel.Location = new Point(291, 649);
+            buttonCancel.ForeColor = Color.White;
+            buttonCancel.Location = new Point(291, 760);
+            buttonCancel.Margin = new Padding(3, 4, 3, 4);
             buttonCancel.Name = "buttonCancel";
             buttonCancel.Size = new Size(144, 59);
-            buttonCancel.TabIndex = 13;
+            buttonCancel.TabIndex = 8;
             buttonCancel.Text = "Cancel";
             buttonCancel.UseVisualStyleBackColor = false;
             buttonCancel.Click += buttonCancel_Click;
             // 
+            // Labels
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.Green;
+            label1.Location = new Point(34, 31);
+            label1.Name = "label1";
+            label1.Size = new Size(129, 32);
+            label1.Text = "Full Name";
+
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.Green;
+            label2.Location = new Point(34, 121);
+            label2.Name = "label2";
+            label2.Size = new Size(86, 32);
+            label2.Text = "Phone";
+
+            labelEmail.AutoSize = true;
+            labelEmail.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            labelEmail.ForeColor = Color.Green;
+            labelEmail.Location = new Point(34, 214);
+            labelEmail.Name = "labelEmail";
+            labelEmail.Size = new Size(76, 32);
+            labelEmail.Text = "Email";
+
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = Color.Green;
+            label3.Location = new Point(34, 305);
+            label3.Name = "label3";
+            label3.Size = new Size(106, 32);
+            label3.Text = "Address";
+
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = Color.Green;
+            label4.Location = new Point(34, 395);
+            label4.Name = "label4";
+            label4.Size = new Size(161, 32);
+            label4.Text = "Date of Birth";
+
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.ForeColor = Color.Green;
+            label5.Location = new Point(34, 484);
+            label5.Name = "label5";
+            label5.Size = new Size(97, 32);
+            label5.Text = "Gender";
+
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.ForeColor = Color.Green;
+            label6.Location = new Point(34, 573);
+            label6.Name = "label6";
+            label6.Size = new Size(73, 32);
+            label6.Text = "HMO";
+
+            // 
             // FormEditPatient
             // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PowderBlue;
-            ClientSize = new Size(470, 732);
-            Controls.Add(label1);
-            Controls.Add(textBoxPatientsFullName);
-            Controls.Add(label2);
-            Controls.Add(textBoxPatientsPhoneNumber);
-            Controls.Add(label3);
-            Controls.Add(textBoxPatientsAddress);
-            Controls.Add(label4);
-            Controls.Add(dateTimePickerBirthDate);
-            Controls.Add(label5);
-            Controls.Add(comboBoxPatientsGender);
+            ClientSize = new Size(470, 837);
             Controls.Add(label6);
-            Controls.Add(textBoxPatientsNotes);
-            Controls.Add(buttonUpdate);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(labelEmail);
             Controls.Add(buttonCancel);
+            Controls.Add(buttonUpdate);
+            Controls.Add(textBoxPatientsNotes);
+            Controls.Add(dateTimePickerBirthDate);
+            Controls.Add(comboBoxPatientsGender);
+            Controls.Add(textBoxPatientsEmail);
+            Controls.Add(textBoxPatientsAddress);
+            Controls.Add(textBoxPatientsPhoneNumber);
+            Controls.Add(textBoxPatientsFullName);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FormEditPatient";
+            ShowIcon = false;
+            ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Edit Patient";
             ResumeLayout(false);
@@ -196,19 +225,21 @@
 
         #endregion
 
-        private Label label1;
         private TextBox textBoxPatientsFullName;
-        private Label label2;
         private TextBox textBoxPatientsPhoneNumber;
-        private Label label3;
+        private TextBox textBoxPatientsEmail;
         private TextBox textBoxPatientsAddress;
-        private Label label4;
-        private DateTimePicker dateTimePickerBirthDate;
-        private Label label5;
         private ComboBox comboBoxPatientsGender;
-        private Label label6;
+        private DateTimePicker dateTimePickerBirthDate;
         private TextBox textBoxPatientsNotes;
         private Button buttonUpdate;
         private Button buttonCancel;
+        private Label label1;
+        private Label label2;
+        private Label labelEmail;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
     }
 }

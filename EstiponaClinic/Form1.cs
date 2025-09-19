@@ -95,5 +95,21 @@ namespace EstiponaClinic
             panel1.Controls.Add(formBilling);
             formBilling.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormPrescription formPrescription = new FormPrescription();
+            formPrescription.TopLevel = false;
+            formPrescription.FormBorderStyle = FormBorderStyle.None;
+            formPrescription.Dock = DockStyle.Fill;
+            panel1.Controls.Clear();
+            panel1.Controls.Add(formPrescription);
+            formPrescription.Show();
+        }
+
+        private void eXITToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

@@ -9,9 +9,10 @@ namespace EstiponaClinic
         public string PatientName => textBoxPatientsFullName.Text.Trim();
         public string PatientNumber => textBoxPatientsPhoneNumber.Text.Trim();
         public string PatientAddress => textBoxPatientsAddress.Text.Trim();
+        public string PatientEmail => textBoxPatientsEmail.Text.Trim();  // ✅ added
         public DateTime PatientBirthDay => dateTimePickerBirthDate.Value;
         public string PatientGender => comboBoxPatientsGender.Text;
-        public string PatientNotes => textBoxPatientsNotes.Text.Trim();   // ✅ changed
+        public string PatientNotes => textBoxPatientsNotes.Text.Trim();
 
         public FormAddPatient()
         {
@@ -25,6 +26,7 @@ namespace EstiponaClinic
             if (string.IsNullOrWhiteSpace(PatientName) ||
                 string.IsNullOrWhiteSpace(PatientNumber) ||
                 string.IsNullOrWhiteSpace(PatientAddress) ||
+                string.IsNullOrWhiteSpace(PatientEmail) ||   // ✅ validation
                 string.IsNullOrWhiteSpace(PatientGender))
             {
                 MessageBox.Show("Please fill in all required fields.",
@@ -41,6 +43,5 @@ namespace EstiponaClinic
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
     }
 }

@@ -22,7 +22,8 @@ namespace EstiponaClinic
             textBoxPatientsAddress.Text = patient.Address;
             dateTimePickerBirthDate.Value = patient.BirthDate == default ? DateTime.Now : patient.BirthDate;
             comboBoxPatientsGender.Text = patient.Gender;
-            textBoxPatientsNotes.Text = patient.Notes;  // ✅ changed
+            textBoxPatientsNotes.Text = patient.Notes;
+            textBoxPatientsEmail.Text = patient.Email;
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
@@ -43,7 +44,8 @@ namespace EstiponaClinic
             patient.Address = textBoxPatientsAddress.Text.Trim();
             patient.BirthDate = dateTimePickerBirthDate.Value;
             patient.Gender = comboBoxPatientsGender.Text;
-            patient.Notes = textBoxPatientsNotes.Text.Trim();  // ✅ changed
+            patient.Notes = textBoxPatientsNotes.Text.Trim();
+            patient.Email = textBoxPatientsEmail.Text.Trim();
 
             DialogResult = DialogResult.OK;
             Close();

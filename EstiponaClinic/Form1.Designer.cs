@@ -27,7 +27,11 @@
             buttonFormCertificate = new Button();
             buttonBilling = new Button();
             button1 = new Button();
+            menuStrip1 = new MenuStrip();
+            fileToolStripMenuItem = new ToolStripMenuItem();
+            eXITToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -35,10 +39,10 @@
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.AutoSize = true;
             panel1.BackColor = Color.PowderBlue;
-            panel1.Location = new Point(190, 16);
+            panel1.Location = new Point(190, 36);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(947, 1023);
+            panel1.Size = new Size(947, 1003);
             panel1.TabIndex = 0;
             // 
             // buttonFormAppointment
@@ -114,7 +118,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(11, 16);
+            pictureBox1.Location = new Point(11, 36);
             pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(170, 209);
@@ -172,6 +176,33 @@
             button1.TabIndex = 8;
             button1.Text = "Prescription";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
+            menuStrip1.ImageScalingSize = new Size(20, 20);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.RightToLeft = RightToLeft.Yes;
+            menuStrip1.Size = new Size(1151, 38);
+            menuStrip1.TabIndex = 9;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { eXITToolStripMenuItem });
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            fileToolStripMenuItem.Size = new Size(60, 34);
+            fileToolStripMenuItem.Text = "File";
+            // 
+            // eXITToolStripMenuItem
+            // 
+            eXITToolStripMenuItem.Name = "eXITToolStripMenuItem";
+            eXITToolStripMenuItem.Size = new Size(224, 34);
+            eXITToolStripMenuItem.Text = "Exit Form";
+            eXITToolStripMenuItem.Click += eXITToolStripMenuItem_Click;
             // 
             // Form1
             // 
@@ -179,7 +210,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = Color.PowderBlue;
-            ClientSize = new Size(1135, 1055);
+            ClientSize = new Size(1151, 1055);
             Controls.Add(buttonFormCertificate);
             Controls.Add(buttonFormTreatment);
             Controls.Add(button1);
@@ -191,7 +222,9 @@
             Controls.Add(buttonFormMedicalHistory);
             Controls.Add(buttonFormAppointment);
             Controls.Add(panel1);
+            Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.None;
+            MainMenuStrip = menuStrip1;
             Margin = new Padding(3, 4, 3, 4);
             MinimumSize = new Size(1151, 1015);
             Name = "Form1";
@@ -199,6 +232,8 @@
             Text = "Estipona Clinic";
             WindowState = FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -214,5 +249,8 @@
         private Button buttonFormCertificate;
         private Button buttonBilling;
         private Button button1;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem eXITToolStripMenuItem;
     }
 }

@@ -80,7 +80,7 @@
             // 
             richTextBoxDiagnosis.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             richTextBoxDiagnosis.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            richTextBoxDiagnosis.Location = new Point(44, 378);
+            richTextBoxDiagnosis.Location = new Point(44, 399);
             richTextBoxDiagnosis.Margin = new Padding(3, 4, 3, 4);
             richTextBoxDiagnosis.Name = "richTextBoxDiagnosis";
             richTextBoxDiagnosis.Size = new Size(896, 132);
@@ -111,6 +111,7 @@
             buttonGenerate.TabIndex = 5;
             buttonGenerate.Text = "Generate";
             buttonGenerate.UseVisualStyleBackColor = false;
+            buttonGenerate.Click += ButtonGenerate_Click;
             // 
             // label1
             // 
@@ -151,7 +152,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.Green;
-            label4.Location = new Point(44, 342);
+            label4.Location = new Point(44, 363);
             label4.Name = "label4";
             label4.Size = new Size(133, 32);
             label4.TabIndex = 9;
@@ -182,14 +183,17 @@
             // 
             // textBoxPurpose
             // 
+            textBoxPurpose.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxPurpose.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxPurpose.Location = new Point(167, 272);
+            textBoxPurpose.Multiline = true;
             textBoxPurpose.Name = "textBoxPurpose";
-            textBoxPurpose.Size = new Size(364, 39);
+            textBoxPurpose.Size = new Size(442, 67);
             textBoxPurpose.TabIndex = 12;
             // 
             // textBoxPTR
             // 
+            textBoxPTR.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             textBoxPTR.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxPTR.Location = new Point(708, 272);
             textBoxPTR.Name = "textBoxPTR";
@@ -209,6 +213,7 @@
             // 
             // label8
             // 
+            label8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             label8.ForeColor = Color.Green;

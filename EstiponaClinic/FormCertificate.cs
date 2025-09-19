@@ -33,12 +33,11 @@ namespace EstiponaClinic
             textBoxAddress.ReadOnly = true;
 
             textBoxPurpose.Text = "employment purposes, except for medico-legal reasons.";
-            textBoxPTR.Text = "PTR #3044311s";
+            textBoxPTR.Text = "3044311s";
 
             LoadPatients();
 
             comboBoxPatient.SelectedIndexChanged += ComboBoxPatient_SelectedIndexChanged;
-            buttonGenerate.Click += ButtonGenerate_Click;
         }
 
         private void LoadPatients()
@@ -164,9 +163,9 @@ namespace EstiponaClinic
             g.DrawString("SALVACION E. ESTIPONA", boldFont, Brushes.Black, pageWidth - 340, y); y += 40;
             g.DrawString("Lic# 0036173", bodyFont, Brushes.Black, pageWidth - 340, y); y += 40;
 
-            // PTR dynamic
-            string ptrText = string.IsNullOrWhiteSpace(textBoxPTR.Text) ? "PTR #3044311s" : textBoxPTR.Text;
-            g.DrawString(ptrText, bodyFont, Brushes.Black, pageWidth - 340, y);
+            //PTR dynamic
+            string ptrNumber = string.IsNullOrWhiteSpace(textBoxPTR.Text) ? "3044311s" : textBoxPTR.Text.Trim();
+            g.DrawString($"PTR #{ptrNumber}", bodyFont, Brushes.Black, pageWidth - 340, y);
         }
 
     }
