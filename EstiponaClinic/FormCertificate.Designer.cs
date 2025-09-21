@@ -40,6 +40,16 @@
             textBoxPTR = new TextBox();
             label7 = new Label();
             label8 = new Label();
+            labelBP = new Label();
+            textBoxBP = new TextBox();
+            labelHR = new Label();
+            textBoxHR = new TextBox();
+            labelTemp = new Label();
+            textBoxTemp = new TextBox();
+            labelWeight = new Label();
+            textBoxWeight = new TextBox();
+            labelHeight = new Label();
+            textBoxHeight = new TextBox();
             SuspendLayout();
             // 
             // comboBoxPatient
@@ -80,7 +90,7 @@
             // 
             richTextBoxDiagnosis.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             richTextBoxDiagnosis.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            richTextBoxDiagnosis.Location = new Point(44, 399);
+            richTextBoxDiagnosis.Location = new Point(42, 499);
             richTextBoxDiagnosis.Margin = new Padding(3, 4, 3, 4);
             richTextBoxDiagnosis.Name = "richTextBoxDiagnosis";
             richTextBoxDiagnosis.Size = new Size(896, 132);
@@ -91,10 +101,10 @@
             // 
             richTextBoxRecommendations.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             richTextBoxRecommendations.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            richTextBoxRecommendations.Location = new Point(44, 571);
+            richTextBoxRecommendations.Location = new Point(44, 671);
             richTextBoxRecommendations.Margin = new Padding(3, 4, 3, 4);
             richTextBoxRecommendations.Name = "richTextBoxRecommendations";
-            richTextBoxRecommendations.Size = new Size(896, 139);
+            richTextBoxRecommendations.Size = new Size(896, 307);
             richTextBoxRecommendations.TabIndex = 4;
             richTextBoxRecommendations.Text = "";
             // 
@@ -104,7 +114,7 @@
             buttonGenerate.BackColor = Color.Green;
             buttonGenerate.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             buttonGenerate.ForeColor = Color.White;
-            buttonGenerate.Location = new Point(791, 728);
+            buttonGenerate.Location = new Point(791, 996);
             buttonGenerate.Margin = new Padding(3, 4, 3, 4);
             buttonGenerate.Name = "buttonGenerate";
             buttonGenerate.Size = new Size(149, 56);
@@ -152,7 +162,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.Green;
-            label4.Location = new Point(44, 363);
+            label4.Location = new Point(42, 463);
             label4.Name = "label4";
             label4.Size = new Size(133, 32);
             label4.TabIndex = 9;
@@ -164,7 +174,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.Green;
-            label5.Location = new Point(44, 535);
+            label5.Location = new Point(44, 635);
             label5.Name = "label5";
             label5.Size = new Size(233, 32);
             label5.TabIndex = 10;
@@ -223,12 +233,112 @@
             label8.TabIndex = 15;
             label8.Text = "PTR #:";
             // 
+            // labelBP
+            // 
+            labelBP.AutoSize = true;
+            labelBP.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelBP.ForeColor = Color.Green;
+            labelBP.Location = new Point(49, 366);
+            labelBP.Name = "labelBP";
+            labelBP.Size = new Size(158, 28);
+            labelBP.TabIndex = 16;
+            labelBP.Text = "Blood Pressure:";
+            // 
+            // textBoxBP
+            // 
+            textBoxBP.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxBP.Location = new Point(237, 363);
+            textBoxBP.Name = "textBoxBP";
+            textBoxBP.ReadOnly = true;
+            textBoxBP.Size = new Size(150, 34);
+            textBoxBP.TabIndex = 17;
+            // 
+            // labelHR
+            // 
+            labelHR.AutoSize = true;
+            labelHR.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelHR.ForeColor = Color.Green;
+            labelHR.Location = new Point(448, 366);
+            labelHR.Name = "labelHR";
+            labelHR.Size = new Size(120, 28);
+            labelHR.TabIndex = 18;
+            labelHR.Text = "Heart Rate:";
+            // 
+            // textBoxHR
+            // 
+            textBoxHR.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxHR.Location = new Point(574, 363);
+            textBoxHR.Name = "textBoxHR";
+            textBoxHR.ReadOnly = true;
+            textBoxHR.Size = new Size(141, 34);
+            textBoxHR.TabIndex = 19;
+            // 
+            // labelTemp
+            // 
+            labelTemp.AutoSize = true;
+            labelTemp.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelTemp.ForeColor = Color.Green;
+            labelTemp.Location = new Point(764, 366);
+            labelTemp.Name = "labelTemp";
+            labelTemp.Size = new Size(68, 28);
+            labelTemp.TabIndex = 20;
+            labelTemp.Text = "Temp:";
+            // 
+            // textBoxTemp
+            // 
+            textBoxTemp.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxTemp.Location = new Point(838, 363);
+            textBoxTemp.Name = "textBoxTemp";
+            textBoxTemp.ReadOnly = true;
+            textBoxTemp.Size = new Size(100, 34);
+            textBoxTemp.TabIndex = 21;
+            // 
+            // labelWeight
+            // 
+            labelWeight.AutoSize = true;
+            labelWeight.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelWeight.ForeColor = Color.Green;
+            labelWeight.Location = new Point(122, 408);
+            labelWeight.Name = "labelWeight";
+            labelWeight.Size = new Size(85, 28);
+            labelWeight.TabIndex = 22;
+            labelWeight.Text = "Weight:";
+            // 
+            // textBoxWeight
+            // 
+            textBoxWeight.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxWeight.Location = new Point(237, 408);
+            textBoxWeight.Name = "textBoxWeight";
+            textBoxWeight.ReadOnly = true;
+            textBoxWeight.Size = new Size(150, 34);
+            textBoxWeight.TabIndex = 23;
+            // 
+            // labelHeight
+            // 
+            labelHeight.AutoSize = true;
+            labelHeight.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelHeight.ForeColor = Color.Green;
+            labelHeight.Location = new Point(751, 408);
+            labelHeight.Name = "labelHeight";
+            labelHeight.Size = new Size(81, 28);
+            labelHeight.TabIndex = 24;
+            labelHeight.Text = "Height:";
+            // 
+            // textBoxHeight
+            // 
+            textBoxHeight.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxHeight.Location = new Point(838, 408);
+            textBoxHeight.Name = "textBoxHeight";
+            textBoxHeight.ReadOnly = true;
+            textBoxHeight.Size = new Size(100, 34);
+            textBoxHeight.TabIndex = 25;
+            // 
             // FormCertificate
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PowderBlue;
-            ClientSize = new Size(985, 787);
+            ClientSize = new Size(985, 1055);
             Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(textBoxPTR);
@@ -245,6 +355,16 @@
             Controls.Add(label3);
             Controls.Add(label4);
             Controls.Add(label5);
+            Controls.Add(labelBP);
+            Controls.Add(textBoxBP);
+            Controls.Add(labelHR);
+            Controls.Add(textBoxHR);
+            Controls.Add(labelTemp);
+            Controls.Add(textBoxTemp);
+            Controls.Add(labelWeight);
+            Controls.Add(textBoxWeight);
+            Controls.Add(labelHeight);
+            Controls.Add(textBoxHeight);
             Margin = new Padding(3, 4, 3, 4);
             Name = "FormCertificate";
             Text = "Generate Dental Certificate";
@@ -257,5 +377,16 @@
         private TextBox textBoxPTR;
         private Label label7;
         private Label label8;
+        private TextBox textBoxBP;
+        private TextBox textBoxHR;
+        private TextBox textBoxTemp;
+        private TextBox textBoxWeight;
+        private TextBox textBoxHeight;
+        private Label labelBP;
+        private Label labelHR;
+        private Label labelTemp;
+        private Label labelWeight;
+        private Label labelHeight;
+
     }
 }

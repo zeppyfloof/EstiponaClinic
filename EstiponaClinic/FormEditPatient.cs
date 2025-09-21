@@ -24,6 +24,14 @@ namespace EstiponaClinic
             comboBoxPatientsGender.Text = patient.Gender;
             textBoxPatientsNotes.Text = patient.Notes;
             textBoxPatientsEmail.Text = patient.Email;
+
+            // Pre-fill vitals
+            textBoxBloodPressure.Text = patient.BloodPressure;
+            textBoxHeartRate.Text = patient.HeartRate;
+            textBoxTemperature.Text = patient.Temperature;
+            textBoxRespiratoryRate.Text = patient.RespiratoryRate;
+            textBoxWeight.Text = patient.Weight;
+            textBoxHeight.Text = patient.Height;
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
@@ -47,6 +55,14 @@ namespace EstiponaClinic
             patient.Notes = textBoxPatientsNotes.Text.Trim();
             patient.Email = textBoxPatientsEmail.Text.Trim();
 
+            // Update vitals
+            patient.BloodPressure = textBoxBloodPressure.Text.Trim();
+            patient.HeartRate = textBoxHeartRate.Text.Trim();
+            patient.Temperature = textBoxTemperature.Text.Trim();
+            patient.RespiratoryRate = textBoxRespiratoryRate.Text.Trim(); // ✅ added
+            patient.Weight = textBoxWeight.Text.Trim();
+            patient.Height = textBoxHeight.Text.Trim();
+
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -56,6 +72,5 @@ namespace EstiponaClinic
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
     }
 }

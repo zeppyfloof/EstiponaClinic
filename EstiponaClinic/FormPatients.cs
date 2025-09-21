@@ -40,6 +40,12 @@ namespace EstiponaClinic
             public string Gender { get; set; } = string.Empty;
             public string Notes { get; set; } = string.Empty;
             public string Email { get; set; } = "";
+            public string BloodPressure { get; set; } = "";
+            public string HeartRate { get; set; } = "";
+            public string Temperature { get; set; } = "";
+            public string RespiratoryRate { get; set; } = "";
+            public string Weight { get; set; } = "";
+            public string Height { get; set; } = "";
         }
 
         // ------------------ HELPERS ------------------
@@ -157,7 +163,13 @@ namespace EstiponaClinic
                     p.BirthDate,
                     Age = CalculateAge(p.BirthDate),
                     p.Gender,
-                    p.Notes
+                    p.Notes,
+                    p.BloodPressure,
+                    p.HeartRate,
+                    p.Temperature,
+                    p.RespiratoryRate,
+                    p.Weight,
+                    p.Height
                 })
                 .ToList();
 
@@ -165,7 +177,7 @@ namespace EstiponaClinic
             dataGridViewPatients.DataSource = null;
             dataGridViewPatients.DataSource = view;
 
-            // Hide PatientID column if present
+            // Hide PatientID column
             if (dataGridViewPatients.Columns["PatientID"] != null)
                 dataGridViewPatients.Columns["PatientID"].Visible = false;
 
@@ -184,6 +196,20 @@ namespace EstiponaClinic
                 dataGridViewPatients.Columns["BirthDate"].HeaderText = "Date of Birth";
             if (dataGridViewPatients.Columns["Notes"] != null)
                 dataGridViewPatients.Columns["Notes"].HeaderText = "HMO";
+
+            // New: rename vitals
+            if (dataGridViewPatients.Columns["BloodPressure"] != null)
+                dataGridViewPatients.Columns["BloodPressure"].HeaderText = "BP";
+            if (dataGridViewPatients.Columns["HeartRate"] != null)
+                dataGridViewPatients.Columns["HeartRate"].HeaderText = "HR";
+            if (dataGridViewPatients.Columns["Temperature"] != null)
+                dataGridViewPatients.Columns["Temperature"].HeaderText = "Temp (°C)";
+            if (dataGridViewPatients.Columns["RespiratoryRate"] != null)
+                dataGridViewPatients.Columns["RespiratoryRate"].HeaderText = "RR";
+            if (dataGridViewPatients.Columns["Weight"] != null)
+                dataGridViewPatients.Columns["Weight"].HeaderText = "Weight (kg)";
+            if (dataGridViewPatients.Columns["Height"] != null)
+                dataGridViewPatients.Columns["Height"].HeaderText = "Height (cm)";
         }
 
         // ------------------ BUTTONS ------------------
@@ -201,7 +227,13 @@ namespace EstiponaClinic
                     Address = form.PatientAddress,
                     BirthDate = form.PatientBirthDay,
                     Gender = form.PatientGender,
-                    Notes = form.PatientNotes
+                    Notes = form.PatientNotes,
+                    BloodPressure = form.PatientBloodPressure,
+                    HeartRate = form.PatientHeartRate,
+                    Temperature = form.PatientTemperature,
+                    RespiratoryRate = form.PatientRespiratoryRate,
+                    Weight = form.PatientWeight,
+                    Height = form.PatientHeight
                 };
                 patients.Add(patient);
                 SavePatients();
@@ -256,7 +288,14 @@ namespace EstiponaClinic
                 p.Phone.ToLower().Contains(search) ||
                 p.Email.ToLower().Contains(search) ||
                 p.Address.ToLower().Contains(search) ||
-                p.Gender.ToLower().Contains(search)
+                p.Gender.ToLower().Contains(search) ||
+                p.Notes.ToLower().Contains(search) ||
+                p.BloodPressure.ToLower().Contains(search) ||
+                p.HeartRate.ToLower().Contains(search) ||
+                p.Temperature.ToLower().Contains(search) ||
+                p.RespiratoryRate.ToLower().Contains(search) ||
+                p.Weight.ToLower().Contains(search) ||
+                p.Height.ToLower().Contains(search)
             ).Select(p => new
             {
                 p.PatientID,
@@ -267,7 +306,13 @@ namespace EstiponaClinic
                 p.BirthDate,
                 Age = CalculateAge(p.BirthDate),
                 p.Gender,
-                p.Notes                 // ✅ changed
+                p.Notes,
+                p.BloodPressure,
+                p.HeartRate,
+                p.Temperature,
+                p.RespiratoryRate,
+                p.Weight,
+                p.Height
             }).ToList();
 
             dataGridViewPatients.DataSource = null;
@@ -276,6 +321,7 @@ namespace EstiponaClinic
             if (dataGridViewPatients.Columns["PatientID"] != null)
                 dataGridViewPatients.Columns["PatientID"].Visible = false;
         }
+
 
     }
 }

@@ -64,7 +64,15 @@ namespace EstiponaClinic
 
                 textBoxAge.Text = age.ToString();
                 textBoxAddress.Text = patient.Address ?? string.Empty;
+
+                // Load vitals if available
+                textBoxBP.Text = string.IsNullOrWhiteSpace(patient.BloodPressure) ? "N/A" : patient.BloodPressure;
+                textBoxHR.Text = string.IsNullOrWhiteSpace(patient.HeartRate) ? "N/A" : patient.HeartRate;
+                textBoxTemp.Text = string.IsNullOrWhiteSpace(patient.Temperature) ? "N/A" : patient.Temperature + " °C";
+                textBoxWeight.Text = string.IsNullOrWhiteSpace(patient.Weight) ? "N/A" : patient.Weight + " kg";
+                textBoxHeight.Text = string.IsNullOrWhiteSpace(patient.Height) ? "N/A" : patient.Height + " cm";
             }
+
         }
 
         private void ButtonGenerate_Click(object? sender, EventArgs e)
@@ -136,6 +144,17 @@ namespace EstiponaClinic
 
             g.DrawString(bodyText, bodyFont, Brushes.Black, new RectangleF(leftMargin, y, pageWidth - 2 * leftMargin, 100));
             y += 110;
+
+            // Vitals Section
+            g.DrawString("Vital Signs:", boldFont, Brushes.Black, leftMargin, y);
+            y += 25;
+
+            string vitals = $"Blood Pressure: {textBoxBP.Text}, Heart Rate: {textBoxHR.Text}, Temperature: {textBoxTemp.Text}, " +
+                            $"Weight: {textBoxWeight.Text}, Height: {textBoxHeight.Text}";
+
+            g.DrawString(vitals, bodyFont, Brushes.Black,
+                new RectangleF(leftMargin, y, pageWidth - 2 * leftMargin, 60));
+            y += 70;
 
             // Diagnosis
             g.DrawString("Diagnosis:", boldFont, Brushes.Black, leftMargin, y); y += 20;

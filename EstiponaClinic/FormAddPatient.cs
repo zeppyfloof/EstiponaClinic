@@ -13,6 +13,13 @@ namespace EstiponaClinic
         public DateTime PatientBirthDay => dateTimePickerBirthDate.Value;
         public string PatientGender => comboBoxPatientsGender.Text;
         public string PatientNotes => textBoxPatientsNotes.Text.Trim();
+        public string PatientBloodPressure => textBoxBloodPressure.Text.Trim();
+        public string PatientHeartRate => textBoxHeartRate.Text.Trim();
+        public string PatientTemperature => textBoxTemperature.Text.Trim();
+        public string PatientRespiratoryRate => textBoxRespiratoryRate.Text.Trim();
+        public string PatientWeight => textBoxWeight.Text.Trim();
+        public string PatientHeight => textBoxHeight.Text.Trim();
+
 
         public FormAddPatient()
         {
