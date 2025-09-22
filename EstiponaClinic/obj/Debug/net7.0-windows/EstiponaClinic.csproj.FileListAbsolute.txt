@@ -124,3 +124,4 @@ D:\dentalrecord4\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\Estipona
 C:\Users\Floof\Desktop\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormBilling.resources
 D:\dentalrecord4\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormBilling.resources
 D:\dentalrecord4\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormPrescription.resources
+C:\Users\Floof\Desktop\EstiponaClinic\EstiponaClinic\obj\Debug\net7.0-windows\EstiponaClinic.FormPrescription.resources

@@ -52,8 +52,8 @@ namespace EstiponaClinic
                 .ToList();
 
             comboBoxPatient.DataSource = patients;
-            comboBoxPatient.DisplayMember = "Name";
-            comboBoxPatient.ValueMember = "PatientID";
+            comboBoxPatient.DisplayMember = "Name"; // ✅ show names
+            comboBoxPatient.ValueMember = "PatientID";     // keep ID hidden internally
         }
 
         private void ComboBoxPatient_SelectedIndexChanged(object? sender, EventArgs e)
@@ -64,7 +64,7 @@ namespace EstiponaClinic
                 if (DateTime.Now.Date < patient.BirthDate.AddYears(age)) age--;
 
                 textBoxAge.Text = age.ToString();
-                textBoxAddress.Text = patient.Address ?? string.Empty;
+                textBoxAddress.Text = patient.Address ?? string.Empty; // ✅ Address, not PatientAddress
             }
         }
 
@@ -97,7 +97,9 @@ namespace EstiponaClinic
             doctorNotesText = (richTextBoxNotes?.Text ?? "").Trim();
 
             PrintDocument pd = new PrintDocument();
-            pd.DefaultPageSettings.PaperSize = new PaperSize("A4", 827, 1169);
+            // ✅ Quarter A4 size (approx 105mm x 148mm = 413x584 in hundredths of an inch)
+            pd.DefaultPageSettings.PaperSize = new PaperSize("QuarterA4", 413, 584);
+            pd.DefaultPageSettings.Margins = new Margins(20, 20, 20, 20);
             pd.PrintPage += Pd_PrintPage;
 
             PrintPreviewDialog preview = new PrintPreviewDialog
@@ -116,82 +118,86 @@ namespace EstiponaClinic
             if (selectedPatientForPrint == null) return;
 
             Graphics g = e.Graphics;
-            Font headerFont = new Font("Arial", 16, FontStyle.Bold);
-            Font bodyFont = new Font("Arial", 16);
-            Font boldFont = new Font("Arial", 16, FontStyle.Bold);
+            Font headerFont = new Font("Arial", 10, FontStyle.Bold);
+            Font bodyFont = new Font("Arial", 9);
+            Font boldFont = new Font("Arial", 9, FontStyle.Bold);
 
-            float y = 50;
-            float leftMargin = 60;
+            float y = 20;
+            float leftMargin = 25;
             float pageWidth = e.PageBounds.Width;
 
             // Header
-            g.DrawString("ESTIPONA DENTAL CLINIC", headerFont, Brushes.Black, pageWidth / 2, y, new StringFormat { Alignment = StringAlignment.Center });
-            y += 35;
-            g.DrawString("General Dentistry, Orthodontics, and Oral Surgery", bodyFont, Brushes.Black, pageWidth / 2, y, new StringFormat { Alignment = StringAlignment.Center });
-            y += 30;
-            g.DrawString("Door #4 & 5 DELGAR Bldg, J.P. Laurel Avenue Bajada, Davao City", bodyFont, Brushes.Black, pageWidth / 2, y, new StringFormat { Alignment = StringAlignment.Center });
-            y += 30;
-            g.DrawString("Contact: 09456498475", bodyFont, Brushes.Black, pageWidth / 2, y, new StringFormat { Alignment = StringAlignment.Center });
-            y += 50;
+            g.DrawString("ESTIPONA DENTAL CLINIC", headerFont, Brushes.Black, pageWidth / 2, y,
+                new StringFormat { Alignment = StringAlignment.Center });
+            y += 18;
+            g.DrawString("General Dentistry, Orthodontics, and Oral Surgery", bodyFont, Brushes.Black, pageWidth / 2, y,
+                new StringFormat { Alignment = StringAlignment.Center });
+            y += 15;
+            g.DrawString("Door #4 & 5 DELGAR Bldg, J.P. Laurel Avenue Bajada, Davao City", bodyFont, Brushes.Black, pageWidth / 2, y,
+                new StringFormat { Alignment = StringAlignment.Center });
+            y += 15;
+            g.DrawString("Contact: 09456498475", bodyFont, Brushes.Black, pageWidth / 2, y,
+                new StringFormat { Alignment = StringAlignment.Center });
+            y += 25;
 
             // Title
-            g.DrawString("PRESCRIPTION", new Font("Arial", 20, FontStyle.Bold | FontStyle.Underline), Brushes.Black, pageWidth / 2, y, new StringFormat { Alignment = StringAlignment.Center });
-            y += 60;
+            g.DrawString("PRESCRIPTION", new Font("Arial", 12, FontStyle.Bold | FontStyle.Underline), Brushes.Black, pageWidth / 2, y,
+                new StringFormat { Alignment = StringAlignment.Center });
+            y += 30;
 
             // Date
-            g.DrawString($"Date: {DateTime.Now:MMMM dd, yyyy}", bodyFont, Brushes.Black, pageWidth - 320, y);
-            y += 60;
+            g.DrawString($"Date: {DateTime.Now:MMMM dd, yyyy}", bodyFont, Brushes.Black, pageWidth - 180, y);
+            y += 25;
 
             // Prescription details with Rx
-            g.DrawString("℞", new Font("Arial", 56, FontStyle.Bold), Brushes.Black, leftMargin, y - 10);
-            y += 120;
+            g.DrawString("℞", new Font("Arial", 28, FontStyle.Bold), Brushes.Black, leftMargin, y - 10);
+            y += 50;
 
             if (prescriptions.Count == 0)
             {
-                g.DrawString("(No medicines provided.)", bodyFont, Brushes.Black, leftMargin + 40, y);
-                y += 30;
+                g.DrawString("(No medicines provided.)", bodyFont, Brushes.Black, leftMargin + 30, y);
+                y += 20;
             }
             else
             {
                 int index = 1;
                 foreach (var item in prescriptions)
                 {
-                    g.DrawString($"{index}. {item.Medicine} - {item.Dosage}", bodyFont, Brushes.Black, leftMargin + 40, y);
-                    y += 25;
+                    g.DrawString($"{index}. {item.Medicine} - {item.Dosage}", bodyFont, Brushes.Black, leftMargin + 30, y);
+                    y += 18;
                     index++;
                 }
             }
-            y += 20;
+            y += 15;
 
             // --- Instructions ---
             g.DrawString("Instructions:", boldFont, Brushes.Black, leftMargin, y);
-            y += 25;
+            y += 18;
 
             string instr = string.IsNullOrWhiteSpace(instructionsText) ? "(No instructions provided.)" : instructionsText;
-            RectangleF instrRect = new RectangleF(leftMargin + 20, y, pageWidth - 2 * leftMargin, e.MarginBounds.Height);
+            RectangleF instrRect = new RectangleF(leftMargin + 15, y, pageWidth - 2 * leftMargin, 200);
             g.DrawString(instr, bodyFont, Brushes.Black, instrRect);
 
-            // Measure height actually used
             SizeF instrSize = g.MeasureString(instr, bodyFont, (int)(pageWidth - 2 * leftMargin));
-            y += instrSize.Height + 30;
+            y += instrSize.Height + 20;
 
             // --- Doctor's Notes ---
             g.DrawString("Doctor's Notes:", boldFont, Brushes.Black, leftMargin, y);
-            y += 25;
+            y += 18;
 
             string notes = string.IsNullOrWhiteSpace(doctorNotesText) ? "(No notes provided.)" : doctorNotesText;
-            RectangleF notesRect = new RectangleF(leftMargin + 20, y, pageWidth - 2 * leftMargin, e.MarginBounds.Height);
+            RectangleF notesRect = new RectangleF(leftMargin + 15, y, pageWidth - 2 * leftMargin, 200);
             g.DrawString(notes, bodyFont, Brushes.Black, notesRect);
 
             SizeF notesSize = g.MeasureString(notes, bodyFont, (int)(pageWidth - 2 * leftMargin));
-            y += notesSize.Height + 40;
+            y += notesSize.Height + 25;
 
             // Signature
-            g.DrawString("_____________________________", bodyFont, Brushes.Black, pageWidth - 420, y);
-            y += 40;
-            g.DrawString("SALVACION E. ESTIPONA", boldFont, Brushes.Black, pageWidth - 380, y); y += 40;
-            g.DrawString("Lic# 0036173", bodyFont, Brushes.Black, pageWidth - 380, y); y += 40;
-            g.DrawString("PTR #3044311s", bodyFont, Brushes.Black, pageWidth - 380, y);
+            g.DrawString("_________________________", bodyFont, Brushes.Black, pageWidth - 220, y);
+            y += 25;
+            g.DrawString("SALVACION E. ESTIPONA", boldFont, Brushes.Black, pageWidth - 210, y); y += 20;
+            g.DrawString("Lic# 0036173", bodyFont, Brushes.Black, pageWidth - 210, y); y += 20;
+            g.DrawString("PTR #3044311s", bodyFont, Brushes.Black, pageWidth - 210, y);
         }
     }
 }
