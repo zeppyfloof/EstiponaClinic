@@ -39,6 +39,8 @@
             label7 = new Label();
             label8 = new Label();
             label4 = new Label();
+            textBoxPTR = new TextBox();
+            labelPTR = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvPrescriptions).BeginInit();
             SuspendLayout();
             // 
@@ -221,6 +223,27 @@
             label4.TabIndex = 13;
             label4.Text = "Input Medicine and Dosage";
             // 
+            // textBoxPTR
+            // 
+            textBoxPTR.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            textBoxPTR.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxPTR.Location = new Point(747, 543);
+            textBoxPTR.Name = "textBoxPTR";
+            textBoxPTR.Size = new Size(333, 39);
+            textBoxPTR.TabIndex = 14;
+            textBoxPTR.Text = "3044311s";
+            // 
+            // labelPTR
+            // 
+            labelPTR.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            labelPTR.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            labelPTR.ForeColor = Color.Green;
+            labelPTR.Location = new Point(659, 546);
+            labelPTR.Name = "labelPTR";
+            labelPTR.Size = new Size(91, 34);
+            labelPTR.TabIndex = 15;
+            labelPTR.Text = "PTR #:";
+            // 
             // FormPrescription
             // 
             BackColor = Color.PowderBlue;
@@ -239,6 +262,8 @@
             Controls.Add(label6);
             Controls.Add(label7);
             Controls.Add(label8);
+            Controls.Add(textBoxPTR);
+            Controls.Add(labelPTR);
             Name = "FormPrescription";
             Text = "Generate Prescription";
             ((System.ComponentModel.ISupportInitialize)dgvPrescriptions).EndInit();
@@ -249,5 +274,7 @@
         private DataGridViewTextBoxColumn Medicine;
         private DataGridViewTextBoxColumn Dosage;
         private Label label4;
+        private TextBox textBoxPTR;
+        private Label labelPTR;
     }
 }

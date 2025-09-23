@@ -15,6 +15,7 @@ namespace EstiponaClinic
         private string instructionsText = "";
         private string doctorNotesText = "";
         private List<PrescriptionItem> prescriptions = new();
+        private string ptrNumber = "3044311s";
 
         private List<FormPatients.Patient> patients = new();
         private readonly string patientsFile = Path.Combine(
@@ -95,6 +96,7 @@ namespace EstiponaClinic
 
             instructionsText = (richTextBoxInstructions?.Text ?? "").Trim();
             doctorNotesText = (richTextBoxNotes?.Text ?? "").Trim();
+            ptrNumber = textBoxPTR.Text.Trim();
 
             PrintDocument pd = new PrintDocument();
             // ✅ Quarter A4 size (approx 105mm x 148mm = 413x584 in hundredths of an inch)
@@ -197,7 +199,7 @@ namespace EstiponaClinic
             y += 25;
             g.DrawString("SALVACION E. ESTIPONA", boldFont, Brushes.Black, pageWidth - 210, y); y += 20;
             g.DrawString("Lic# 0036173", bodyFont, Brushes.Black, pageWidth - 210, y); y += 20;
-            g.DrawString("PTR #3044311s", bodyFont, Brushes.Black, pageWidth - 210, y);
+            g.DrawString($"PTR #{ptrNumber}", bodyFont, Brushes.Black, pageWidth - 210, y);
         }
     }
 }
