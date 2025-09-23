@@ -497,3 +497,5 @@ C:\Users\Floof\Desktop\EstiponaClinic\EstiponaClinic\obj\Release\net7.0-windows\
 C:\Users\Floof\Desktop\EstiponaClinic\EstiponaClinic\obj\Release\net7.0-windows\win-x86\EstiponaClinic.pdb
 C:\Users\Floof\Desktop\EstiponaClinic\EstiponaClinic\obj\Release\net7.0-windows\win-x86\EstiponaClinic.genruntimeconfig.cache
 C:\Users\Floof\Desktop\EstiponaClinic\EstiponaClinic\obj\Release\net7.0-windows\win-x86\ref\EstiponaClinic.dll
+C:\Users\Floof\Desktop\EstiponaClinic\EstiponaClinic\obj\Release\net7.0-windows\win-x86\EstiponaClinic.FormBilling.resources
+C:\Users\Floof\Desktop\EstiponaClinic\EstiponaClinic\obj\Release\net7.0-windows\win-x86\EstiponaClinic.FormPrescription.resources
