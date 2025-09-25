@@ -16,6 +16,8 @@ namespace EstiponaClinic
         private string doctorNotesText = "";
         private List<PrescriptionItem> prescriptions = new();
         private string ptrNumber = "3044311s";
+        private int printPrescriptionIndex = 0;
+
 
         private List<FormPatients.Patient> patients = new();
         private readonly string patientsFile = Path.Combine(
@@ -65,7 +67,9 @@ namespace EstiponaClinic
                 if (DateTime.Now.Date < patient.BirthDate.AddYears(age)) age--;
 
                 textBoxAge.Text = age.ToString();
-                textBoxAddress.Text = patient.Address ?? string.Empty; // ✅ Address, not PatientAddress
+                textBoxAddress.Text = patient.Address ?? string.Empty;
+                textBoxPhone.Text = patient.Phone ?? string.Empty;
+                textBoxGender.Text = patient.Gender ?? string.Empty;
             }
         }
 
@@ -95,8 +99,11 @@ namespace EstiponaClinic
             }
 
             instructionsText = (richTextBoxInstructions?.Text ?? "").Trim();
-            doctorNotesText = (richTextBoxNotes?.Text ?? "").Trim();
+            //doctorNotesText = (richTextBoxNotes?.Text ?? "").Trim();
             ptrNumber = textBoxPTR.Text.Trim();
+
+            // reset printing state before starting print
+            printPrescriptionIndex = 0;
 
             PrintDocument pd = new PrintDocument();
             // ✅ Quarter A4 size (approx 105mm x 148mm = 413x584 in hundredths of an inch)
@@ -124,82 +131,209 @@ namespace EstiponaClinic
             Font bodyFont = new Font("Arial", 9);
             Font boldFont = new Font("Arial", 9, FontStyle.Bold);
 
-            float y = 20;
-            float leftMargin = 25;
-            float pageWidth = e.PageBounds.Width;
+            // margins / positions
+            Rectangle margin = e.MarginBounds;
+            float left = margin.Left;
+            float right = margin.Right;
+            float printableWidth = margin.Width;
+            float y = margin.Top + 8f;
 
-            // Header
-            g.DrawString("ESTIPONA DENTAL CLINIC", headerFont, Brushes.Black, pageWidth / 2, y,
-                new StringFormat { Alignment = StringAlignment.Center });
-            y += 18;
-            g.DrawString("General Dentistry, Orthodontics, and Oral Surgery", bodyFont, Brushes.Black, pageWidth / 2, y,
-                new StringFormat { Alignment = StringAlignment.Center });
-            y += 15;
-            g.DrawString("Door #4 & 5 DELGAR Bldg, J.P. Laurel Avenue Bajada, Davao City", bodyFont, Brushes.Black, pageWidth / 2, y,
-                new StringFormat { Alignment = StringAlignment.Center });
-            y += 15;
-            g.DrawString("Contact: 09456498475", bodyFont, Brushes.Black, pageWidth / 2, y,
-                new StringFormat { Alignment = StringAlignment.Center });
-            y += 25;
+            var centerFmt = new StringFormat { Alignment = StringAlignment.Center };
 
-            // Title
-            g.DrawString("PRESCRIPTION", new Font("Arial", 12, FontStyle.Bold | FontStyle.Underline), Brushes.Black, pageWidth / 2, y,
-                new StringFormat { Alignment = StringAlignment.Center });
-            y += 30;
+            // Header (centered inside margins)
+            float centerX = left + printableWidth / 2f;
+            g.DrawString("ESTIPONA DENTAL CLINIC", headerFont, Brushes.Black, new PointF(centerX, y), centerFmt);
+            y += 18f;
+            g.DrawString("General Dentistry, Orthodontics, and Oral Surgery", bodyFont, Brushes.Black, new PointF(centerX, y), centerFmt);
+            y += 15f;
+            g.DrawString("Door #4 & 5 DELGAR Bldg, J.P. Laurel Avenue Bajada, Davao City", bodyFont, Brushes.Black, new PointF(centerX, y), centerFmt);
+            y += 15f;
+            g.DrawString("Contact: 09456498475", bodyFont, Brushes.Black, new PointF(centerX, y), centerFmt);
+            y += 22f;
 
-            // Date
-            g.DrawString($"Date: {DateTime.Now:MMMM dd, yyyy}", bodyFont, Brushes.Black, pageWidth - 180, y);
-            y += 25;
+            // Date (right)
+            g.DrawString($"Date: {DateTime.Now:MMMM dd, yyyy}", bodyFont, Brushes.Black, right - 140f, y);
+            y += 24f;
 
-            // Prescription details with Rx
-            g.DrawString("℞", new Font("Arial", 28, FontStyle.Bold), Brushes.Black, leftMargin, y - 10);
-            y += 50;
+            // --- Patient Info ---
+            int age = DateTime.Now.Year - selectedPatientForPrint.BirthDate.Year;
+            if (DateTime.Now.Date < selectedPatientForPrint.BirthDate.AddYears(age)) age--;
+
+            string patientLabel = "Patient: ";
+            string ageLabel = "Age: ";
+            string sexLabel = "Sex: ";
+            string phoneLabel = "Phone: ";
+            string addrLabel = "Address: ";
+
+            // Draw Patient Name
+            float patientLabelWidth = g.MeasureString(patientLabel, boldFont).Width;
+            g.DrawString(patientLabel, boldFont, Brushes.Black, left, y);
+
+            string nameText = selectedPatientForPrint.Name ?? "";
+            RectangleF nameRect = new RectangleF(left + patientLabelWidth, y, right - (left + patientLabelWidth), 1000f);
+            StringFormat wrapFormat = new StringFormat(StringFormat.GenericDefault)
+            {
+                Trimming = StringTrimming.Word,
+                FormatFlags = StringFormatFlags.LineLimit
+            };
+            g.DrawString(nameText, bodyFont, Brushes.Black, nameRect, wrapFormat);
+
+            // measure & underline
+            int nameMeasureWidth = Math.Max(1, (int)Math.Floor(nameRect.Width));
+            SizeF nameSize = g.MeasureString(nameText, bodyFont, nameMeasureWidth, StringFormat.GenericTypographic);
+            float nameUnderlineY = y + nameSize.Height;
+            g.DrawLine(Pens.Black, left + patientLabelWidth, nameUnderlineY, left + patientLabelWidth + nameSize.Width, nameUnderlineY);
+
+            y = nameUnderlineY + 6f;
+
+            // Draw Address
+            g.DrawString(addrLabel, boldFont, Brushes.Black, left, y);
+            float addrFieldX = left + g.MeasureString(addrLabel, boldFont).Width;
+            float addrFieldWidth = right - addrFieldX;
+            RectangleF addrRect = new RectangleF(addrFieldX, y, addrFieldWidth, 1000f);
+            string addressText = selectedPatientForPrint.Address ?? "";
+            g.DrawString(addressText, bodyFont, Brushes.Black, addrRect, wrapFormat);
+
+            // measure & underline
+            int addrMeasureWidth = Math.Max(1, (int)Math.Floor(addrFieldWidth));
+            SizeF addrSize = g.MeasureString(addressText, bodyFont, addrMeasureWidth, StringFormat.GenericTypographic);
+            float addrUnderlineY = y + addrSize.Height;
+            g.DrawLine(Pens.Black, addrFieldX, addrUnderlineY, addrFieldX + addrSize.Width, addrUnderlineY);
+
+            y = addrUnderlineY + 8f;
+
+            // --- Age (small), Phone (wider), Sex (wider) ---
+            float metaY = y;
+
+            // Allocate widths: Age = 20%, Phone = 40%, Sex = 40%
+            float ageWidth = (right - left) * 0.2f;
+            float phoneWidth = (right - left) * 0.4f;
+            float sexWidth = (right - left) * 0.4f;
+
+            // Age Column
+            float colX = left;
+            g.DrawString(ageLabel, boldFont, Brushes.Black, colX, metaY);
+            float ageLabelWidth = g.MeasureString(ageLabel, boldFont).Width;
+            string ageText = age.ToString();
+            g.DrawString(ageText, bodyFont, Brushes.Black, colX + ageLabelWidth, metaY);
+
+            // underline Age value
+            float ageTextWidth = g.MeasureString(ageText, bodyFont).Width;
+            float underlineY = metaY + bodyFont.GetHeight(g);
+            g.DrawLine(Pens.Black,
+                colX + ageLabelWidth, underlineY,
+                colX + ageLabelWidth + ageTextWidth, underlineY);
+
+            // Phone Column
+            colX = left + ageWidth; // start right after Age
+            g.DrawString(phoneLabel, boldFont, Brushes.Black, colX, metaY);
+            float phoneLabelWidth = g.MeasureString(phoneLabel, boldFont).Width;
+            string phoneText = selectedPatientForPrint.Phone ?? "";
+            g.DrawString(phoneText, bodyFont, Brushes.Black, colX + phoneLabelWidth, metaY);
+
+            // underline Phone value
+            float phoneTextWidth = g.MeasureString(phoneText, bodyFont).Width;
+            g.DrawLine(Pens.Black,
+                colX + phoneLabelWidth, underlineY,
+                colX + phoneLabelWidth + phoneTextWidth, underlineY);
+
+            // Sex Column
+            colX = left + ageWidth + phoneWidth; // start right after Phone
+            g.DrawString(sexLabel, boldFont, Brushes.Black, colX, metaY);
+            float sexLabelWidth = g.MeasureString(sexLabel, boldFont).Width;
+            string sexText = selectedPatientForPrint.Gender ?? "";
+            g.DrawString(sexText, bodyFont, Brushes.Black, colX + sexLabelWidth, metaY);
+
+            // underline Sex value
+            float sexTextWidth = g.MeasureString(sexText, bodyFont).Width;
+            g.DrawLine(Pens.Black,
+                colX + sexLabelWidth, underlineY,
+                colX + sexLabelWidth + sexTextWidth, underlineY);
+
+            y += bodyFont.GetHeight(g) + 12f;
+
+
+            // Reserve footer area for the signature block (so signature stays visible)
+            float signatureBlockHeight = 80f; // enough to hold line + 3 text lines
+            float footerTop = margin.Bottom - signatureBlockHeight - 10f;
+
+            // Prescription details with Rx (paginated)
+            g.DrawString("℞", new Font("Arial", 28, FontStyle.Bold), Brushes.Black, left, y - 8f);
+            y += 36f;
+
+            int index = printPrescriptionIndex;
+            float medLeft = left + 30f;
+            float medWidth = right - medLeft;
+            int medMeasureWidth = Math.Max(1, (int)Math.Floor(medWidth));
 
             if (prescriptions.Count == 0)
             {
-                g.DrawString("(No medicines provided.)", bodyFont, Brushes.Black, leftMargin + 30, y);
-                y += 20;
+                // Fit this text into the area above footer
+                if (y + 20f <= footerTop)
+                {
+                    g.DrawString("(No medicines provided.)", bodyFont, Brushes.Black, medLeft, y);
+                    y += 20f;
+                }
+                // else nothing (no space), signature will still be printed
             }
             else
             {
-                int index = 1;
-                foreach (var item in prescriptions)
+                while (index < prescriptions.Count)
                 {
-                    g.DrawString($"{index}. {item.Medicine} - {item.Dosage}", bodyFont, Brushes.Black, leftMargin + 30, y);
-                    y += 18;
+                    string medLine = $"{index + 1}. {prescriptions[index].Medicine} - {prescriptions[index].Dosage}";
+                    RectangleF medRect = new RectangleF(medLeft, y, medWidth, 1000f);
+                    SizeF medSize = g.MeasureString(medLine, bodyFont, medMeasureWidth, StringFormat.GenericTypographic);
+
+                    // If next medicine won't fit before footer, break to new page
+                    if (y + medSize.Height > footerTop)
+                    {
+                        break;
+                    }
+
+                    g.DrawString(medLine, bodyFont, Brushes.Black, medRect, wrapFormat);
+                    y += medSize.Height;
                     index++;
                 }
             }
-            y += 15;
 
-            // --- Instructions ---
-            g.DrawString("Instructions:", boldFont, Brushes.Black, leftMargin, y);
-            y += 18;
+            // save progress
+            printPrescriptionIndex = index;
 
+            y += 20f;
+
+            // If not finished printing prescriptions, request another page (signature will only be printed on the final page)
+            if (printPrescriptionIndex < prescriptions.Count)
+            {
+                e.HasMorePages = true;
+                return;
+            }
+
+            // --- Instructions (printed in remaining area above footer; truncated if exceeds area) ---
             string instr = string.IsNullOrWhiteSpace(instructionsText) ? "(No instructions provided.)" : instructionsText;
-            RectangleF instrRect = new RectangleF(leftMargin + 15, y, pageWidth - 2 * leftMargin, 200);
-            g.DrawString(instr, bodyFont, Brushes.Black, instrRect);
+            float availableForInstructions = Math.Max(0f, footerTop - y - 6f);
+            if (availableForInstructions > 6f)
+            {
+                RectangleF instrRect = new RectangleF(left + 15f, y, printableWidth - 30f, availableForInstructions);
+                g.DrawString(instr, bodyFont, Brushes.Black, instrRect, wrapFormat);
+                // not tracking multi-page instructions; truncated if too long (keeps signature visible)
+            }
+            // else: not enough space for instructions, we skip them to keep signature visible
 
-            SizeF instrSize = g.MeasureString(instr, bodyFont, (int)(pageWidth - 2 * leftMargin));
-            y += instrSize.Height + 20;
+            // --- Signature block (anchored bottom-right; always visible) ---
+            float sigX = right - 220f; // adjust block width as needed
+            float sigY = margin.Bottom - 80f; // baseline for the signature line (above the page bottom margin)
 
-            // --- Doctor's Notes ---
-            g.DrawString("Doctor's Notes:", boldFont, Brushes.Black, leftMargin, y);
-            y += 18;
+            g.DrawString("____________________________", bodyFont, Brushes.Black, sigX, sigY);
+            sigY += 20f;
+            g.DrawString("SALVACION E. ESTIPONA, D.M.D", boldFont, Brushes.Black, sigX, sigY);
+            sigY += 18f;
+            g.DrawString("Lic# 0036173", bodyFont, Brushes.Black, sigX, sigY);
+            sigY += 18f;
+            g.DrawString($"PTR #{ptrNumber}", bodyFont, Brushes.Black, sigX, sigY);
 
-            string notes = string.IsNullOrWhiteSpace(doctorNotesText) ? "(No notes provided.)" : doctorNotesText;
-            RectangleF notesRect = new RectangleF(leftMargin + 15, y, pageWidth - 2 * leftMargin, 200);
-            g.DrawString(notes, bodyFont, Brushes.Black, notesRect);
-
-            SizeF notesSize = g.MeasureString(notes, bodyFont, (int)(pageWidth - 2 * leftMargin));
-            y += notesSize.Height + 25;
-
-            // Signature
-            g.DrawString("_________________________", bodyFont, Brushes.Black, pageWidth - 220, y);
-            y += 25;
-            g.DrawString("SALVACION E. ESTIPONA", boldFont, Brushes.Black, pageWidth - 210, y); y += 20;
-            g.DrawString("Lic# 0036173", bodyFont, Brushes.Black, pageWidth - 210, y); y += 20;
-            g.DrawString($"PTR #{ptrNumber}", bodyFont, Brushes.Black, pageWidth - 210, y);
+            // finished
+            e.HasMorePages = false;
         }
+
     }
 }

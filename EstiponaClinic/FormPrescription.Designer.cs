@@ -9,9 +9,7 @@
         private TextBox textBoxAddress;
         private DataGridView dgvPrescriptions;
         private RichTextBox richTextBoxInstructions;
-        private RichTextBox richTextBoxNotes;
         private Button buttonGenerate;
-        private Label label1, label2, label3, label6, label7, label8;
 
         protected override void Dispose(bool disposing)
         {
@@ -30,17 +28,19 @@
             Medicine = new DataGridViewTextBoxColumn();
             Dosage = new DataGridViewTextBoxColumn();
             richTextBoxInstructions = new RichTextBox();
-            richTextBoxNotes = new RichTextBox();
             buttonGenerate = new Button();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             label6 = new Label();
-            label7 = new Label();
             label8 = new Label();
             label4 = new Label();
             textBoxPTR = new TextBox();
             labelPTR = new Label();
+            textBoxPhone = new TextBox();
+            labelPhone = new Label();
+            textBoxGender = new TextBox();
+            labelGender = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvPrescriptions).BeginInit();
             SuspendLayout();
             // 
@@ -90,7 +90,7 @@
             dgvPrescriptions.ColumnHeadersHeight = 48;
             dgvPrescriptions.Columns.AddRange(new DataGridViewColumn[] { Medicine, Dosage });
             dgvPrescriptions.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dgvPrescriptions.Location = new Point(42, 337);
+            dgvPrescriptions.Location = new Point(42, 435);
             dgvPrescriptions.Name = "dgvPrescriptions";
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Control;
@@ -121,21 +121,11 @@
             // 
             richTextBoxInstructions.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             richTextBoxInstructions.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            richTextBoxInstructions.Location = new Point(42, 615);
+            richTextBoxInstructions.Location = new Point(40, 730);
             richTextBoxInstructions.Name = "richTextBoxInstructions";
-            richTextBoxInstructions.Size = new Size(1038, 120);
+            richTextBoxInstructions.Size = new Size(1040, 193);
             richTextBoxInstructions.TabIndex = 4;
             richTextBoxInstructions.Text = "";
-            // 
-            // richTextBoxNotes
-            // 
-            richTextBoxNotes.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            richTextBoxNotes.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            richTextBoxNotes.Location = new Point(42, 790);
-            richTextBoxNotes.Name = "richTextBoxNotes";
-            richTextBoxNotes.Size = new Size(1038, 136);
-            richTextBoxNotes.TabIndex = 5;
-            richTextBoxNotes.Text = "";
             // 
             // buttonGenerate
             // 
@@ -143,7 +133,7 @@
             buttonGenerate.BackColor = Color.Green;
             buttonGenerate.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             buttonGenerate.ForeColor = Color.White;
-            buttonGenerate.Location = new Point(933, 952);
+            buttonGenerate.Location = new Point(931, 987);
             buttonGenerate.Name = "buttonGenerate";
             buttonGenerate.Size = new Size(149, 56);
             buttonGenerate.TabIndex = 6;
@@ -186,21 +176,11 @@
             // 
             label6.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = Color.Green;
-            label6.Location = new Point(44, 575);
+            label6.Location = new Point(40, 690);
             label6.Name = "label6";
             label6.Size = new Size(164, 37);
             label6.TabIndex = 10;
             label6.Text = "Instructions:";
-            // 
-            // label7
-            // 
-            label7.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.ForeColor = Color.Green;
-            label7.Location = new Point(42, 754);
-            label7.Name = "label7";
-            label7.Size = new Size(195, 33);
-            label7.TabIndex = 11;
-            label7.Text = "Doctor's Notes:";
             // 
             // label8
             // 
@@ -217,7 +197,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.Green;
-            label4.Location = new Point(42, 302);
+            label4.Location = new Point(42, 400);
             label4.Name = "label4";
             label4.Size = new Size(330, 32);
             label4.TabIndex = 13;
@@ -227,7 +207,7 @@
             // 
             textBoxPTR.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             textBoxPTR.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxPTR.Location = new Point(747, 543);
+            textBoxPTR.Location = new Point(747, 664);
             textBoxPTR.Name = "textBoxPTR";
             textBoxPTR.Size = new Size(333, 39);
             textBoxPTR.TabIndex = 14;
@@ -238,32 +218,74 @@
             labelPTR.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             labelPTR.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             labelPTR.ForeColor = Color.Green;
-            labelPTR.Location = new Point(659, 546);
+            labelPTR.Location = new Point(659, 667);
             labelPTR.Name = "labelPTR";
             labelPTR.Size = new Size(91, 34);
             labelPTR.TabIndex = 15;
             labelPTR.Text = "PTR #:";
             // 
+            // textBoxPhone
+            // 
+            textBoxPhone.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxPhone.Location = new Point(165, 314);
+            textBoxPhone.Name = "textBoxPhone";
+            textBoxPhone.ReadOnly = true;
+            textBoxPhone.Size = new Size(350, 39);
+            textBoxPhone.TabIndex = 16;
+            // 
+            // labelPhone
+            // 
+            labelPhone.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            labelPhone.ForeColor = Color.Green;
+            labelPhone.Location = new Point(62, 314);
+            labelPhone.Name = "labelPhone";
+            labelPhone.Size = new Size(101, 39);
+            labelPhone.TabIndex = 18;
+            labelPhone.Text = "Phone:";
+            // 
+            // textBoxGender
+            // 
+            textBoxGender.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            textBoxGender.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxGender.Location = new Point(846, 314);
+            textBoxGender.Name = "textBoxGender";
+            textBoxGender.ReadOnly = true;
+            textBoxGender.Size = new Size(236, 39);
+            textBoxGender.TabIndex = 17;
+            // 
+            // labelGender
+            // 
+            labelGender.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            labelGender.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            labelGender.ForeColor = Color.Green;
+            labelGender.Location = new Point(729, 314);
+            labelGender.Name = "labelGender";
+            labelGender.Size = new Size(111, 39);
+            labelGender.TabIndex = 19;
+            labelGender.Text = "Gender:";
+            // 
             // FormPrescription
             // 
             BackColor = Color.PowderBlue;
-            ClientSize = new Size(1127, 1020);
+            ClientSize = new Size(1127, 1055);
             Controls.Add(label4);
             Controls.Add(comboBoxPatient);
             Controls.Add(textBoxAge);
             Controls.Add(textBoxAddress);
             Controls.Add(dgvPrescriptions);
             Controls.Add(richTextBoxInstructions);
-            Controls.Add(richTextBoxNotes);
             Controls.Add(buttonGenerate);
             Controls.Add(label1);
             Controls.Add(label2);
             Controls.Add(label3);
             Controls.Add(label6);
-            Controls.Add(label7);
             Controls.Add(label8);
             Controls.Add(textBoxPTR);
             Controls.Add(labelPTR);
+            Controls.Add(textBoxPhone);
+            Controls.Add(textBoxGender);
+            Controls.Add(labelPhone);
+            Controls.Add(labelGender);
             Name = "FormPrescription";
             Text = "Generate Prescription";
             ((System.ComponentModel.ISupportInitialize)dgvPrescriptions).EndInit();
@@ -273,8 +295,19 @@
 
         private DataGridViewTextBoxColumn Medicine;
         private DataGridViewTextBoxColumn Dosage;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label6;
+        private Label label8;
         private Label label4;
         private TextBox textBoxPTR;
         private Label labelPTR;
+        private TextBox textBoxPhone;
+        private TextBox textBoxGender;
+        private Label labelPhone;
+        private Label labelGender;
+
+
     }
 }

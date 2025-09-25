@@ -169,7 +169,7 @@
             // 
             button1.BackColor = Color.Green;
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.ForeColor = Color.White;
+            button1.ForeColor = SystemColors.ButtonHighlight;
             button1.Location = new Point(11, 721);
             button1.Name = "button1";
             button1.Size = new Size(170, 71);
@@ -200,7 +200,7 @@
             // eXITToolStripMenuItem
             // 
             eXITToolStripMenuItem.Name = "eXITToolStripMenuItem";
-            eXITToolStripMenuItem.Size = new Size(224, 34);
+            eXITToolStripMenuItem.Size = new Size(190, 34);
             eXITToolStripMenuItem.Text = "Exit Form";
             eXITToolStripMenuItem.Click += eXITToolStripMenuItem_Click;
             // 
